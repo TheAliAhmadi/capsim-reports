@@ -80,10 +80,50 @@
       border-radius: 14px;
       padding: 0.35rem;
     }
-    .tablist {
+    .round-picker {
       display: flex;
-      gap: 0.45rem;
+      align-items: center;
+      gap: 0.55rem;
       flex: 2 1 280px;
+      min-width: 0;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.35rem 0.75rem 0.35rem 0.9rem;
+      box-shadow: 0 1px 4px rgba(10, 31, 61, 0.12);
+      cursor: pointer;
+    }
+    .round-picker span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .round-picker select {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      background-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230a1f3d' d='M1.4.6 6 5.2 10.6.6 12 2 6 8 0 2z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.15rem center;
+      background-size: 0.7rem;
+      color: var(--navy);
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.92rem;
+      line-height: 1.3;
+      padding: 0.4rem 1.4rem 0.4rem 0.1rem;
+      cursor: pointer;
+    }
+    .round-picker select:focus { outline: none; }
+    .round-picker:focus-within {
+      outline: 2px solid #2b5f9e;
+      outline-offset: 1px;
     }
     .tab {
       appearance: none;
@@ -140,7 +180,8 @@
     .hero-cta:hover { filter: brightness(1.06); }
     .panel a { color: #14325f; font-weight: 700; }
     @media (max-width: 640px) {
-      .tablist, a.tab { flex: 1 1 100%; }
+      .round-picker, a.tab { flex: 1 1 100%; }
+      .round-picker select { font-size: 1rem; }
     }
 
     .layout {
@@ -323,10 +364,14 @@
     </header>
 
     <nav class="tabs" aria-label="Reports and leaderboard">
-      <div class="tablist" role="tablist" aria-label="Report type">
-        <button class="tab" role="tab" id="tab-competition" aria-selected="true" data-tab="competition" type="button">Competition Round 1</button>
-        <button class="tab" role="tab" id="tab-practice" aria-selected="false" data-tab="practice" type="button">Practice Round Recap</button>
-      </div>
+      <label class="round-picker">
+        <span id="round-label">Round</span>
+        <select id="round-select" aria-labelledby="round-label">
+          <option value="round2" selected>Competition Round 2</option>
+          <option value="competition">Competition Round 1</option>
+          <option value="practice">Practice Round Recap</option>
+        </select>
+      </label>
       <a class="tab tab-link" href="leaderboard.html">Leaderboard</a>
     </nav>
 
@@ -334,14 +379,14 @@
       <aside class="panel access-panel" id="access-panel">
         <div class="access-badge">Student unlock</div>
         <h2>Get your team report</h2>
-        <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Capsim report for the tab you selected.</p>
+        <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Capsim report for the round you selected.</p>
 
         <div class="key-steps" id="howto">
           <div class="key-step">
             <div class="num">1</div>
             <div>
-              <strong>Pick a tab</strong>
-              <span>Competition Round 1 is the default. Practice Round Recap is available on the other tab.</span>
+              <strong>Pick a round</strong>
+              <span>Competition Round 2 is the default. Competition Round 1 and Practice Round Recap are in the same menu.</span>
             </div>
           </div>
           <div class="key-step">
@@ -370,7 +415,7 @@
         </div>
 
         <div class="report-box hidden" id="report-box">
-          <div class="pill" id="report-tab-pill">Competition Round 1</div>
+          <div class="pill" id="report-tab-pill">Competition Round 2</div>
           <h3 id="report-team">Your team</h3>
           <p id="report-meta"></p>
           <p class="msg ok" id="report-status">Unlocked — this is your team’s report only.</p>
@@ -383,7 +428,14 @@
       </aside>
 
       <div class="stack">
-        <section class="panel" id="blurb-competition">
+        <section class="panel" id="blurb-round2">
+          <h2>Competition Round 2</h2>
+          <p>These are coaching reviews of your firm’s <strong>second graded competition round</strong>. They explain what happened in plain language, connect decisions to outcomes, and suggest what to focus on next.</p>
+          <p>Each report supports — but does not replace — your own industry analysis.</p>
+          <p>The public <a href="leaderboard.html">Round 1 leaderboard</a> ranks every firm by Balanced Scorecard. No student number needed.</p>
+        </section>
+
+        <section class="panel hidden" id="blurb-competition">
           <h2>Competition Round 1</h2>
           <p>These are coaching reviews of your firm’s <strong>first graded competition round</strong>. They explain what happened in plain language, connect decisions to outcomes, and suggest what to focus on before Round 2.</p>
           <p>Each report supports — but does not replace — your own industry analysis.</p>
@@ -393,7 +445,7 @@
         <section class="panel hidden" id="blurb-practice">
           <h2>Practice Round Recap</h2>
           <p>These are coaching reviews from the earlier <strong>practice rounds</strong>. Use them if you want to revisit what you learned before the competition started.</p>
-          <p>Practice results do not carry into the graded game; Competition Round 1 is on the other tab.</p>
+          <p>Practice results do not carry into the graded game. Graded rounds are in the same menu.</p>
         </section>
 
         <section class="panel">
@@ -423,9 +475,23 @@
 
   <script>
     const SALT = "capsim-practice-round-recap-v1";
+    const ROUNDS = {
+      round2: {
+        label: "Competition Round 2",
+        missing: "No Competition Round 2 report is available for your team yet. Try another round in the menu."
+      },
+      competition: {
+        label: "Competition Round 1",
+        missing: "No Competition Round 1 report is available for your team yet. Try another round in the menu."
+      },
+      practice: {
+        label: "Practice Round Recap",
+        missing: "No Practice Round Recap is available for your team on this site yet. Try another round in the menu."
+      }
+    };
     let unlock = null;
     let record = null;
-    let activeTab = "competition";
+    let activeTab = "round2";
 
     const studentId = document.getElementById("student-id");
     const unlockBtn = document.getElementById("unlock-btn");
@@ -442,27 +508,25 @@
 
     function fileForTab(rec) {
       if (!rec) return null;
-      if (activeTab === "practice") {
-        return rec.practiceFile || null;
-      }
-      return rec.competitionFile || rec.file || null;
+      if (activeTab === "practice") return rec.practiceFile || null;
+      if (activeTab === "competition") return rec.competitionFile || rec.file || null;
+      return rec.round2File || rec.competitionRound2File || null;
     }
 
     function setTab(tab) {
-      activeTab = tab === "practice" ? "practice" : "competition";
-      document.querySelectorAll(".tab[data-tab]").forEach((btn) => {
-        btn.setAttribute("aria-selected", btn.dataset.tab === activeTab ? "true" : "false");
-      });
+      activeTab = ROUNDS[tab] ? tab : "round2";
+      const select = document.getElementById("round-select");
+      if (select.value !== activeTab) select.value = activeTab;
       const url = new URL(location.href);
-      if (activeTab === "practice") url.searchParams.set("tab", "practice");
-      else url.searchParams.delete("tab");
+      if (activeTab === "round2") url.searchParams.delete("tab");
+      else url.searchParams.set("tab", activeTab);
       const next = url.pathname + url.search + url.hash;
       const current = location.pathname + location.search + location.hash;
       if (next !== current) history.replaceState(null, "", next);
+      document.getElementById("blurb-round2").classList.toggle("hidden", activeTab !== "round2");
       document.getElementById("blurb-competition").classList.toggle("hidden", activeTab !== "competition");
       document.getElementById("blurb-practice").classList.toggle("hidden", activeTab !== "practice");
-      document.getElementById("report-tab-pill").textContent =
-        activeTab === "practice" ? "Practice Round Recap" : "Competition Round 1";
+      document.getElementById("report-tab-pill").textContent = ROUNDS[activeTab].label;
       if (record) refreshUnlockedView();
     }
 
@@ -471,9 +535,7 @@
       const status = document.getElementById("report-status");
       if (!path) {
         status.className = "msg bad";
-        status.textContent = activeTab === "practice"
-          ? "No Practice Round report is available for your team on this site yet. Try the Competition Round 1 tab."
-          : "No Competition Round 1 report is available for your team yet.";
+        status.textContent = ROUNDS[activeTab].missing;
         document.getElementById("open-btn").disabled = true;
         document.getElementById("download-btn").disabled = true;
         return;
@@ -529,9 +591,7 @@
       showReport(rec);
     }
 
-    document.querySelectorAll(".tab[data-tab]").forEach((btn) => {
-      btn.addEventListener("click", () => setTab(btn.dataset.tab));
-    });
+    document.getElementById("round-select").addEventListener("change", (e) => setTab(e.target.value));
     unlockBtn.addEventListener("click", tryUnlock);
     studentId.addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
     document.getElementById("reset-btn").addEventListener("click", resetUnlock);
@@ -555,8 +615,11 @@
       .then((data) => {
         unlock = data;
         const requested = new URLSearchParams(location.search).get("tab");
-        if (requested === "practice" || requested === "competition") setTab(requested);
+        const aliases = { round2: "round2", "round-2": "round2", "competition-round2": "round2" };
+        const tab = aliases[requested] || requested;
+        if (ROUNDS[tab]) setTab(tab);
         else if (data.defaultTab) setTab(data.defaultTab);
+        else setTab("round2");
       })
       .catch((err) => {
         unlockMsg.className = "msg bad";
