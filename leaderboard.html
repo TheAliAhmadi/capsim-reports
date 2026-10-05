@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1f3d" />
-  <title>Capsim Leaderboard · Round 2</title>
+      <title>Capsim Leaderboard · Cumulative Total</title>
   <style>
     :root {
       --navy: #0a1f3d;
@@ -255,7 +255,7 @@
     .rank-change-up { color: #146c43; background: #e5f6ec; }
     .rank-change-down { color: #9a3412; background: #fde8e0; }
     .rank-change-flat { color: #8a6a1f; background: #f7edd4; }
-    .bsc-chip {
+    .bsc-chip, .score-other {
       display: inline-flex;
       width: fit-content;
       margin-top: 0.18rem;
@@ -267,6 +267,194 @@
       border-radius: 999px;
       padding: 0.1rem 0.42rem;
     }
+    .score-max {
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+    .bsc-num .score-max, .place-score .score-max, .bsc-lg .score-max {
+      font-size: 0.72rem;
+      margin-left: 0.12rem;
+    }
+    .score-stack { display: flex; flex-direction: column; align-items: flex-end; }
+    .score-other { margin-left: auto; }
+    .alt-score {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--navy-2);
+    }
+    .view-switch {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+    .view-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 800;
+    }
+    .segmented {
+      display: flex;
+      flex: 1 1 16rem;
+      min-width: 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(212,168,75,0.5);
+      border-radius: 999px;
+      padding: 0.2rem;
+      gap: 0.15rem;
+    }
+    .segmented button {
+      flex: 1 1 auto;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.88rem;
+      border-radius: 999px;
+      padding: 0.55rem 0.75rem;
+      cursor: pointer;
+    }
+    .segmented button[aria-pressed="true"] {
+      background: #fff;
+      color: var(--navy);
+      box-shadow: 0 1px 4px rgba(10,31,61,0.16);
+    }
+    .segmented button:hover { background: rgba(255,255,255,0.16); }
+    .segmented button[aria-pressed="true"]:hover { background: #fff; }
+    .head-row, .th-label, .label-with-info, .legend {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .head-row { flex-wrap: wrap; }
+    .head-row h2 { margin: 0; }
+    .th-label { gap: 0.28rem; }
+    th.num .th-label { justify-content: flex-end; width: 100%; }
+    .label-with-info {
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .field {
+      display: grid;
+      gap: 0.28rem;
+      flex: 1 1 150px;
+    }
+    .info-btn {
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      background: #fff;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.78rem;
+      line-height: 1;
+      padding: 0;
+      display: inline-grid;
+      place-items: center;
+      cursor: pointer;
+      flex: none;
+    }
+    .info-btn:hover { border-color: var(--gold); background: var(--gold-soft); }
+    .info-btn[aria-expanded="true"] {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    .info-btn-on-dark {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.75);
+    }
+    .info-btn-on-dark:hover { background: #fff; color: var(--navy); }
+    .info-btn-on-dark[aria-expanded="true"] { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .award { position: relative; }
+    .award-hit {
+      appearance: none;
+      background: none;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .award-info { position: absolute; top: 0.7rem; right: 0.65rem; z-index: 2; }
+    .info-pop {
+      position: fixed;
+      z-index: 70;
+      width: min(20.5rem, calc(100vw - 1.25rem));
+      max-height: min(50vh, 18rem);
+      overflow: auto;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 16px 40px rgba(10, 31, 61, 0.2);
+      padding: 0.75rem 0.85rem;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .info-pop-kicker {
+      margin: 0 0 0.3rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8a6a1f;
+      font-weight: 800;
+    }
+    .info-pop p { margin: 0; }
+    #info-pop-text { white-space: pre-line; }
+    #score-info { display: none; }
+    .roster-scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+    .roster-score {
+      background: #f4f7fb;
+      border-radius: 10px;
+      padding: 0.4rem 0.55rem;
+    }
+    .roster-score span {
+      display: block;
+      font-size: 0.66rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .roster-score strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+    .roster-move-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.35rem;
+    }
+    .roster-move-line .roster-place { margin: 0; flex: 1 1 12rem; }
     .pos-label { display: none; }
     .podium-card h3 { margin: 0.15rem 0 0.1rem; font-size: 1.15rem; color: var(--navy); }
     .rank-1 h3 { font-size: 1.35rem; }
@@ -279,7 +467,7 @@
       font-variant-numeric: tabular-nums;
     }
     .rank-1 .place-score strong { font-size: 1.9rem; color: #8a6a1f; }
-    .place-score span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .place-score .score-kicker { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
     .pedestal { height: 14px; margin: 0 -0.8rem; }
     .rank-1 .pedestal { height: 46px; background: linear-gradient(180deg, #f0d48a, #c8942f); }
     .rank-2 .pedestal { height: 30px; background: linear-gradient(180deg, #eef2f6, #b7c3d1); }
@@ -387,14 +575,16 @@
     .award.tone-navy::before { background: var(--navy-2); }
     .award.tone-teal::before { background: #1f6f78; }
     .award.tone-green::before { background: var(--ok); }
-    .award-top { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.45rem; }
+    .award-top { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.45rem; padding-right: 1.8rem; cursor: pointer; }
+    .award { overflow: visible; }
+    .legend #legend-text { flex: 1 1 14rem; }
     .award-icon {
       width: 36px; height: 36px; border-radius: 10px;
       display: grid; place-items: center;
       background: var(--gold-soft);
       flex: none;
     }
-    .award h3 { margin: 0; font-size: 1rem; color: var(--navy); }
+    .award h3 { margin: 0; font-size: 1rem; color: var(--navy); flex: 1; min-width: 0; line-height: 1.25; }
     .award .blurb { margin: 0.15rem 0 0.55rem; color: var(--muted); font-size: 0.82rem; line-height: 1.35; }
     .award-who { display: flex; align-items: center; gap: 0.55rem; margin: 0.1rem 0 0.45rem; }
     .award-mascot { width: 64px; height: 64px; flex: none; }
@@ -485,7 +675,7 @@
     tbody tr.is-podium { background: linear-gradient(90deg, #fbf6ea, #fff 42%); box-shadow: inset 3px 0 0 var(--gold); }
     tbody tr.is-podium:hover { background: #f7edd4; }
     tr.flash { animation: flash 1.4s ease; }
-    .bsc-num { font-weight: 800; color: var(--navy); }
+    .bsc-num { font-weight: 800; color: var(--navy); white-space: nowrap; }
     .bsc-bar {
       display: block;
       height: 4px;
@@ -504,7 +694,7 @@
     }
     .neg { color: var(--neg); }
     .empty { text-align: center; color: var(--muted); padding: 1.2rem 0.5rem; }
-    .legend { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.82rem; display: flex; align-items: center; gap: 0.4rem; }
+    .legend { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.82rem; flex-wrap: wrap; }
     .swatch { width: 0.85rem; height: 0.85rem; border-radius: 3px; background: var(--gold); display: inline-block; }
     .closing { margin: 0.85rem 0 0; color: var(--muted); line-height: 1.5; }
     footer { margin-top: 1.35rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
@@ -692,6 +882,12 @@
       .podium-main .rank-1 { grid-column: 1 / -1; order: -1; }
       .awards { grid-template-columns: 1fr; }
       .shell { padding: 1.1rem 0.8rem 4.6rem; }
+      .view-label { flex: 1 0 100%; }
+      .segmented { flex: 1 1 auto; min-width: 0; }
+      .segmented button { font-size: 0.78rem; padding: 0.55rem 0.35rem; }
+      .info-btn { width: 1.75rem; height: 1.75rem; }
+      #score-info { display: inline-grid; }
+      .roster-scores { grid-template-columns: 1fr; }
       thead { display: none; }
       table, tbody, tr, td { display: block; }
       tbody tr {
@@ -755,8 +951,16 @@
       <span class="glint g2" aria-hidden="true"></span>
       <span class="glint g3" aria-hidden="true"></span>
       <div class="eyebrow">Queen’s Smith School of Business · <span id="round-label">Round 2</span></div>
-      <h1>Capsim Leaderboard · Round 2</h1>
-      <p class="subtitle">A public ranking of student teams by Round 2 Balanced Scorecard, across every section and industry.</p>
+      <h1>Capsim Leaderboard</h1>
+      <p class="subtitle">Official rankings are by Cumulative Total: Round 1 Balanced Scorecard, Round 2 Balanced Scorecard, and the Practice Round Recap, out of 1,000. Use the switch to see Round 2 on its own.</p>
+      <div class="view-switch">
+        <span class="view-label" id="view-switch-label">Ranking</span>
+        <div class="segmented" role="group" aria-labelledby="view-switch-label">
+          <button type="button" id="view-cumulative" data-view="cumulative" aria-pressed="true">Cumulative total</button>
+          <button type="button" id="view-round2" data-view="round2" aria-pressed="false">Round 2 BSC</button>
+        </div>
+        <button type="button" class="info-btn info-btn-on-dark" id="view-info" data-info-key="view" aria-expanded="false" aria-controls="info-pop" aria-label="How Cumulative Total and Round 2 BSC rankings work">i</button>
+      </div>
       <div class="hero-stats" id="hero-stats"></div>
     </header>
 
@@ -766,14 +970,17 @@
       <a class="tab" href="leaderboard.html" aria-current="page">Leaderboard</a>
     </nav>
 
-    <p class="panel" id="loading">Loading Round 2 scores…</p>
+    <p class="panel" id="loading">Loading the leaderboard…</p>
     <p class="panel" id="load-error" hidden role="alert">The leaderboard didn’t load. Refresh the page to try again.</p>
 
     <div class="stack" id="app" hidden>
       <section class="panel" aria-labelledby="podium-title">
         <div class="section-head">
-          <h2 id="podium-title">Podium</h2>
-          <p>The top five Round 2 Balanced Scorecard scores. Select a place to see how that round looked and who’s on the team. Arrows show how far each firm moved since Round 1.</p>
+          <div class="head-row">
+            <h2 id="podium-title">Podium · Cumulative total</h2>
+            <button type="button" class="info-btn" id="podium-info" data-info-key="podium" aria-expanded="false" aria-controls="info-pop" aria-label="About the podium">i</button>
+          </div>
+          <p id="podium-blurb">The top five Cumulative Totals. Select a place to meet the team. Arrows show how the cumulative rank moved since Round 1.</p>
         </div>
         <div class="stage">
           <div class="podium-main" id="podium-main"></div>
@@ -785,7 +992,7 @@
       <section class="panel" aria-labelledby="awards-title">
         <div class="section-head">
           <h2 id="awards-title">Special awards</h2>
-          <p>Side honors for standout results, including the biggest climb and the largest scorecard gain since Round 1. Each card celebrates one result and does not change the official ranking. Select a card to meet the team.</p>
+          <p>Side honors beside the official Cumulative Total. Each card names its measure: cumulative rank gain, Round 2 rank gain, Round 2 versus Round 1 scorecard, best Round 2 score, or a Round 2 financial result. Select a card to meet the team.</p>
         </div>
         <div class="sweep" id="sweep" hidden></div>
         <div class="awards" id="awards"></div>
@@ -793,8 +1000,11 @@
 
       <section class="panel" id="board" aria-labelledby="board-title">
         <div class="section-head">
-          <h2 id="board-title">Top 30</h2>
-          <p>Official rank is the Round 2 Balanced Scorecard. The number column follows the current sort, and a BSC chip keeps the official place when that number is different. Arrows always show movement in the official ranking since Round 1. Search or filter to find any firm, then select a team to see its roster.</p>
+          <div class="head-row">
+            <h2 id="board-title">Top 30 · Cumulative total</h2>
+            <button type="button" class="info-btn" id="score-info" data-info-key="score" aria-expanded="false" aria-controls="info-pop" aria-label="About the score column">i</button>
+          </div>
+          <p id="board-blurb">Official rank is the Cumulative Total (Round 1 + Round 2 + Practice Recap, out of 1,000). The number column follows the current sort, and a chip keeps the official place when that number is different. Arrows show movement in the cumulative ranking since Round 1. Search or filter to find any firm, then select a team to see its roster.</p>
         </div>
         <div class="toolbar">
           <label>Search
@@ -806,8 +1016,11 @@
           <label>Industry
             <select id="industry"><option value="">All industries</option></select>
           </label>
-          <label>Extra column
-            <select id="extra-metric">
+          <div class="field">
+            <span class="label-with-info">Extra column
+              <button type="button" class="info-btn" id="metric-info" data-info-key="metrics" aria-expanded="false" aria-controls="info-pop" aria-label="About the extra metric column">i</button>
+            </span>
+            <select id="extra-metric" aria-label="Extra column">
               <option value="profit" selected>Profit</option>
               <option value="contributionMargin">Contribution margin</option>
               <option value="sales">Sales</option>
@@ -816,9 +1029,9 @@
               <option value="emergencyLoan">Emergency loan</option>
               <option value="marketShare">Market share</option>
             </select>
-          </label>
+          </div>
           <div class="sort" role="group" aria-label="Sort by">
-            <button type="button" data-sort="bsc" data-label="Balanced Scorecard" aria-pressed="true">Balanced Scorecard</button>
+            <button type="button" data-sort="score" data-label="Cumulative total" aria-pressed="true">Cumulative total</button>
             <button type="button" id="sort-extra" data-sort="profit" data-label="Profit" aria-pressed="false">Profit</button>
           </div>
           <button type="button" class="btn-quiet" id="clear" hidden>Clear</button>
@@ -828,19 +1041,28 @@
           <table aria-describedby="board-status">
             <thead>
               <tr>
-                <th scope="col" id="rank-col" title="Official rank by Round 2 Balanced Scorecard">Rank</th>
+                <th scope="col" id="rank-col" title="Official rank by Cumulative Total"><span id="rank-col-label">Rank</span></th>
                 <th scope="col">Team</th>
                 <th scope="col">Section</th>
                 <th scope="col">Industry</th>
-                <th scope="col" class="num">BSC</th>
+                <th scope="col" class="num" id="score-col">
+                  <span class="th-label"><span id="score-col-label">Cumulative</span>
+                    <button type="button" class="info-btn" id="score-col-info" data-info-key="score" aria-expanded="false" aria-controls="info-pop" aria-label="About the score column">i</button>
+                  </span>
+                </th>
                 <th scope="col" class="num metric" id="extra-col" title="Profit">Profit</th>
               </tr>
             </thead>
             <tbody id="board-body"></tbody>
           </table>
         </div>
-        <p class="legend"><span class="swatch" aria-hidden="true"></span> Gold edge marks the official podium, Balanced Scorecard ranks 1–5. Arrows compare that rank with Round 1. Select a team to open its roster.</p>
-        <p class="closing">Every firm is still in the simulation. This is a Round 2 snapshot, and a strong next round can still rewrite the story.</p>
+        <p class="legend">
+          <span class="swatch" aria-hidden="true"></span>
+          <span id="legend-text">Gold edge marks the official podium, cumulative ranks 1–5. Arrows compare that rank with last round’s cumulative position. A Cum. # chip keeps the official rank when you sort another way. Select a team to open its roster.</span>
+          <button type="button" class="info-btn" id="arrow-info" data-info-key="arrows" aria-expanded="false" aria-controls="info-pop" aria-label="About rank-change arrows">i</button>
+          <button type="button" class="info-btn" id="chip-info" data-info-key="chip" aria-expanded="false" aria-controls="info-pop" aria-label="About the official rank chip">i</button>
+        </p>
+        <p class="closing">Every firm is still in the simulation. Cumulative Total is the story so far, and a strong next round can still rewrite it.</p>
       </section>
     </div>
 
@@ -861,6 +1083,7 @@
             <h2 id="roster-title"></h2>
             <p class="roster-place" id="roster-place"></p>
             <div class="roster-move" id="roster-move"></div>
+            <div class="roster-scores" id="roster-scores"></div>
           </div>
         </div>
         <button type="button" class="find-btn roster-close" id="roster-close">Close</button>
@@ -872,6 +1095,11 @@
         <button type="button" class="find-btn" id="roster-board">Show on the board</button>
       </div>
     </div>
+  </div>
+
+  <div id="info-pop" class="info-pop" role="dialog" aria-modal="false" aria-labelledby="info-pop-kicker" aria-describedby="info-pop-text" hidden tabindex="-1">
+    <p class="info-pop-kicker" id="info-pop-kicker">How this works</p>
+    <p id="info-pop-text"></p>
   </div>
 
   <script>
@@ -937,14 +1165,16 @@
     };
 
     const AWARD_DEFS = [
-      { key: "mostProfitable", title: "Money Printer", blurb: "Highest profit in the round", field: "profit", format: "money", label: "Profit", tone: "gold", icon: "gold" },
-      { key: "highestContributionMargin", title: "Margin Magician", blurb: "Best contribution margin", field: "contributionMargin", format: "pct", label: "Contribution margin", tone: "navy", icon: "wand" },
-      { key: "highestSales", title: "Sales Storm", blurb: "Most sales revenue", field: "sales", format: "money", label: "Sales", tone: "teal", icon: "storm" },
-      { key: "highestROE", title: "ROE Royalty", blurb: "Strongest return on equity", field: "roe", format: "pct", label: "Return on equity", tone: "gold", icon: "crown" },
-      { key: "lowestEmergencyLoanAmongBorrowers", title: "Cash Cool", blurb: "Smallest emergency loan among teams that borrowed", field: "emergencyLoan", format: "money", label: "Emergency loan", tone: "navy", icon: "cool" },
-      { key: "profitWithoutEmergencyLoan", title: "Clean Books", blurb: "Best profit with no emergency loan", field: "profit", format: "money", label: "Profit", tone: "green", icon: "book" },
-      { key: "biggestClimber", title: "Biggest Climber", blurb: "Most places gained since Round 1. A leap like that is worth cheering.", field: "rankChange", format: "places", label: "Places gained", tone: "green", icon: "climb" },
-      { key: "mostImproved", title: "Most Improved", blurb: "Largest Balanced Scorecard gain since Round 1. That jump is real progress.", field: "bscChange", format: "delta", label: "BSC gain", tone: "gold", icon: "rise" }
+      { key: "mostProfitable", title: "Money Printer", blurb: "Highest Round 2 profit, in $000s.", field: "profit", format: "money", label: "Profit ($000s)", tone: "gold", icon: "gold" },
+      { key: "highestContributionMargin", title: "Margin Magician", blurb: "Best Round 2 contribution margin.", field: "contributionMargin", format: "pct", label: "Contribution margin", tone: "navy", icon: "wand" },
+      { key: "highestSales", title: "Sales Storm", blurb: "Most Round 2 sales revenue, in $000s.", field: "sales", format: "money", label: "Sales ($000s)", tone: "teal", icon: "storm" },
+      { key: "highestROE", title: "ROE Royalty", blurb: "Strongest Round 2 return on equity.", field: "roe", format: "pct", label: "Return on equity", tone: "gold", icon: "crown" },
+      { key: "lowestEmergencyLoanAmongBorrowers", title: "Cash Cool", blurb: "Smallest Round 2 emergency loan among teams that borrowed, in $000s.", field: "emergencyLoan", format: "money", label: "Emergency loan ($000s)", tone: "navy", icon: "cool" },
+      { key: "profitWithoutEmergencyLoan", title: "Clean Books", blurb: "Best Round 2 profit with no emergency loan, in $000s.", field: "profit", format: "money", label: "Profit ($000s)", tone: "green", icon: "book" },
+      { key: "biggestClimber", title: "Biggest Climber", blurb: "Most places gained in the cumulative ranking since Round 1.", field: "rankChange", format: "places", label: "Cumulative places gained", tone: "green", icon: "climb" },
+      { key: "biggestRound2Climber", title: "Biggest Round 2 Climber", blurb: "Most places gained on the Round 2 scorecard versus Round 1.", field: "rd2RankChange", format: "places", label: "Round 2 places gained", tone: "teal", icon: "climb" },
+      { key: "mostImproved", title: "Most Improved", blurb: "Largest Round 2 Balanced Scorecard gain versus Round 1.", field: "bscChange", format: "delta", label: "Rd 2 vs Rd 1 BSC", tone: "gold", icon: "rise" },
+      { key: "bestRound2", title: "Best Round 2 Score", blurb: "Highest Round 2 Balanced Scorecard, this round only.", field: "rd2Bsc", format: "score", label: "Round 2 BSC", tone: "navy", icon: "crown" }
     ];
 
     const EXTRA_METRICS = [
@@ -956,7 +1186,17 @@
       { key: "emergencyLoan", label: "Emergency loan", short: "Loan", format: "money" },
       { key: "marketShare", label: "Market share", short: "Share", format: "pct" }
     ];
+    const METRIC_LINES = {
+      profit: "Profit: Round 2 profit, in thousands of dollars ($000s).",
+      contributionMargin: "CM: contribution margin, the share of sales left after variable costs, shown as a percent.",
+      sales: "Sales: Round 2 sales revenue, in thousands of dollars ($000s).",
+      roe: "ROE: return on equity, profit compared with equity, shown as a percent.",
+      ros: "ROS: return on sales, profit compared with sales, shown as a percent.",
+      emergencyLoan: "Emergency loan: emergency borrowing this round, in thousands of dollars ($000s). None means the team did not borrow.",
+      marketShare: "Market share: the team’s share of industry sales, shown as a percent."
+    };
     const METRIC_STORE = "capsim-extra-metric";
+    const VIEW_STORE = "capsim-leaderboard-view";
     const SOUND_STORE = "capsim-leaderboard-sound";
     const FW_STORE = "capsim-fireworks-seen";
 
@@ -968,7 +1208,15 @@
       return "profit";
     }
 
-    const state = { q: "", section: "", industry: "", sortKey: "bsc", sortDir: "desc", pinnedId: null, extraMetric: storedMetric() };
+    function storedView() {
+      try {
+        const saved = sessionStorage.getItem(VIEW_STORE);
+        if (saved === "round2" || saved === "cumulative") return saved;
+      } catch (err) { /* sessionStorage can be blocked */ }
+      return "cumulative";
+    }
+
+    const state = { q: "", section: "", industry: "", sortKey: "score", sortDir: "desc", pinnedId: null, extraMetric: storedMetric(), view: storedView() };
     let data = null;
     let top30 = [];
     let byId = new Map();
@@ -993,11 +1241,103 @@
     function bsc(n) {
       return (Math.round(Number(n) * 10) / 10).toFixed(1);
     }
-    function scoreOf(team) {
+    function isRoundView() {
+      return state.view === "round2";
+    }
+    function viewRank(team) {
+      return Number(isRoundView() ? team.rd2Rank : team.rank);
+    }
+    function viewScore(team) {
       if (!team) return NaN;
-      if (team.bsc != null && team.bsc !== "") return Number(team.bsc);
-      if (team.rd2Bsc != null && team.rd2Bsc !== "") return Number(team.rd2Bsc);
-      return Number(team.rd1Bsc);
+      if (isRoundView()) {
+        if (team.rd2Bsc != null && team.rd2Bsc !== "") return Number(team.rd2Bsc);
+        return Number(team.bsc);
+      }
+      return Number(team.cumulativeTotal);
+    }
+    function otherScoreText(team) {
+      if (!team) return "";
+      if (isRoundView()) return "Cum. " + bsc(team.cumulativeTotal);
+      const roundScore = team.rd2Bsc != null && team.rd2Bsc !== "" ? team.rd2Bsc : team.bsc;
+      return "Rd 2 " + bsc(roundScore);
+    }
+    function cumulativeMax(team) {
+      const max = Number(team && team.cumulativeMax);
+      return Number.isFinite(max) && max > 0 ? Math.round(max) : 1000;
+    }
+    function appendScoreValue(parent, team) {
+      parent.append(document.createTextNode(bsc(viewScore(team))));
+      if (!isRoundView()) {
+        const max = document.createElement("span");
+        max.className = "score-max";
+        max.textContent = " / " + cumulativeMax(team);
+        parent.append(max);
+      }
+    }
+    function methodNotes() {
+      return (data && data.methodNotes) || {};
+    }
+    function studentNote(key) {
+      return (methodNotes()[key] || "")
+        .replace(/Field bsc mirrors rd2Bsc for compatibility with older site code\.\s*/g, "")
+        .trim();
+    }
+    function awardInfo(def) {
+      const text = {
+        mostProfitable: "Measure: highest Round 2 profit. Money is in thousands of dollars ($000s). This is a side honor and does not change the cumulative ranking.",
+        highestContributionMargin: "Measure: highest Round 2 contribution margin, shown as a percent. This is a side honor and does not change the cumulative ranking.",
+        highestSales: "Measure: highest Round 2 sales. Money is in thousands of dollars ($000s). This is a side honor and does not change the cumulative ranking.",
+        highestROE: "Measure: highest Round 2 return on equity, shown as a percent. This is a side honor and does not change the cumulative ranking. " + (data && data.awardNotes && data.awardNotes.highestROE ? "There is an ROE tie, noted on the card." : ""),
+        lowestEmergencyLoanAmongBorrowers: "Measure: smallest Round 2 emergency loan among teams that borrowed. Money is in thousands of dollars ($000s). This is a side honor and does not change the cumulative ranking.",
+        profitWithoutEmergencyLoan: "Measure: best Round 2 profit among teams with no emergency loan. Money is in thousands of dollars ($000s). This is a side honor and does not change the cumulative ranking.",
+        biggestClimber: "Measure: biggest gain in the cumulative ranking. Last round’s cumulative position is Round 1 BSC plus the Practice Round Recap.\n" + studentNote("rankChange"),
+        biggestRound2Climber: "Measure: biggest gain in the Round 2 standalone ranking versus the Round 1 standalone rank.\n" + studentNote("rd2RankChange"),
+        mostImproved: "Measure: largest Round 2 Balanced Scorecard gain versus Round 1 BSC.\n" + studentNote("roundOnlyBsc"),
+        bestRound2: "Measure: highest Round 2 Balanced Scorecard, that round only.\n" + studentNote("roundOnlyBsc")
+      };
+      return text[def.key] || def.blurb;
+    }
+    function infoText(key) {
+      const bscMeaning = "The Balanced Scorecard covers financial, customer, internal process, and learning and growth measures.";
+      if (key && key.indexOf("award:") === 0) {
+        const def = AWARD_DEFS.find((item) => item.key === key.slice(6));
+        return def ? awardInfo(def) : "";
+      }
+      if (key === "view") {
+        return [
+          "Cumulative Total is the official ranking. It adds Round 1 BSC, Round 2 BSC, and the Practice Round Recap, out of 1,000 points across the competition. Round 2 BSC is that round only.",
+          studentNote("cumulativeTotal"),
+          studentNote("roundOnlyBsc"),
+          studentNote("tieBreak"),
+          "The switch is remembered for this browser tab."
+        ].filter(Boolean).join("\n");
+      }
+      if (key === "score") {
+        if (isRoundView()) {
+          return ["This column is the Round 2 Balanced Scorecard for that round only. The chip underneath is the Cumulative Total so you can compare.", studentNote("roundOnlyBsc"), bscMeaning].filter(Boolean).join("\n");
+        }
+        return ["This column is the Cumulative Total: Round 1 BSC + Round 2 BSC + Practice Round Recap, out of 1,000. The chip underneath is the Round 2 BSC so you can compare.", studentNote("cumulativeTotal"), studentNote("maxPoints"), bscMeaning].filter(Boolean).join("\n");
+      }
+      if (key === "arrows") {
+        const legend = "Green is up, red is down, and an amber dash means the place held.";
+        if (isRoundView()) {
+          return [legend, "Arrows compare Round 2’s standalone rank with Round 1’s standalone rank.", studentNote("rd2RankChange")].filter(Boolean).join("\n");
+        }
+        return [legend, "Arrows compare this cumulative rank with last round’s cumulative position (Round 1 BSC + Practice Recap).", studentNote("rankChange"), studentNote("prevCumulative")].filter(Boolean).join("\n");
+      }
+      if (key === "chip") {
+        return ["The chip shows the official rank for the view you have open: Cum. #N on the cumulative board, or Rd 2 #N on the Round 2 board. It stays visible when you sort by profit or another metric.", studentNote("tieBreak"), bscMeaning].filter(Boolean).join("\n");
+      }
+      if (key === "metrics") {
+        return "The extra column is a Round 2 snapshot. It does not change the official ranking. Money is in thousands of dollars ($000s).\n" + EXTRA_METRICS.map((metric) => METRIC_LINES[metric.key]).join("\n");
+      }
+      if (key === "podium") {
+        if (isRoundView()) {
+          return ["The podium is the top five by Round 2 Balanced Scorecard only.", studentNote("roundOnlyBsc"), bscMeaning, studentNote("tieBreak")].filter(Boolean).join("\n");
+        }
+        return ["The podium is the top five by Cumulative Total: Round 1 BSC + Round 2 BSC + Practice Round Recap, out of 1,000 points.", studentNote("cumulativeTotal"), studentNote("practiceRecap"), bscMeaning, studentNote("tieBreak")].filter(Boolean).join("\n");
+      }
+      return "";
     }
     function formatMetric(team, def) {
       const value = Number(team[def.field]);
@@ -1008,26 +1348,30 @@
       if (def.format === "delta") {
         return (value > 0 ? "+" : "") + bsc(value);
       }
+      if (def.format === "score") return bsc(value);
       return def.format === "pct" ? pct(value) : money(value);
     }
-    function rankChangeInfo(team) {
-      if (!team || team.rankChange == null || team.prevRank == null) return null;
-      const change = Number(team.rankChange);
-      const prev = Number(team.prevRank);
-      if (!Number.isFinite(change) || !Number.isFinite(prev)) return null;
+    function rankChangeInfo(team, mode) {
+      if (!team) return null;
+      const round = (mode || state.view) === "round2";
+      const change = Number(round ? team.rd2RankChange : team.rankChange);
+      const prev = Number(round ? team.rd1Rank : team.prevRank);
+      const now = Number(round ? team.rd2Rank : team.rank);
+      if (!Number.isFinite(change) || !Number.isFinite(prev) || !Number.isFinite(now)) return null;
+      const where = round ? "the Round 2 ranking" : "the cumulative ranking";
       if (change > 0) {
         const places = change === 1 ? "place" : "places";
-        return { kind: "up", text: "↑ +" + change, label: "Up " + change + " " + places + " from #" + prev + " in Round 1" };
+        return { kind: "up", text: "↑ +" + change, label: "Up " + change + " " + places + " in " + where + " since Round 1 (#" + prev + " → #" + now + ")" };
       }
       if (change < 0) {
         const n = Math.abs(change);
         const places = n === 1 ? "place" : "places";
-        return { kind: "down", text: "↓ -" + n, label: "Down " + n + " " + places + " from #" + prev + " in Round 1" };
+        return { kind: "down", text: "↓ -" + n, label: "Down " + n + " " + places + " in " + where + " since Round 1 (#" + prev + " → #" + now + ")" };
       }
-      return { kind: "flat", text: "–", label: "No change from #" + prev + " in Round 1" };
+      return { kind: "flat", text: "–", label: "No change in " + where + " since Round 1 (still #" + now + ")" };
     }
     function rankChangeBadge(team, options) {
-      const info = rankChangeInfo(team);
+      const info = rankChangeInfo(team, options && options.mode);
       if (!info) return null;
       const el = document.createElement("span");
       el.className = "rank-change rank-change-" + info.kind;
@@ -1047,13 +1391,14 @@
       }
       return el;
     }
-    function awardNoteText(note) {
+    function awardNoteText(note, key) {
       const match = /^Tie \((\d+)\): (.+)$/.exec(String(note || ""));
       if (!match) return note;
       const names = match[2].split(",").map((part) => part.trim()).filter(Boolean);
       if (!names.length) return note;
       const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
-      return "Shared honor. " + list + " tied on this result.";
+      const what = key === "highestROE" ? "return on equity" : "this result";
+      return "Shared honor. " + list + " tied on " + what + ".";
     }
     function currentMetric() {
       return EXTRA_METRICS.find((metric) => metric.key === state.extraMetric) || EXTRA_METRICS[0];
@@ -1097,19 +1442,36 @@
       document.getElementById("round-label").textContent = data.roundLabel || "Round 2";
       const sections = new Set(data.allTeams.map((t) => t.section));
       const industries = new Set(data.allTeams.map((t) => t.industry));
+      const leader = top30[0];
       const root = document.getElementById("hero-stats");
       root.replaceChildren(
         chip(String(data.teamCount || data.allTeams.length), "teams"),
         chip(String(sections.size), "sections"),
         chip(String(industries.size), "industries"),
-        chip(bsc(scoreOf(top30[0])), "leading BSC")
+        chip(leader ? bsc(viewScore(leader)) : "—", isRoundView() ? "leading Round 2 BSC" : "leading total / 1,000")
       );
+    }
+
+    function computeTop30() {
+      if (!isRoundView()) {
+        return [...data.top30].sort((a, b) => a.rank - b.rank).slice(0, 30);
+      }
+      return [...data.allTeams].sort((a, b) => {
+        const diff = Number(a.rd2Rank) - Number(b.rd2Rank);
+        if (diff) return diff;
+        return String(a.team).localeCompare(String(b.team));
+      }).slice(0, 30);
+    }
+
+    function refreshLists() {
+      top30 = computeTop30();
+      leaderScore = (top30[0] && viewScore(top30[0])) || 1;
     }
 
     function podiumCard(team) {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "podium-card rank-" + team.rank;
+      btn.className = "podium-card rank-" + viewRank(team);
       btn.dataset.id = team.id;
       btn.setAttribute("aria-pressed", team.id === state.pinnedId ? "true" : "false");
       btn.setAttribute("aria-haspopup", "dialog");
@@ -1129,10 +1491,14 @@
       const score = document.createElement("p");
       score.className = "place-score";
       const strong = document.createElement("strong");
-      strong.textContent = bsc(scoreOf(team));
+      appendScoreValue(strong, team);
       const label = document.createElement("span");
-      label.textContent = "Balanced Scorecard";
-      score.append(strong, label);
+      label.className = "score-kicker";
+      label.textContent = isRoundView() ? "Round 2 BSC" : "Cumulative total";
+      const alt = document.createElement("span");
+      alt.className = "alt-score";
+      alt.textContent = otherScoreText(team);
+      score.append(strong, label, alt);
       const pedestal = document.createElement("div");
       pedestal.className = "pedestal";
       pedestal.setAttribute("aria-hidden", "true");
@@ -1152,7 +1518,7 @@
     }
 
     function renderPodium() {
-      const byRank = new Map(top30.map((t) => [t.rank, t]));
+      const byRank = new Map(top30.map((t) => [viewRank(t), t]));
       const main = document.getElementById("podium-main");
       const next = document.getElementById("podium-next");
       main.replaceChildren();
@@ -1169,8 +1535,8 @@
       const idRow = document.createElement("div");
       idRow.className = "spot-id";
       const badge = document.createElement("span");
-      badge.className = "badge " + badgeClass(team.rank);
-      badge.textContent = String(team.rank);
+      badge.className = "badge " + badgeClass(viewRank(team));
+      badge.textContent = String(viewRank(team));
       const who = document.createElement("div");
       who.className = "who";
       const name = document.createElement("button");
@@ -1187,10 +1553,14 @@
       if (change) who.append(change);
       const score = document.createElement("div");
       score.className = "bsc-lg";
-      score.append(document.createTextNode(bsc(scoreOf(team))));
+      appendScoreValue(score, team);
       const small = document.createElement("small");
-      small.textContent = "BSC";
+      small.textContent = isRoundView() ? "Round 2 BSC" : "Cumulative / " + cumulativeMax(team);
       score.append(small);
+      const alt = document.createElement("span");
+      alt.className = "alt-score";
+      alt.textContent = otherScoreText(team);
+      score.append(alt);
       const find = document.createElement("button");
       find.type = "button";
       find.className = "find-btn";
@@ -1264,10 +1634,8 @@
       AWARD_DEFS.forEach((def) => {
         const team = data.specialAwards[def.key];
         if (!team) return;
-        const card = document.createElement("button");
-        card.type = "button";
+        const card = document.createElement("article");
         card.className = "award tone-" + def.tone;
-        card.setAttribute("aria-haspopup", "dialog");
         const top = document.createElement("div");
         top.className = "award-top";
         const icon = document.createElement("div");
@@ -1275,7 +1643,13 @@
         icon.innerHTML = AWARD_ICONS[def.icon] || "";
         const h = document.createElement("h3");
         h.textContent = def.title;
+        const info = makeInfoButton("award:" + def.key, "About the " + def.title + " award");
+        info.classList.add("award-info");
         top.append(icon, h);
+        const hit = document.createElement("button");
+        hit.type = "button";
+        hit.className = "award-hit";
+        hit.setAttribute("aria-haspopup", "dialog");
         const blurb = document.createElement("p");
         blurb.className = "blurb";
         blurb.textContent = def.blurb;
@@ -1300,7 +1674,7 @@
         chips.className = "chips";
         const rankChip = document.createElement("span");
         rankChip.className = "chip";
-        rankChip.textContent = "BSC rank #" + team.rank;
+        rankChip.textContent = "Cum. #" + team.rank;
         chips.append(rankChip);
         const honors = counts.get(team.id) || 1;
         if (honors > 1) {
@@ -1312,7 +1686,13 @@
         if (def.key === "biggestClimber" && team.prevRank != null) {
           const from = document.createElement("span");
           from.className = "chip";
-          from.textContent = "From #" + team.prevRank;
+          from.textContent = "From cum. #" + team.prevRank;
+          chips.append(from);
+        }
+        if (def.key === "biggestRound2Climber" && team.rd1Rank != null) {
+          const from = document.createElement("span");
+          from.className = "chip";
+          from.textContent = "From Rd 1 #" + team.rd1Rank;
           chips.append(from);
         }
         if (def.key === "mostImproved" && team.rd1Bsc != null) {
@@ -1321,15 +1701,23 @@
           from.textContent = "Round 1 BSC " + bsc(team.rd1Bsc);
           chips.append(from);
         }
-        card.append(top, blurb, who, value, valueLabel, chips);
+        if (def.key === "bestRound2" && team.rd2Rank != null) {
+          const from = document.createElement("span");
+          from.className = "chip";
+          from.textContent = "Rd 2 #" + team.rd2Rank;
+          chips.append(from);
+        }
+        hit.append(blurb, who, value, valueLabel, chips);
         const note = data.awardNotes && data.awardNotes[def.key];
         if (note) {
           const noteEl = document.createElement("p");
           noteEl.className = "award-note";
-          noteEl.textContent = awardNoteText(note);
-          card.append(noteEl);
+          noteEl.textContent = awardNoteText(note, def.key);
+          hit.append(noteEl);
         }
-        card.addEventListener("click", () => {
+        card.append(top, info, hit);
+        top.addEventListener("click", () => hit.click());
+        hit.addEventListener("click", () => {
           state.pinnedId = team.id;
           document.querySelectorAll(".podium-card").forEach((el) => {
             el.setAttribute("aria-pressed", el.dataset.id === team.id ? "true" : "false");
@@ -1357,10 +1745,10 @@
       });
       const dir = state.sortDir === "asc" ? 1 : -1;
       rows.sort((a, b) => {
-        const av = state.sortKey === "bsc" ? scoreOf(a) : Number(a[state.sortKey]);
-        const bv = state.sortKey === "bsc" ? scoreOf(b) : Number(b[state.sortKey]);
+        const av = state.sortKey === "score" ? viewScore(a) : Number(a[state.sortKey]);
+        const bv = state.sortKey === "score" ? viewScore(b) : Number(b[state.sortKey]);
         if (av !== bv) return av < bv ? -dir : dir;
-        return a.rank - b.rank;
+        return viewRank(a) - viewRank(b);
       });
       return { rows, filtering };
     }
@@ -1393,32 +1781,53 @@
     }
 
     function sortLabel() {
-      if (state.sortKey === "bsc") return "Balanced Scorecard";
+      if (state.sortKey === "score") return isRoundView() ? "Round 2 Balanced Scorecard" : "Cumulative Total";
       const metric = EXTRA_METRICS.find((item) => item.key === state.sortKey);
-      return metric ? metric.label.toLowerCase() : "Balanced Scorecard";
+      return metric ? metric.label.toLowerCase() : (isRoundView() ? "Round 2 Balanced Scorecard" : "Cumulative Total");
     }
 
     function sortShort() {
-      if (state.sortKey === "bsc") return "BSC";
+      if (state.sortKey === "score") return isRoundView() ? "Rd 2" : "Cum.";
       const metric = EXTRA_METRICS.find((item) => item.key === state.sortKey);
       return metric ? metric.short : "Place";
     }
 
     function officialOrder(filtering) {
-      return !filtering && state.sortKey === "bsc" && state.sortDir === "desc";
+      return !filtering && state.sortKey === "score" && state.sortDir === "desc";
     }
 
     function updateRankHeader(filtering) {
       const th = document.getElementById("rank-col");
+      const label = document.getElementById("rank-col-label");
       if (officialOrder(filtering)) {
-        th.textContent = "Rank";
-        th.title = "Official rank by Round 2 Balanced Scorecard";
+        label.textContent = "Rank";
+        th.title = isRoundView() ? "Official rank by Round 2 Balanced Scorecard" : "Official rank by Cumulative Total";
         return;
       }
       const short = sortShort();
-      th.textContent = short + " #";
+      label.textContent = short + " #";
       const where = filtering ? "in this filtered list" : "in this list";
       th.title = "Position by " + sortLabel() + " " + where;
+    }
+
+    function syncCopy() {
+      const round = isRoundView();
+      document.getElementById("podium-title").textContent = round ? "Podium · Round 2 BSC" : "Podium · Cumulative total";
+      document.getElementById("podium-blurb").textContent = round
+        ? "The top five Round 2 Balanced Scorecard scores. Select a place to meet the team. Arrows compare this round’s rank with Round 1’s standalone rank."
+        : "The top five Cumulative Totals. Select a place to meet the team. Arrows show how the cumulative rank moved since Round 1.";
+      document.getElementById("board-title").textContent = round ? "Top 30 · Round 2 BSC" : "Top 30 · Cumulative total";
+      document.getElementById("board-blurb").textContent = round
+        ? "Official rank in this view is the Round 2 Balanced Scorecard. The number column follows the current sort, and an Rd 2 # chip keeps that official place when the number is different. Arrows compare Round 2 rank with Round 1’s standalone rank. The score still shows the cumulative total so you can compare. Search or filter to find any firm, then select a team to see its roster."
+        : "Official rank is the Cumulative Total (Round 1 + Round 2 + Practice Recap, out of 1,000). The number column follows the current sort, and a Cum. # chip keeps the official place when that number is different. Arrows show movement in the cumulative ranking since Round 1. The score still shows Round 2 BSC so you can compare. Search or filter to find any firm, then select a team to see its roster.";
+      document.getElementById("legend-text").textContent = round
+        ? "Gold edge marks the Round 2 podium, ranks 1–5. Arrows compare that rank with Round 1’s standalone place. An Rd 2 # chip keeps the official rank when you sort another way. Select a team to open its roster."
+        : "Gold edge marks the official podium, cumulative ranks 1–5. Arrows compare that rank with last round’s cumulative position. A Cum. # chip keeps the official rank when you sort another way. Select a team to open its roster.";
+      document.getElementById("score-col-label").textContent = round ? "Round 2 BSC" : "Cumulative";
+      const sortBtn = document.querySelector('[data-sort="score"]');
+      if (sortBtn) sortBtn.dataset.label = round ? "Round 2 BSC" : "Cumulative total";
+      document.getElementById("view-cumulative").setAttribute("aria-pressed", round ? "false" : "true");
+      document.getElementById("view-round2").setAttribute("aria-pressed", round ? "true" : "false");
     }
 
     function renderBoard() {
@@ -1444,12 +1853,14 @@
       }
       const extraNote = " Extra column: " + currentMetric().label.toLowerCase() + ".";
       const where = filtering ? "in this filtered list" : "in this list";
+      const officialName = isRoundView() ? "Round 2 Balanced Scorecard" : "Cumulative Total";
+      const chipName = isRoundView() ? "Rd 2 # chips show the official Round 2 rank." : "Cum. # chips show the official cumulative rank.";
       if (officialOrder(filtering)) {
-        status.textContent = "Showing the Top 30 of " + total + " teams by Round 2 Balanced Scorecard. Numbers are the official ranks." + extraNote;
+        status.textContent = "Showing the Top 30 of " + total + " teams by " + officialName + ". Numbers are the official ranks." + extraNote;
       } else if (filtering) {
-        status.textContent = "Showing " + rows.length + " matching " + (rows.length === 1 ? "team" : "teams") + " from all " + total + " firms, sorted by " + sortLabel() + ". Numbers are positions " + where + ". BSC chips show the official Round 2 rank." + extraNote;
+        status.textContent = "Showing " + rows.length + " matching " + (rows.length === 1 ? "team" : "teams") + " from all " + total + " firms, sorted by " + sortLabel() + ". Numbers are positions " + where + ". " + chipName + extraNote;
       } else {
-        status.textContent = "Showing the Top 30, sorted by " + sortLabel() + ". Numbers are positions " + where + ". BSC chips show the official Round 2 rank." + extraNote;
+        status.textContent = "Showing the Top 30, sorted by " + sortLabel() + ". Numbers are positions " + where + ". " + chipName + extraNote;
       }
       rows.forEach((team, index) => {
         const position = index + 1;
@@ -1462,13 +1873,15 @@
         tr.setAttribute("aria-haspopup", "dialog");
         const move = rankChangeInfo(team);
         let rowLabel = "Open roster for " + team.team + ", ";
+        const officialRank = viewRank(team);
+        const officialPhrase = (isRoundView() ? "official Round 2 rank " : "official cumulative rank ") + officialRank;
         rowLabel += official
-          ? "official Balanced Scorecard rank " + team.rank
-          : sortLabel() + " position " + position + " " + where + ", official Balanced Scorecard rank " + team.rank;
+          ? officialPhrase
+          : sortLabel() + " position " + position + " " + where + ", " + officialPhrase;
         if (move) rowLabel += ". " + move.label;
         rowLabel += ", section " + team.section;
         tr.setAttribute("aria-label", rowLabel);
-        if (team.rank <= 5) tr.classList.add("is-podium");
+        if (officialRank <= 5) tr.classList.add("is-podium");
         tr.addEventListener("click", () => openRoster(team));
         tr.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
@@ -1508,8 +1921,8 @@
         if (!official) {
           const officialChip = document.createElement("span");
           officialChip.className = "bsc-chip";
-          officialChip.textContent = "BSC #" + team.rank;
-          officialChip.title = "Official Round 2 Balanced Scorecard rank";
+          officialChip.textContent = isRoundView() ? "Rd 2 #" + officialRank : "Cum. #" + officialRank;
+          officialChip.title = isRoundView() ? "Official Round 2 Balanced Scorecard rank" : "Official cumulative rank";
           copy.append(officialChip);
         }
         identity.append(characterImg(team, "team-avatar"), copy);
@@ -1522,16 +1935,23 @@
         industry.textContent = String(team.industry);
         const bscCell = document.createElement("td");
         bscCell.className = "bsc num";
+        const stack = document.createElement("span");
+        stack.className = "score-stack";
         const num = document.createElement("span");
         num.className = "bsc-num";
-        const score = scoreOf(team);
-        num.textContent = bsc(score);
+        const score = viewScore(team);
+        appendScoreValue(num, team);
+        const other = document.createElement("span");
+        other.className = "score-other";
+        other.textContent = otherScoreText(team);
         const bar = document.createElement("span");
         bar.className = "bsc-bar";
         const fill = document.createElement("span");
-        fill.style.width = Math.max(8, Math.round((score / leaderScore) * 100)) + "%";
+        const scale = leaderScore > 0 ? score / leaderScore : 0;
+        fill.style.width = Math.max(8, Math.round(scale * 100)) + "%";
         bar.append(fill);
-        bscCell.append(num, bar);
+        stack.append(num, other, bar);
+        bscCell.append(stack);
         const metric = currentMetric();
         const metricValue = Number(team[metric.key]);
         const metricCell = document.createElement("td");
@@ -1640,24 +2060,48 @@
     function openRoster(team) {
       const full = (team && byId.get(team.id)) || team;
       if (!full) return;
+      closeInfo(false);
       rosterTeamId = full.id;
       const backdrop = document.getElementById("roster-backdrop");
       const dialog = document.getElementById("roster-dialog");
       document.getElementById("roster-title").textContent = full.team;
-      document.getElementById("roster-kicker").textContent = "Rank " + full.rank + " · BSC " + bsc(scoreOf(full));
+      document.getElementById("roster-kicker").textContent = isRoundView()
+        ? "Round 2 #" + full.rd2Rank + " · BSC " + bsc(full.rd2Bsc)
+        : "Cumulative #" + full.rank + " · " + bsc(full.cumulativeTotal) + " / " + cumulativeMax(full);
       const code = full.industryCode ? " · " + full.industryCode : "";
       document.getElementById("roster-place").textContent = "Section " + full.section + " · Industry " + full.industry + code;
       const moveHost = document.getElementById("roster-move");
       moveHost.replaceChildren();
-      const move = rankChangeInfo(full);
-      if (move) {
-        const badge = rankChangeBadge(full, { speak: false });
+      ["cumulative", "round2"].forEach((mode) => {
+        const move = rankChangeInfo(full, mode);
+        if (!move) return;
+        const line = document.createElement("div");
+        line.className = "roster-move-line";
+        const badge = rankChangeBadge(full, { speak: false, mode: mode });
         const sentence = document.createElement("p");
         sentence.className = "roster-place";
         sentence.textContent = move.label;
-        if (badge) moveHost.append(badge);
-        moveHost.append(sentence);
-      }
+        if (badge) line.append(badge);
+        line.append(sentence);
+        moveHost.append(line);
+      });
+      const scores = document.getElementById("roster-scores");
+      scores.replaceChildren();
+      [
+        ["Cumulative", bsc(full.cumulativeTotal) + " / " + cumulativeMax(full) + " · #" + full.rank],
+        ["Round 1 BSC", bsc(full.rd1Bsc) + " · #" + full.rd1Rank],
+        ["Round 2 BSC", bsc(full.rd2Bsc) + " · #" + full.rd2Rank],
+        ["Practice recap", bsc(full.recap)]
+      ].forEach(([label, value]) => {
+        const cell = document.createElement("div");
+        cell.className = "roster-score";
+        const k = document.createElement("span");
+        k.textContent = label;
+        const v = document.createElement("strong");
+        v.textContent = value;
+        cell.append(k, v);
+        scores.append(cell);
+      });
       document.getElementById("roster-art").replaceChildren(characterImg(full, "roster-mascot"));
       const names = rosterNames(full);
       const list = document.getElementById("roster-members");
@@ -1683,7 +2127,7 @@
       document.body.classList.add("roster-open");
       setBackgroundInert(true);
       dialog.focus();
-      if (!prefersReducedMotion() && Number(full.rank) <= 5) sparkleRoster();
+      if (!prefersReducedMotion() && viewRank(full) <= 5) sparkleRoster();
     }
 
     function closeRoster(options) {
@@ -2077,10 +2521,10 @@
         throw new Error("Unexpected leaderboard shape");
       }
       data = payload;
-      top30 = [...payload.top30].sort((a, b) => a.rank - b.rank).slice(0, 30);
       byId = new Map(payload.allTeams.map((t) => [t.id, t]));
-      leaderScore = scoreOf(top30[0]) || 1;
-      state.pinnedId = top30[0].id;
+      refreshLists();
+      state.pinnedId = top30[0] ? top30[0].id : null;
+      syncCopy();
       renderHero();
       fillFilters();
       renderPodium();
@@ -2090,6 +2534,92 @@
       document.getElementById("app").hidden = false;
       syncSoundButton();
       startFireworks();
+    }
+
+    let openInfoBtn = null;
+
+    function makeInfoButton(key, label) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "info-btn";
+      btn.dataset.infoKey = key;
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-controls", "info-pop");
+      btn.setAttribute("aria-label", label);
+      const mark = document.createElement("span");
+      mark.setAttribute("aria-hidden", "true");
+      mark.textContent = "i";
+      btn.append(mark);
+      btn.addEventListener("click", onInfoClick);
+      return btn;
+    }
+
+    function placeInfo(btn) {
+      const pop = document.getElementById("info-pop");
+      const margin = 8;
+      const rect = btn.getBoundingClientRect();
+      const width = pop.offsetWidth;
+      const height = pop.offsetHeight;
+      let left = rect.left + (rect.width / 2) - (width / 2);
+      if (left + width > window.innerWidth - margin) left = window.innerWidth - width - margin;
+      if (left < margin) left = margin;
+      let top = rect.bottom + 8;
+      if (top + height > window.innerHeight - margin) top = rect.top - height - 8;
+      if (top < margin) top = margin;
+      pop.style.left = left + "px";
+      pop.style.top = top + "px";
+    }
+
+    function openInfo(btn) {
+      const pop = document.getElementById("info-pop");
+      if (openInfoBtn && openInfoBtn !== btn) openInfoBtn.setAttribute("aria-expanded", "false");
+      openInfoBtn = btn;
+      btn.setAttribute("aria-expanded", "true");
+      document.getElementById("info-pop-text").textContent = infoText(btn.dataset.infoKey);
+      pop.hidden = false;
+      placeInfo(btn);
+      pop.focus({ preventScroll: true });
+    }
+
+    function closeInfo(restore) {
+      const pop = document.getElementById("info-pop");
+      if (!openInfoBtn && pop.hidden) return;
+      pop.hidden = true;
+      const back = openInfoBtn;
+      if (back) back.setAttribute("aria-expanded", "false");
+      openInfoBtn = null;
+      if (restore && back && typeof back.focus === "function") back.focus();
+    }
+
+    function refreshOpenInfo() {
+      if (!openInfoBtn) return;
+      document.getElementById("info-pop-text").textContent = infoText(openInfoBtn.dataset.infoKey);
+      placeInfo(openInfoBtn);
+    }
+
+    function onInfoClick(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      if (openInfoBtn === btn) closeInfo(true);
+      else openInfo(btn);
+    }
+
+    function setView(view) {
+      if (view !== "cumulative" && view !== "round2") return;
+      state.view = view;
+      try { sessionStorage.setItem(VIEW_STORE, view); } catch (err) { /* ignore */ }
+      if (!data) {
+        syncCopy();
+        return;
+      }
+      refreshLists();
+      state.pinnedId = top30[0] ? top30[0].id : state.pinnedId;
+      syncCopy();
+      renderHero();
+      renderPodium();
+      renderBoard();
+      refreshOpenInfo();
     }
 
     document.querySelector(".stage").addEventListener("mouseleave", () => {
@@ -2129,6 +2659,26 @@
       renderBoard();
     });
     document.getElementById("sound-toggle").addEventListener("click", () => setSound(!soundOn));
+    document.getElementById("view-cumulative").addEventListener("click", () => setView("cumulative"));
+    document.getElementById("view-round2").addEventListener("click", () => setView("round2"));
+    document.querySelectorAll(".info-btn[data-info-key]").forEach((btn) => {
+      btn.addEventListener("click", onInfoClick);
+    });
+    document.addEventListener("click", (event) => {
+      if (!openInfoBtn) return;
+      const target = event.target;
+      if (target.closest && (target.closest(".info-btn") || target.closest("#info-pop"))) return;
+      closeInfo(false);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !openInfoBtn) return;
+      event.preventDefault();
+      event.stopPropagation();
+      closeInfo(true);
+    }, true);
+    window.addEventListener("resize", () => { if (openInfoBtn) placeInfo(openInfoBtn); });
+    window.addEventListener("scroll", () => { if (openInfoBtn) placeInfo(openInfoBtn); }, true);
+    syncCopy();
     document.getElementById("roster-close").addEventListener("click", closeRoster);
     document.getElementById("roster-board").addEventListener("click", () => {
       const team = byId.get(rosterTeamId);
