@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a1f3d" />
-  <title>Capsim Leaderboard · Round 1</title>
+  <title>Capsim Leaderboard · Round 2</title>
   <style>
     :root {
       --navy: #0a1f3d;
@@ -215,10 +215,59 @@
     .rank-3 { background: linear-gradient(180deg, #fff6ef 0%, #fff 60%); }
     .mascot-wrap { height: 72px; display: grid; place-items: end center; }
     .rank-1 .mascot-wrap { height: 104px; }
-    .mascot { width: 64px; height: 64px; animation: bob 2.8s ease-in-out infinite; }
-    .rank-1 .mascot { width: 96px; height: 96px; animation-duration: 2.2s; }
+    .mascot { width: 64px; height: 64px; }
+    .rank-1 .mascot { width: 96px; height: 96px; }
+    .mascot, .roster-mascot, .award-mascot, .avatar-wiggle {
+      transform-origin: 50% 88%;
+      animation: bob-wiggle var(--wiggle-dur, 2.8s) ease-in-out infinite;
+      animation-delay: var(--wiggle-delay, 0s);
+    }
+    .avatar-wiggle { display: inline-flex; flex: none; }
     .team-avatar { transition: transform 0.18s ease; }
     tbody tr.is-team:hover .team-avatar { transform: translateY(-2px) scale(1.08); }
+    .podium-name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .podium-name h3 { margin: 0; }
+    .team-name-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .rank-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.12rem;
+      border-radius: 999px;
+      padding: 0.12rem 0.42rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .rank-change-up { color: #146c43; background: #e5f6ec; }
+    .rank-change-down { color: #9a3412; background: #fde8e0; }
+    .rank-change-flat { color: #8a6a1f; background: #f7edd4; }
+    .bsc-chip {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 0.18rem;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--navy);
+      background: #eef3f9;
+      border-radius: 999px;
+      padding: 0.1rem 0.42rem;
+    }
+    .pos-label { display: none; }
     .podium-card h3 { margin: 0.15rem 0 0.1rem; font-size: 1.15rem; color: var(--navy); }
     .rank-1 h3 { font-size: 1.35rem; }
     .place-meta { margin: 0; color: var(--muted); font-size: 0.82rem; }
@@ -353,6 +402,7 @@
     .award .meta { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.82rem; }
     .award .value { margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.03em; color: var(--navy); font-variant-numeric: tabular-nums; }
     .award .value-label { margin: 0.05rem 0 0; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .award-note { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.75rem; line-height: 1.35; }
     .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.55rem; }
     .chip {
       font-size: 0.72rem;
@@ -534,6 +584,7 @@
       pointer-events: none;
     }
     .fireworks.is-fading { opacity: 0; transition: opacity 0.7s ease; }
+    .fireworks.is-ambient { opacity: 0.8; }
 
     .roster-backdrop {
       position: fixed;
@@ -558,7 +609,8 @@
     }
     .roster-top { display: flex; align-items: flex-start; gap: 0.6rem; }
     .roster-head { display: flex; align-items: center; gap: 0.8rem; flex: 1; min-width: 0; }
-    .roster-mascot { width: 96px; height: 96px; flex: none; animation: bob 2.6s ease-in-out infinite; }
+    .roster-mascot { width: 96px; height: 96px; flex: none; }
+    .roster-move { margin: 0.45rem 0 0; }
     .roster-kicker {
       margin: 0 0 0.15rem;
       font-size: 0.72rem;
@@ -614,7 +666,12 @@
     }
     body.roster-open { overflow: hidden; }
 
-    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @keyframes bob-wiggle {
+      0%, 100% { transform: translate(0, 0) rotate(-2.5deg); }
+      25% { transform: translate(1.5px, -3px) rotate(1.8deg); }
+      50% { transform: translate(-1.5px, -6px) rotate(3deg); }
+      75% { transform: translate(1px, -2px) rotate(-1.6deg); }
+    }
     @keyframes glint { 0%, 100% { transform: scale(0.55); opacity: 0.25; } 50% { transform: scale(1); opacity: 0.95; } }
     @keyframes confetti-fall {
       0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
@@ -653,6 +710,16 @@
       tbody tr.is-podium { background: #fffaf0; }
       td { border: 0; padding: 0; }
       td.rank { grid-area: rank; }
+      .pos-label {
+        display: block;
+        margin-top: 0.15rem;
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+      }
       td.team { grid-area: team; }
       td.bsc { grid-area: bsc; text-align: right; }
       td.section, td.industry, td.metric { display: none; }
@@ -678,7 +745,7 @@
   <canvas id="fireworks" class="fireworks" hidden aria-hidden="true"></canvas>
   <div class="float-tools">
     <button type="button" id="fw-skip" hidden>Skip celebration</button>
-    <button type="button" id="sound-toggle" aria-pressed="false" aria-label="Sound off. Turn celebration sound on.">Sound off</button>
+    <button type="button" id="sound-toggle" aria-pressed="true" aria-label="Sound on. Turn celebration sound off.">Sound on</button>
   </div>
   <p class="sr-only" id="fw-status" aria-live="polite"></p>
 
@@ -687,9 +754,9 @@
       <span class="glint g1" aria-hidden="true"></span>
       <span class="glint g2" aria-hidden="true"></span>
       <span class="glint g3" aria-hidden="true"></span>
-      <div class="eyebrow">Queen’s Smith School of Business · <span id="round-label">Round 1</span></div>
-      <h1>Capsim Leaderboard · Round 1</h1>
-      <p class="subtitle">A public ranking of student teams by Round 1 Balanced Scorecard, across every section and industry.</p>
+      <div class="eyebrow">Queen’s Smith School of Business · <span id="round-label">Round 2</span></div>
+      <h1>Capsim Leaderboard · Round 2</h1>
+      <p class="subtitle">A public ranking of student teams by Round 2 Balanced Scorecard, across every section and industry.</p>
       <div class="hero-stats" id="hero-stats"></div>
     </header>
 
@@ -699,14 +766,14 @@
       <a class="tab" href="leaderboard.html" aria-current="page">Leaderboard</a>
     </nav>
 
-    <p class="panel" id="loading">Loading Round 1 scores…</p>
+    <p class="panel" id="loading">Loading Round 2 scores…</p>
     <p class="panel" id="load-error" hidden role="alert">The leaderboard didn’t load. Refresh the page to try again.</p>
 
     <div class="stack" id="app" hidden>
       <section class="panel" aria-labelledby="podium-title">
         <div class="section-head">
           <h2 id="podium-title">Podium</h2>
-          <p>The top five Balanced Scorecard scores. Select a place to see how that round looked and who’s on the team.</p>
+          <p>The top five Round 2 Balanced Scorecard scores. Select a place to see how that round looked and who’s on the team. Arrows show how far each firm moved since Round 1.</p>
         </div>
         <div class="stage">
           <div class="podium-main" id="podium-main"></div>
@@ -718,7 +785,7 @@
       <section class="panel" aria-labelledby="awards-title">
         <div class="section-head">
           <h2 id="awards-title">Special awards</h2>
-          <p>Side honors for standout results. They celebrate one metric and do not change the Balanced Scorecard ranking. Select a card to meet the team.</p>
+          <p>Side honors for standout results, including the biggest climb and the largest scorecard gain since Round 1. Each card celebrates one result and does not change the official ranking. Select a card to meet the team.</p>
         </div>
         <div class="sweep" id="sweep" hidden></div>
         <div class="awards" id="awards"></div>
@@ -727,7 +794,7 @@
       <section class="panel" id="board" aria-labelledby="board-title">
         <div class="section-head">
           <h2 id="board-title">Top 30</h2>
-          <p>Official rank is the Round 1 Balanced Scorecard. Search or filter to find any firm, then select a team to see its roster.</p>
+          <p>Official rank is the Round 2 Balanced Scorecard. The number column follows the current sort, and a BSC chip keeps the official place when that number is different. Arrows always show movement in the official ranking since Round 1. Search or filter to find any firm, then select a team to see its roster.</p>
         </div>
         <div class="toolbar">
           <label>Search
@@ -751,7 +818,7 @@
             </select>
           </label>
           <div class="sort" role="group" aria-label="Sort by">
-            <button type="button" data-sort="rd1Bsc" data-label="Balanced Scorecard" aria-pressed="true">Balanced Scorecard</button>
+            <button type="button" data-sort="bsc" data-label="Balanced Scorecard" aria-pressed="true">Balanced Scorecard</button>
             <button type="button" id="sort-extra" data-sort="profit" data-label="Profit" aria-pressed="false">Profit</button>
           </div>
           <button type="button" class="btn-quiet" id="clear" hidden>Clear</button>
@@ -761,7 +828,7 @@
           <table aria-describedby="board-status">
             <thead>
               <tr>
-                <th scope="col" title="Official rank by Round 1 Balanced Scorecard">Rank</th>
+                <th scope="col" id="rank-col" title="Official rank by Round 2 Balanced Scorecard">Rank</th>
                 <th scope="col">Team</th>
                 <th scope="col">Section</th>
                 <th scope="col">Industry</th>
@@ -772,8 +839,8 @@
             <tbody id="board-body"></tbody>
           </table>
         </div>
-        <p class="legend"><span class="swatch" aria-hidden="true"></span> Gold edge marks the podium, ranks 1–5. Select a team to open its roster.</p>
-        <p class="closing">Every firm is still in the simulation. This is a Round 1 snapshot — a strong next round rewrites the story.</p>
+        <p class="legend"><span class="swatch" aria-hidden="true"></span> Gold edge marks the official podium, Balanced Scorecard ranks 1–5. Arrows compare that rank with Round 1. Select a team to open its roster.</p>
+        <p class="closing">Every firm is still in the simulation. This is a Round 2 snapshot, and a strong next round can still rewrite the story.</p>
       </section>
     </div>
 
@@ -793,6 +860,7 @@
             <p class="roster-kicker" id="roster-kicker"></p>
             <h2 id="roster-title"></h2>
             <p class="roster-place" id="roster-place"></p>
+            <div class="roster-move" id="roster-move"></div>
           </div>
         </div>
         <button type="button" class="find-btn roster-close" id="roster-close">Close</button>
@@ -836,11 +904,24 @@
     function characterImg(team, className) {
       const img = document.createElement("img");
       img.className = "pixel " + className;
-      img.src = CHARACTER_BASE + CHARACTER_ART[characterIndex(team)];
+      const index = characterIndex(team);
+      img.src = CHARACTER_BASE + CHARACTER_ART[index];
       img.alt = "";
       img.width = 64;
       img.height = 64;
       img.decoding = "async";
+      const delay = (-(index % 12) * 0.31).toFixed(2) + "s";
+      const dur = (2.35 + (index % 7) * 0.22).toFixed(2) + "s";
+      if (className === "team-avatar") {
+        const wrap = document.createElement("span");
+        wrap.className = "avatar-wiggle";
+        wrap.style.setProperty("--wiggle-delay", delay);
+        wrap.style.setProperty("--wiggle-dur", dur);
+        wrap.append(img);
+        return wrap;
+      }
+      img.style.setProperty("--wiggle-delay", delay);
+      img.style.setProperty("--wiggle-dur", dur);
       return img;
     }
 
@@ -850,7 +931,9 @@
       storm: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15h9a3.5 3.5 0 0 0 .4-7 4.5 4.5 0 0 0-8.6-1A3.2 3.2 0 0 0 7 15z" fill="#e7eef7" stroke="#0a1f3d" stroke-width="1.4"/><path d="M11 14l-1.5 4h3L11 22l3-5h-2.2z" fill="#d4a84b"/></svg>`,
       crown: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16 6.5 8 12 13l5.5-5L20 16z" fill="#e0b45a" stroke="#0a1f3d" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 18h14" stroke="#0a1f3d" stroke-width="1.6" stroke-linecap="round"/></svg>`,
       cool: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="none" stroke="#0a1f3d" stroke-width="1.6"/><path d="M12 8v8M9.2 9.6c1.6 1 3.9 1 5.6 0M9.2 14.4c1.6-1 3.9-1 5.6 0" stroke="#1f6f78" stroke-width="1.3" stroke-linecap="round"/></svg>`,
-      book: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h6.2A2.8 2.8 0 0 1 14 9.3V18a2.5 2.5 0 0 0-2.2-1.2H5z" fill="#e7eef7" stroke="#0a1f3d" stroke-width="1.4"/><path d="M19 6.5h-6.2A2.8 2.8 0 0 0 10 9.3V18a2.5 2.5 0 0 1 2.2-1.2H19z" fill="#fff" stroke="#0a1f3d" stroke-width="1.4"/><path d="M8 11.5l1.3 1.3 2.4-2.6" fill="none" stroke="#1f7a4d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+      book: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h6.2A2.8 2.8 0 0 1 14 9.3V18a2.5 2.5 0 0 0-2.2-1.2H5z" fill="#e7eef7" stroke="#0a1f3d" stroke-width="1.4"/><path d="M19 6.5h-6.2A2.8 2.8 0 0 0 10 9.3V18a2.5 2.5 0 0 1 2.2-1.2H19z" fill="#fff" stroke="#0a1f3d" stroke-width="1.4"/><path d="M8 11.5l1.3 1.3 2.4-2.6" fill="none" stroke="#1f7a4d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+      climb: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l5-5 3 3 7-8" fill="none" stroke="#1f7a4d" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 6h5v5" fill="none" stroke="#1f7a4d" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+      rise: `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16l4.2-4.2 2.6 2.4L19 8" fill="none" stroke="#0a1f3d" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h5v5" fill="none" stroke="#d4a84b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="#0a1f3d" stroke-width="1.4" stroke-linecap="round"/></svg>`
     };
 
     const AWARD_DEFS = [
@@ -859,7 +942,9 @@
       { key: "highestSales", title: "Sales Storm", blurb: "Most sales revenue", field: "sales", format: "money", label: "Sales", tone: "teal", icon: "storm" },
       { key: "highestROE", title: "ROE Royalty", blurb: "Strongest return on equity", field: "roe", format: "pct", label: "Return on equity", tone: "gold", icon: "crown" },
       { key: "lowestEmergencyLoanAmongBorrowers", title: "Cash Cool", blurb: "Smallest emergency loan among teams that borrowed", field: "emergencyLoan", format: "money", label: "Emergency loan", tone: "navy", icon: "cool" },
-      { key: "profitWithoutEmergencyLoan", title: "Clean Books", blurb: "Best profit with no emergency loan", field: "profit", format: "money", label: "Profit", tone: "green", icon: "book" }
+      { key: "profitWithoutEmergencyLoan", title: "Clean Books", blurb: "Best profit with no emergency loan", field: "profit", format: "money", label: "Profit", tone: "green", icon: "book" },
+      { key: "biggestClimber", title: "Biggest Climber", blurb: "Most places gained since Round 1. A leap like that is worth cheering.", field: "rankChange", format: "places", label: "Places gained", tone: "green", icon: "climb" },
+      { key: "mostImproved", title: "Most Improved", blurb: "Largest Balanced Scorecard gain since Round 1. That jump is real progress.", field: "bscChange", format: "delta", label: "BSC gain", tone: "gold", icon: "rise" }
     ];
 
     const EXTRA_METRICS = [
@@ -883,7 +968,7 @@
       return "profit";
     }
 
-    const state = { q: "", section: "", industry: "", sortKey: "rd1Bsc", sortDir: "desc", pinnedId: null, extraMetric: storedMetric() };
+    const state = { q: "", section: "", industry: "", sortKey: "bsc", sortDir: "desc", pinnedId: null, extraMetric: storedMetric() };
     let data = null;
     let top30 = [];
     let byId = new Map();
@@ -908,9 +993,67 @@
     function bsc(n) {
       return (Math.round(Number(n) * 10) / 10).toFixed(1);
     }
+    function scoreOf(team) {
+      if (!team) return NaN;
+      if (team.bsc != null && team.bsc !== "") return Number(team.bsc);
+      if (team.rd2Bsc != null && team.rd2Bsc !== "") return Number(team.rd2Bsc);
+      return Number(team.rd1Bsc);
+    }
     function formatMetric(team, def) {
-      const value = team[def.field];
+      const value = Number(team[def.field]);
+      if (def.format === "places") {
+        const n = Math.round(value);
+        return (n > 0 ? "+" : "") + n;
+      }
+      if (def.format === "delta") {
+        return (value > 0 ? "+" : "") + bsc(value);
+      }
       return def.format === "pct" ? pct(value) : money(value);
+    }
+    function rankChangeInfo(team) {
+      if (!team || team.rankChange == null || team.prevRank == null) return null;
+      const change = Number(team.rankChange);
+      const prev = Number(team.prevRank);
+      if (!Number.isFinite(change) || !Number.isFinite(prev)) return null;
+      if (change > 0) {
+        const places = change === 1 ? "place" : "places";
+        return { kind: "up", text: "↑ +" + change, label: "Up " + change + " " + places + " from #" + prev + " in Round 1" };
+      }
+      if (change < 0) {
+        const n = Math.abs(change);
+        const places = n === 1 ? "place" : "places";
+        return { kind: "down", text: "↓ -" + n, label: "Down " + n + " " + places + " from #" + prev + " in Round 1" };
+      }
+      return { kind: "flat", text: "–", label: "No change from #" + prev + " in Round 1" };
+    }
+    function rankChangeBadge(team, options) {
+      const info = rankChangeInfo(team);
+      if (!info) return null;
+      const el = document.createElement("span");
+      el.className = "rank-change rank-change-" + info.kind;
+      el.title = info.label;
+      const visual = document.createElement("span");
+      visual.setAttribute("aria-hidden", "true");
+      visual.textContent = info.text;
+      const speak = !options || options.speak !== false;
+      if (speak) {
+        const spoken = document.createElement("span");
+        spoken.className = "sr-only";
+        spoken.textContent = info.label;
+        el.append(visual, spoken);
+      } else {
+        el.setAttribute("aria-hidden", "true");
+        el.append(visual);
+      }
+      return el;
+    }
+    function awardNoteText(note) {
+      const match = /^Tie \((\d+)\): (.+)$/.exec(String(note || ""));
+      if (!match) return note;
+      const names = match[2].split(",").map((part) => part.trim()).filter(Boolean);
+      if (!names.length) return note;
+      const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
+      return "Shared honor. " + list + " tied on this result.";
     }
     function currentMetric() {
       return EXTRA_METRICS.find((metric) => metric.key === state.extraMetric) || EXTRA_METRICS[0];
@@ -951,7 +1094,7 @@
     }
 
     function renderHero() {
-      document.getElementById("round-label").textContent = data.roundLabel || "Round 1";
+      document.getElementById("round-label").textContent = data.roundLabel || "Round 2";
       const sections = new Set(data.allTeams.map((t) => t.section));
       const industries = new Set(data.allTeams.map((t) => t.industry));
       const root = document.getElementById("hero-stats");
@@ -959,7 +1102,7 @@
         chip(String(data.teamCount || data.allTeams.length), "teams"),
         chip(String(sections.size), "sections"),
         chip(String(industries.size), "industries"),
-        chip(bsc(top30[0].rd1Bsc), "leading BSC")
+        chip(bsc(scoreOf(top30[0])), "leading BSC")
       );
     }
 
@@ -975,20 +1118,25 @@
       wrap.append(characterImg(team, "mascot"));
       const title = document.createElement("h3");
       title.textContent = team.team;
+      const nameRow = document.createElement("div");
+      nameRow.className = "podium-name";
+      nameRow.append(title);
+      const change = rankChangeBadge(team);
+      if (change) nameRow.append(change);
       const meta = document.createElement("p");
       meta.className = "place-meta";
       meta.textContent = placeLine(team);
       const score = document.createElement("p");
       score.className = "place-score";
       const strong = document.createElement("strong");
-      strong.textContent = bsc(team.rd1Bsc);
+      strong.textContent = bsc(scoreOf(team));
       const label = document.createElement("span");
       label.textContent = "Balanced Scorecard";
       score.append(strong, label);
       const pedestal = document.createElement("div");
       pedestal.className = "pedestal";
       pedestal.setAttribute("aria-hidden", "true");
-      btn.append(wrap, title, meta, score, pedestal);
+      btn.append(wrap, nameRow, meta, score, pedestal);
       btn.addEventListener("mouseenter", () => showSpotlight(team, false));
       btn.addEventListener("focus", () => showSpotlight(team, false));
       btn.addEventListener("click", () => {
@@ -1035,9 +1183,11 @@
       sub.className = "sub";
       sub.textContent = placeLine(team);
       who.append(name, sub);
+      const change = rankChangeBadge(team);
+      if (change) who.append(change);
       const score = document.createElement("div");
       score.className = "bsc-lg";
-      score.append(document.createTextNode(bsc(team.rd1Bsc)));
+      score.append(document.createTextNode(bsc(scoreOf(team))));
       const small = document.createElement("small");
       small.textContent = "BSC";
       score.append(small);
@@ -1159,7 +1309,26 @@
           multi.textContent = honors + " honors";
           chips.append(multi);
         }
+        if (def.key === "biggestClimber" && team.prevRank != null) {
+          const from = document.createElement("span");
+          from.className = "chip";
+          from.textContent = "From #" + team.prevRank;
+          chips.append(from);
+        }
+        if (def.key === "mostImproved" && team.rd1Bsc != null) {
+          const from = document.createElement("span");
+          from.className = "chip";
+          from.textContent = "Round 1 BSC " + bsc(team.rd1Bsc);
+          chips.append(from);
+        }
         card.append(top, blurb, who, value, valueLabel, chips);
+        const note = data.awardNotes && data.awardNotes[def.key];
+        if (note) {
+          const noteEl = document.createElement("p");
+          noteEl.className = "award-note";
+          noteEl.textContent = awardNoteText(note);
+          card.append(noteEl);
+        }
         card.addEventListener("click", () => {
           state.pinnedId = team.id;
           document.querySelectorAll(".podium-card").forEach((el) => {
@@ -1188,8 +1357,8 @@
       });
       const dir = state.sortDir === "asc" ? 1 : -1;
       rows.sort((a, b) => {
-        const av = Number(a[state.sortKey]);
-        const bv = Number(b[state.sortKey]);
+        const av = state.sortKey === "bsc" ? scoreOf(a) : Number(a[state.sortKey]);
+        const bv = state.sortKey === "bsc" ? scoreOf(b) : Number(b[state.sortKey]);
         if (av !== bv) return av < bv ? -dir : dir;
         return a.rank - b.rank;
       });
@@ -1224,9 +1393,32 @@
     }
 
     function sortLabel() {
-      if (state.sortKey === "rd1Bsc") return "Balanced Scorecard";
+      if (state.sortKey === "bsc") return "Balanced Scorecard";
       const metric = EXTRA_METRICS.find((item) => item.key === state.sortKey);
       return metric ? metric.label.toLowerCase() : "Balanced Scorecard";
+    }
+
+    function sortShort() {
+      if (state.sortKey === "bsc") return "BSC";
+      const metric = EXTRA_METRICS.find((item) => item.key === state.sortKey);
+      return metric ? metric.short : "Place";
+    }
+
+    function officialOrder(filtering) {
+      return !filtering && state.sortKey === "bsc" && state.sortDir === "desc";
+    }
+
+    function updateRankHeader(filtering) {
+      const th = document.getElementById("rank-col");
+      if (officialOrder(filtering)) {
+        th.textContent = "Rank";
+        th.title = "Official rank by Round 2 Balanced Scorecard";
+        return;
+      }
+      const short = sortShort();
+      th.textContent = short + " #";
+      const where = filtering ? "in this filtered list" : "in this list";
+      th.title = "Position by " + sortLabel() + " " + where;
     }
 
     function renderBoard() {
@@ -1238,6 +1430,7 @@
       const body = document.getElementById("board-body");
       body.replaceChildren();
       const total = data.teamCount || data.allTeams.length;
+      updateRankHeader(filtering);
       if (!rows.length) {
         status.textContent = "No firms match that search. Clear the filters to bring back the Top 30.";
         const tr = document.createElement("tr");
@@ -1250,21 +1443,31 @@
         return;
       }
       const extraNote = " Extra column: " + currentMetric().label.toLowerCase() + ".";
-      if (filtering) {
-        status.textContent = "Showing " + rows.length + " matching " + (rows.length === 1 ? "team" : "teams") + " from all " + total + " firms, sorted by " + sortLabel() + "." + extraNote;
-      } else if (state.sortKey === "rd1Bsc" && state.sortDir === "desc") {
-        status.textContent = "Showing the Top 30 of " + total + " teams by Round 1 Balanced Scorecard." + extraNote;
+      const where = filtering ? "in this filtered list" : "in this list";
+      if (officialOrder(filtering)) {
+        status.textContent = "Showing the Top 30 of " + total + " teams by Round 2 Balanced Scorecard. Numbers are the official ranks." + extraNote;
+      } else if (filtering) {
+        status.textContent = "Showing " + rows.length + " matching " + (rows.length === 1 ? "team" : "teams") + " from all " + total + " firms, sorted by " + sortLabel() + ". Numbers are positions " + where + ". BSC chips show the official Round 2 rank." + extraNote;
       } else {
-        status.textContent = "Showing the Top 30, sorted by " + sortLabel() + ". The rank column stays the official Balanced Scorecard place." + extraNote;
+        status.textContent = "Showing the Top 30, sorted by " + sortLabel() + ". Numbers are positions " + where + ". BSC chips show the official Round 2 rank." + extraNote;
       }
-      rows.forEach((team) => {
+      rows.forEach((team, index) => {
+        const position = index + 1;
+        const official = officialOrder(filtering);
         const tr = document.createElement("tr");
         tr.dataset.id = team.id;
         tr.classList.add("is-team");
         tr.tabIndex = 0;
         tr.setAttribute("role", "button");
         tr.setAttribute("aria-haspopup", "dialog");
-        tr.setAttribute("aria-label", "Open roster for " + team.team + ", rank " + team.rank + ", section " + team.section);
+        const move = rankChangeInfo(team);
+        let rowLabel = "Open roster for " + team.team + ", ";
+        rowLabel += official
+          ? "official Balanced Scorecard rank " + team.rank
+          : sortLabel() + " position " + position + " " + where + ", official Balanced Scorecard rank " + team.rank;
+        if (move) rowLabel += ". " + move.label;
+        rowLabel += ", section " + team.section;
+        tr.setAttribute("aria-label", rowLabel);
         if (team.rank <= 5) tr.classList.add("is-podium");
         tr.addEventListener("click", () => openRoster(team));
         tr.addEventListener("keydown", (event) => {
@@ -1276,13 +1479,24 @@
         const rank = document.createElement("td");
         rank.className = "rank";
         const badge = document.createElement("span");
-        badge.className = "badge " + badgeClass(team.rank);
-        badge.textContent = String(team.rank);
+        badge.className = "badge " + badgeClass(position);
+        badge.textContent = String(position);
         rank.append(badge);
+        if (!official) {
+          const posLabel = document.createElement("span");
+          posLabel.className = "pos-label";
+          posLabel.textContent = sortShort();
+          rank.append(posLabel);
+        }
         const teamCell = document.createElement("td");
         teamCell.className = "team";
         const teamName = document.createElement("span");
         teamName.textContent = team.team;
+        const nameRow = document.createElement("span");
+        nameRow.className = "team-name-row";
+        nameRow.append(teamName);
+        const change = rankChangeBadge(team);
+        if (change) nameRow.append(change);
         const sub = document.createElement("span");
         sub.className = "team-sub";
         sub.textContent = placeLine(team);
@@ -1290,7 +1504,14 @@
         identity.className = "team-id";
         const copy = document.createElement("span");
         copy.className = "team-copy";
-        copy.append(teamName, sub);
+        copy.append(nameRow, sub);
+        if (!official) {
+          const officialChip = document.createElement("span");
+          officialChip.className = "bsc-chip";
+          officialChip.textContent = "BSC #" + team.rank;
+          officialChip.title = "Official Round 2 Balanced Scorecard rank";
+          copy.append(officialChip);
+        }
         identity.append(characterImg(team, "team-avatar"), copy);
         teamCell.append(identity);
         const section = document.createElement("td");
@@ -1303,11 +1524,12 @@
         bscCell.className = "bsc num";
         const num = document.createElement("span");
         num.className = "bsc-num";
-        num.textContent = bsc(team.rd1Bsc);
+        const score = scoreOf(team);
+        num.textContent = bsc(score);
         const bar = document.createElement("span");
         bar.className = "bsc-bar";
         const fill = document.createElement("span");
-        fill.style.width = Math.max(8, Math.round((Number(team.rd1Bsc) / leaderScore) * 100)) + "%";
+        fill.style.width = Math.max(8, Math.round((score / leaderScore) * 100)) + "%";
         bar.append(fill);
         bscCell.append(num, bar);
         const metric = currentMetric();
@@ -1370,8 +1592,13 @@
     let rosterReturnFocus = null;
     let rosterTeamId = null;
     let fireworksRun = null;
-    let soundOn = false;
-    try { soundOn = localStorage.getItem(SOUND_STORE) === "on"; } catch (err) { soundOn = false; }
+    let soundOn = true;
+    let audioArmed = false;
+    try {
+      const storedSound = localStorage.getItem(SOUND_STORE);
+      if (storedSound === "off") soundOn = false;
+      else if (storedSound === "on") soundOn = true;
+    } catch (err) { soundOn = true; }
 
     function prefersReducedMotion() {
       return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1417,9 +1644,20 @@
       const backdrop = document.getElementById("roster-backdrop");
       const dialog = document.getElementById("roster-dialog");
       document.getElementById("roster-title").textContent = full.team;
-      document.getElementById("roster-kicker").textContent = "Rank " + full.rank + " · BSC " + bsc(full.rd1Bsc);
+      document.getElementById("roster-kicker").textContent = "Rank " + full.rank + " · BSC " + bsc(scoreOf(full));
       const code = full.industryCode ? " · " + full.industryCode : "";
       document.getElementById("roster-place").textContent = "Section " + full.section + " · Industry " + full.industry + code;
+      const moveHost = document.getElementById("roster-move");
+      moveHost.replaceChildren();
+      const move = rankChangeInfo(full);
+      if (move) {
+        const badge = rankChangeBadge(full, { speak: false });
+        const sentence = document.createElement("p");
+        sentence.className = "roster-place";
+        sentence.textContent = move.label;
+        if (badge) moveHost.append(badge);
+        moveHost.append(sentence);
+      }
       document.getElementById("roster-art").replaceChildren(characterImg(full, "roster-mascot"));
       const names = rosterNames(full);
       const list = document.getElementById("roster-members");
@@ -1492,30 +1730,40 @@
       master: null,
       noise: null,
       ensure() {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return null;
-        if (!this.ctx) {
-          this.ctx = new AudioCtx();
-          this.master = this.ctx.createGain();
-          this.master.gain.value = 0.14;
-          this.master.connect(this.ctx.destination);
-          const len = Math.floor(this.ctx.sampleRate * 0.3);
-          this.noise = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
-          const data = this.noise.getChannelData(0);
-          for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return null;
+          if (!this.ctx) {
+            this.ctx = new AudioCtx();
+            this.master = this.ctx.createGain();
+            this.master.gain.value = 0.14;
+            this.master.connect(this.ctx.destination);
+            const len = Math.floor(this.ctx.sampleRate * 0.3);
+            this.noise = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+            const data = this.noise.getChannelData(0);
+            for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+          }
+          return this.ctx;
+        } catch (err) {
+          return null;
         }
-        return this.ctx;
       },
       async unlock() {
-        const ctx = this.ensure();
-        if (ctx && ctx.state === "suspended") {
-          try { await ctx.resume(); } catch (err) { /* autoplay may still block */ }
+        try {
+          const ctx = this.ensure();
+          if (ctx && ctx.state === "suspended") await ctx.resume();
+          return this.ctx;
+        } catch (err) {
+          return null;
         }
-        return this.ctx;
       },
       boom() {
         const ctx = this.ctx;
         if (!soundOn || !ctx || ctx.state !== "running") return;
+        try { this.playBoom(); } catch (err) { /* stay quiet if audio fails */ }
+      },
+      playBoom() {
+        const ctx = this.ctx;
         const t = ctx.currentTime;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -1558,6 +1806,10 @@
       chime() {
         const ctx = this.ctx;
         if (!soundOn || !ctx || ctx.state !== "running") return;
+        try { this.playChime(); } catch (err) { /* stay quiet if audio fails */ }
+      },
+      playChime() {
+        const ctx = this.ctx;
         [523.25, 659.25, 783.99].forEach((freq, index) => {
           const t = ctx.currentTime + index * 0.08;
           const osc = ctx.createOscillator();
@@ -1586,39 +1838,87 @@
       soundOn = Boolean(on);
       try { localStorage.setItem(SOUND_STORE, soundOn ? "on" : "off"); } catch (err) { /* ignore */ }
       syncSoundButton();
-      if (!soundOn) return;
-      await Soundboard.unlock();
-      if (fireworksRun) Soundboard.boom();
-      else Soundboard.chime();
+      if (!soundOn) {
+        if (fireworksRun) fireworksRun.noteSound();
+        return;
+      }
+      try {
+        const ctx = await Soundboard.unlock();
+        if (ctx && ctx.state === "running") {
+          audioArmed = true;
+          detachGestureListeners();
+        }
+      } catch (err) { /* autoplay can fail without a gesture */ }
+      if (fireworksRun) fireworksRun.noteSound();
+      try {
+        if (fireworksRun) Soundboard.boom();
+        else Soundboard.chime();
+      } catch (err) { /* stay quiet */ }
+    }
+
+    const gestureEvents = ["pointerdown", "keydown", "scroll"];
+    function detachGestureListeners() {
+      gestureEvents.forEach((type) => window.removeEventListener(type, onFirstGesture));
+    }
+    let audioArming = false;
+    async function onFirstGesture() {
+      if (!soundOn || audioArmed || audioArming) return;
+      audioArming = true;
+      try {
+        const ctx = await Soundboard.unlock();
+        if (!ctx || ctx.state !== "running") {
+          audioArming = false;
+          return;
+        }
+        audioArmed = true;
+        detachGestureListeners();
+        if (fireworksRun) fireworksRun.noteSound();
+        Soundboard.boom();
+      } catch (err) {
+        audioArming = false;
+      }
+    }
+    function attachGestureListeners() {
+      gestureEvents.forEach((type) => window.addEventListener(type, onFirstGesture, { passive: true }));
     }
 
     function startFireworks() {
       if (prefersReducedMotion()) return;
-      try {
-        if (sessionStorage.getItem(FW_STORE) === "1") return;
-        sessionStorage.setItem(FW_STORE, "1");
-      } catch (err) { /* still play if storage is blocked */ }
-
       const canvas = document.getElementById("fireworks");
       const ctx = canvas.getContext("2d", { alpha: true });
+      if (!ctx) return;
       const skip = document.getElementById("fw-skip");
       const status = document.getElementById("fw-status");
+      let seenIntro = false;
+      try { seenIntro = sessionStorage.getItem(FW_STORE) === "1"; } catch (err) { seenIntro = false; }
+      if (!seenIntro) {
+        try { sessionStorage.setItem(FW_STORE, "1"); } catch (err) { /* still play the intro */ }
+      }
+
       canvas.hidden = false;
       canvas.classList.remove("is-fading");
-      skip.hidden = false;
-      status.textContent = soundOn
-        ? "Celebration playing with sound."
-        : "Celebration playing. Sound is off until you turn it on.";
+      let mode = seenIntro ? "ambient" : "intro";
+      if (mode === "ambient") canvas.classList.add("is-ambient");
+      else canvas.classList.remove("is-ambient");
 
       let raf = 0;
-      let stopped = false;
+      let running = false;
       let width = 0;
       let height = 0;
+      let hiddenAt = 0;
       const particles = [];
       const rockets = [];
       const colors = ["#f0d48a", "#d4a84b", "#fff8e8", "#ffffff", "#e07a3d", "#b9d4ff", "#f6ecd3"];
       const launchAt = [40, 280, 560, 900, 1280, 1680, 2100, 2500];
       let launchIndex = 0;
+      let introStart = performance.now();
+      let nextAmbientAt = performance.now() + (seenIntro ? 1600 : 8000);
+
+      function introStatus() {
+        if (!soundOn) return "Celebration playing. Sound is off until you turn it on.";
+        if (audioArmed && Soundboard.ctx && Soundboard.ctx.state === "running") return "Celebration playing with sound.";
+        return "Celebration playing. Sound starts when you click, type, or scroll.";
+      }
 
       function resize() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1629,68 +1929,83 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
-      function burst(x, y, color) {
-        const count = 78;
+      function burst(x, y, color, ambient) {
+        const count = ambient ? 34 : 78;
         for (let i = 0; i < count; i++) {
           const angle = (Math.PI * 2 * i) / count + Math.random() * 0.15;
-          const speed = 1.5 + Math.random() * 4.1;
+          const speed = (ambient ? 1.1 : 1.5) + Math.random() * (ambient ? 2.4 : 4.1);
           particles.push({
             x, y,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             life: 1,
-            decay: 0.0065 + Math.random() * 0.007,
-            size: 2.4 + Math.random() * 2.6,
+            decay: (ambient ? 0.014 : 0.0065) + Math.random() * 0.007,
+            size: (ambient ? 1.8 : 2.4) + Math.random() * (ambient ? 1.6 : 2.6),
             color: Math.random() < 0.22 ? "#ffffff" : color,
             gravity: 0.02 + Math.random() * 0.02
           });
         }
-        if (soundOn) Soundboard.unlock().then(() => Soundboard.boom());
+        if (soundOn && audioArmed) Soundboard.boom();
       }
 
-      function launch() {
+      function launch(ambient) {
         rockets.push({
           x: width * (0.16 + Math.random() * 0.68),
           y: height + 4,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: -(11 + Math.random() * 3),
-          targetY: height * (0.16 + Math.random() * 0.34),
+          vx: (Math.random() - 0.5) * (ambient ? 0.45 : 0.8),
+          vy: ambient ? -(8 + Math.random() * 2) : -(11 + Math.random() * 3),
+          targetY: height * (ambient ? 0.08 + Math.random() * 0.22 : 0.16 + Math.random() * 0.34),
           color: colors[Math.floor(Math.random() * colors.length)],
-          trail: 0
+          trail: 0,
+          ambient: Boolean(ambient)
         });
       }
 
-      function finish() {
-        if (stopped) return;
-        stopped = true;
-        cancelAnimationFrame(raf);
-        window.removeEventListener("resize", resize);
-        canvas.classList.add("is-fading");
+      function endIntro() {
+        if (mode !== "intro") return;
+        mode = "ambient";
         skip.hidden = true;
         status.textContent = "";
-        fireworksRun = null;
-        window.setTimeout(() => {
-          canvas.hidden = true;
-          canvas.classList.remove("is-fading");
-        }, 720);
+        canvas.classList.add("is-ambient");
+        nextAmbientAt = performance.now() + 2800;
       }
 
-      fireworksRun = { finish };
-      skip.onclick = () => finish();
-      resize();
-      window.addEventListener("resize", resize);
-      burst(width * 0.3, height * 0.3, "#f0d48a");
-      burst(width * 0.72, height * 0.24, "#fff8e8");
-      if (soundOn) Soundboard.unlock();
-      window.addEventListener("pointerdown", () => { if (soundOn) Soundboard.unlock(); }, { once: true });
+      function kick() {
+        if (running || document.hidden) return;
+        running = true;
+        raf = requestAnimationFrame(frame);
+      }
 
-      const started = performance.now();
+      function onVisibility() {
+        if (document.hidden) {
+          hiddenAt = performance.now();
+          running = false;
+          cancelAnimationFrame(raf);
+          return;
+        }
+        if (hiddenAt) {
+          introStart += performance.now() - hiddenAt;
+          hiddenAt = 0;
+        }
+        kick();
+      }
+
       function frame(now) {
-        if (stopped) return;
-        const elapsed = now - started;
-        while (launchIndex < launchAt.length && elapsed >= launchAt[launchIndex]) {
-          launch();
-          launchIndex += 1;
+        if (!running) return;
+        if (document.hidden) {
+          running = false;
+          return;
+        }
+        if (mode === "intro") {
+          const elapsed = now - introStart;
+          while (launchIndex < launchAt.length && elapsed >= launchAt[launchIndex]) {
+            launch(false);
+            launchIndex += 1;
+          }
+          if ((elapsed > 4700 && !rockets.length && particles.length < 6) || elapsed > 6200) endIntro();
+        } else if (now >= nextAmbientAt && rockets.length < 1 && particles.length < 12) {
+          launch(true);
+          nextAmbientAt = now + 4000 + Math.random() * 3000;
         }
         ctx.clearRect(0, 0, width, height);
         for (let i = rockets.length - 1; i >= 0; i--) {
@@ -1715,7 +2030,7 @@
           ctx.fillStyle = "#fff6d8";
           ctx.fillRect(rocket.x - 1.5, rocket.y - 1.5, 3, 3);
           if (rocket.vy >= -0.2 || rocket.y <= rocket.targetY) {
-            burst(rocket.x, rocket.y, rocket.color);
+            burst(rocket.x, rocket.y, rocket.color, rocket.ambient || mode === "ambient");
             rockets.splice(i, 1);
           }
         }
@@ -1735,11 +2050,26 @@
           ctx.fillRect(bit.x, bit.y, bit.size, bit.size);
         }
         ctx.globalAlpha = 1;
-        if (elapsed > 4700 && !rockets.length && particles.length < 6) finish();
-        else if (elapsed > 6200) finish();
-        else raf = requestAnimationFrame(frame);
+        raf = requestAnimationFrame(frame);
       }
-      raf = requestAnimationFrame(frame);
+
+      fireworksRun = { endIntro, noteSound() { if (mode === "intro") status.textContent = introStatus(); } };
+      skip.onclick = () => endIntro();
+      if (mode === "intro") {
+        skip.hidden = false;
+        status.textContent = introStatus();
+      } else {
+        skip.hidden = true;
+        status.textContent = "";
+      }
+      resize();
+      window.addEventListener("resize", resize);
+      document.addEventListener("visibilitychange", onVisibility);
+      if (mode === "intro") {
+        burst(width * 0.3, height * 0.3, "#f0d48a", false);
+        burst(width * 0.72, height * 0.24, "#fff8e8", false);
+      }
+      kick();
     }
 
     function init(payload) {
@@ -1749,7 +2079,7 @@
       data = payload;
       top30 = [...payload.top30].sort((a, b) => a.rank - b.rank).slice(0, 30);
       byId = new Map(payload.allTeams.map((t) => [t.id, t]));
-      leaderScore = Number(top30[0].rd1Bsc) || 1;
+      leaderScore = scoreOf(top30[0]) || 1;
       state.pinnedId = top30[0].id;
       renderHero();
       fillFilters();
@@ -1806,6 +2136,7 @@
       if (team) focusOnBoard(team);
     });
     syncSoundButton();
+    attachGestureListeners();
     document.getElementById("roster-backdrop").addEventListener("click", (event) => {
       if (event.target === event.currentTarget) closeRoster();
     });
