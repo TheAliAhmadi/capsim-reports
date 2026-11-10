@@ -1,11 +1,16 @@
 {
-  "round": "Competition Round 5",
-  "title": "Competition Round 5",
+  "round": "Competition Round 6",
+  "title": "Competition Round 6",
   "tabs": {
+    "round6": {
+      "id": "round6",
+      "label": "Competition Round 6",
+      "default": true
+    },
     "round5": {
       "id": "round5",
       "label": "Competition Round 5",
-      "default": true
+      "default": false
     },
     "round4": {
       "id": "round4",
@@ -55,7 +60,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136220_1_Round6_report.html"
             },
             {
               "name": "Baldwin",
@@ -69,7 +76,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136220_1_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -83,7 +92,9 @@
               "round4File": "reports/competition-round4/Chester_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136220_1_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -97,7 +108,9 @@
               "round4File": "reports/competition-round4/Digby_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136220_1_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -111,7 +124,9 @@
               "round4File": "reports/competition-round4/Erie_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136220_1_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -125,7 +140,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136220_1_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -139,7 +156,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136220_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136220_1_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136220_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136220_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136220_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136220_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136220_1_Round6_report.html"
             }
           ]
         },
@@ -160,7 +179,9 @@
               "round4File": "reports/competition-round4/Chester_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136220_2_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -174,7 +195,9 @@
               "round4File": "reports/competition-round4/Digby_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136220_2_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -188,7 +211,9 @@
               "round4File": "reports/competition-round4/Erie_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136220_2_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -202,7 +227,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136220_2_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -216,7 +243,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136220_2_Round6_report.html"
             },
             {
               "name": "Andrews",
@@ -230,7 +259,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136220_2_Round6_report.html"
             },
             {
               "name": "Baldwin",
@@ -244,7 +275,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136220_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136220_2_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136220_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136220_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136220_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136220_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136220_2_Round6_report.html"
             }
           ]
         }
@@ -271,7 +304,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136221_1_Round6_report.html"
             },
             {
               "name": "Baldwin",
@@ -285,7 +320,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136221_1_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -299,7 +336,9 @@
               "round4File": "reports/competition-round4/Chester_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136221_1_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -313,7 +352,9 @@
               "round4File": "reports/competition-round4/Digby_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136221_1_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -327,7 +368,9 @@
               "round4File": "reports/competition-round4/Erie_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136221_1_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -341,7 +384,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136221_1_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -355,7 +400,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136221_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136221_1_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136221_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136221_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136221_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136221_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136221_1_Round6_report.html"
             }
           ]
         },
@@ -376,7 +423,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136221_2_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -390,7 +439,9 @@
               "round4File": "reports/competition-round4/Chester_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136221_2_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -404,7 +455,9 @@
               "round4File": "reports/competition-round4/Digby_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136221_2_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -418,7 +471,9 @@
               "round4File": "reports/competition-round4/Erie_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136221_2_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -432,7 +487,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136221_2_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -446,7 +503,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136221_2_Round6_report.html"
             },
             {
               "name": "Andrews",
@@ -460,7 +519,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136221_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136221_2_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136221_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136221_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136221_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136221_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136221_2_Round6_report.html"
             }
           ]
         }
@@ -487,7 +548,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136222_1_Round6_report.html"
             },
             {
               "name": "Baldwin",
@@ -501,7 +564,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136222_1_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -515,7 +580,9 @@
               "round4File": "reports/competition-round4/Chester_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136222_1_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -529,7 +596,9 @@
               "round4File": "reports/competition-round4/Digby_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136222_1_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -543,7 +612,9 @@
               "round4File": "reports/competition-round4/Erie_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136222_1_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -557,7 +628,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136222_1_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -571,7 +644,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136222_1_Round6_report.html"
             },
             {
               "name": "Harper",
@@ -585,7 +660,9 @@
               "round4File": "reports/competition-round4/Harper_CP136222_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Harper_CP136222_1_Round4_report.html",
               "round5File": "reports/competition-round5/Harper_CP136222_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Harper_CP136222_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Harper_CP136222_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Harper_CP136222_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Harper_CP136222_1_Round6_report.html"
             }
           ]
         },
@@ -606,7 +683,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136222_2_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -620,7 +699,9 @@
               "round4File": "reports/competition-round4/Chester_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136222_2_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -634,7 +715,9 @@
               "round4File": "reports/competition-round4/Digby_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136222_2_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -648,7 +731,9 @@
               "round4File": "reports/competition-round4/Erie_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136222_2_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -662,7 +747,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136222_2_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -676,7 +763,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136222_2_Round6_report.html"
             },
             {
               "name": "Andrews",
@@ -690,7 +779,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136222_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136222_2_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136222_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136222_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136222_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136222_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136222_2_Round6_report.html"
             }
           ]
         }
@@ -717,7 +808,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136219_1_Round6_report.html"
             },
             {
               "name": "Baldwin",
@@ -731,7 +824,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136219_1_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -745,7 +840,9 @@
               "round4File": "reports/competition-round4/Chester_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136219_1_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -759,7 +856,9 @@
               "round4File": "reports/competition-round4/Digby_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136219_1_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -773,7 +872,9 @@
               "round4File": "reports/competition-round4/Erie_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136219_1_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -787,7 +888,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136219_1_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -801,7 +904,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136219_1_Round6_report.html"
             },
             {
               "name": "Harper",
@@ -815,7 +920,9 @@
               "round4File": "reports/competition-round4/Harper_CP136219_1_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Harper_CP136219_1_Round4_report.html",
               "round5File": "reports/competition-round5/Harper_CP136219_1_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Harper_CP136219_1_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Harper_CP136219_1_Round5_report.html",
+              "round6File": "reports/competition-round6/Harper_CP136219_1_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Harper_CP136219_1_Round6_report.html"
             }
           ]
         },
@@ -836,7 +943,9 @@
               "round4File": "reports/competition-round4/Andrews_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Andrews_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Andrews_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Andrews_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Andrews_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Andrews_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Andrews_CP136219_2_Round6_report.html"
             },
             {
               "name": "Baldwin",
@@ -850,7 +959,9 @@
               "round4File": "reports/competition-round4/Baldwin_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Baldwin_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Baldwin_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Baldwin_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Baldwin_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Baldwin_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Baldwin_CP136219_2_Round6_report.html"
             },
             {
               "name": "Chester",
@@ -864,7 +975,9 @@
               "round4File": "reports/competition-round4/Chester_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Chester_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Chester_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Chester_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Chester_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Chester_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Chester_CP136219_2_Round6_report.html"
             },
             {
               "name": "Digby",
@@ -878,7 +991,9 @@
               "round4File": "reports/competition-round4/Digby_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Digby_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Digby_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Digby_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Digby_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Digby_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Digby_CP136219_2_Round6_report.html"
             },
             {
               "name": "Erie",
@@ -892,7 +1007,9 @@
               "round4File": "reports/competition-round4/Erie_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Erie_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Erie_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Erie_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Erie_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Erie_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Erie_CP136219_2_Round6_report.html"
             },
             {
               "name": "Ferris",
@@ -906,7 +1023,9 @@
               "round4File": "reports/competition-round4/Ferris_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Ferris_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Ferris_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Ferris_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Ferris_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Ferris_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Ferris_CP136219_2_Round6_report.html"
             },
             {
               "name": "Garrett",
@@ -920,7 +1039,9 @@
               "round4File": "reports/competition-round4/Garrett_CP136219_2_Round4_report.html",
               "competitionRound4File": "reports/competition-round4/Garrett_CP136219_2_Round4_report.html",
               "round5File": "reports/competition-round5/Garrett_CP136219_2_Round5_report.html",
-              "competitionRound5File": "reports/competition-round5/Garrett_CP136219_2_Round5_report.html"
+              "competitionRound5File": "reports/competition-round5/Garrett_CP136219_2_Round5_report.html",
+              "round6File": "reports/competition-round6/Garrett_CP136219_2_Round6_report.html",
+              "competitionRound6File": "reports/competition-round6/Garrett_CP136219_2_Round6_report.html"
             }
           ]
         }

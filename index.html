@@ -374,13 +374,14 @@
       <p class="subtitle">Coaching reviews for your Capsim team — unlock yours with your student number.</p>
       <a class="hero-cta" href="leaderboard.html">Leaderboard</a>
     </header>
-    <div class="notice" role="status">Competition Round 5 coaching reviews are ready. Choose a round below and unlock your team’s report with your student number.</div>
+    <div class="notice" role="status">Competition Round 6 coaching reviews are ready. Choose a round below and unlock your team’s report with your student number.</div>
 
     <nav class="tabs" aria-label="Reports and leaderboard">
       <label class="round-picker">
         <span id="round-label">Round</span>
         <select id="round-select" aria-labelledby="round-label">
-          <option value="round5" selected>Competition Round 5</option>
+          <option value="round6" selected>Competition Round 6</option>
+          <option value="round5">Competition Round 5</option>
           <option value="round4">Competition Round 4</option>
           <option value="round3">Competition Round 3</option>
           <option value="round2">Competition Round 2</option>
@@ -402,7 +403,7 @@
             <div class="num">1</div>
             <div>
               <strong>Pick a round</strong>
-              <span>Competition Round 5 is the default. Competition Round 4, Competition Round 3, Competition Round 2, Competition Round 1 and Practice Round Recap are in the same menu.</span>
+              <span>Competition Round 6 is the default. Competition Round 5, Competition Round 4, Competition Round 3, Competition Round 2, Competition Round 1 and Practice Round Recap are in the same menu.</span>
             </div>
           </div>
           <div class="key-step">
@@ -431,7 +432,7 @@
         </div>
 
         <div class="report-box hidden" id="report-box">
-          <div class="pill" id="report-tab-pill">Competition Round 5</div>
+          <div class="pill" id="report-tab-pill">Competition Round 6</div>
           <h3 id="report-team">Your team</h3>
           <p id="report-meta"></p>
           <p class="msg ok" id="report-status">Unlocked — this is your team’s report only.</p>
@@ -444,7 +445,15 @@
       </aside>
 
       <div class="stack">
-        <section class="panel" id="blurb-round5">
+        <section class="panel" id="blurb-round6">
+          <h2>Competition Round 6</h2>
+          <p>These are coaching reviews of your firm’s <strong>sixth graded competition round</strong>, with a look at what changed since Round 5. They explain what happened in plain language, connect decisions to outcomes, and suggest what to focus on for Round 7.</p>
+          <p>Each report also shows how your Capsim grade is weighted across the eight rounds: only Rounds 7 and 8 remain, worth 40% combined, so improving your Balanced Scorecard in these last two rounds can still lift your grade significantly.</p>
+          <p>Each report supports — but does not replace — your own industry analysis.</p>
+          <p>The public <a href="leaderboard.html">leaderboard</a> ranks every firm by Balanced Scorecard. No student number needed.</p>
+        </section>
+
+        <section class="panel hidden" id="blurb-round5">
           <h2>Competition Round 5</h2>
           <p>These are coaching reviews of your firm’s <strong>fifth graded competition round</strong>, with a look at what changed since Round 4. They explain what happened in plain language, connect decisions to outcomes, and suggest what to focus on for Round 6.</p>
           <p>Each report also shows how your Capsim grade is weighted across the eight rounds: Rounds 6, 7 and 8 together are worth 55%, so improving your Balanced Scorecard from here can still lift your grade significantly.</p>
@@ -514,6 +523,10 @@
   <script>
     const SALT = "capsim-practice-round-recap-v1";
     const ROUNDS = {
+      round6: {
+        label: "Competition Round 6",
+        missing: "No Competition Round 6 report is available for your team yet. Try another round in the menu."
+      },
       round5: {
         label: "Competition Round 5",
         missing: "No Competition Round 5 report is available for your team yet. Try another round in the menu."
@@ -541,7 +554,7 @@
     };
     let unlock = null;
     let record = null;
-    let activeTab = "round5";
+    let activeTab = "round6";
 
     const studentId = document.getElementById("student-id");
     const unlockBtn = document.getElementById("unlock-btn");
@@ -563,19 +576,21 @@
       if (activeTab === "round2") return rec.round2File || rec.competitionRound2File || null;
       if (activeTab === "round3") return rec.round3File || rec.competitionRound3File || null;
       if (activeTab === "round4") return rec.round4File || rec.competitionRound4File || null;
-      return rec.round5File || rec.competitionRound5File || null;
+      if (activeTab === "round5") return rec.round5File || rec.competitionRound5File || null;
+      return rec.round6File || rec.competitionRound6File || null;
     }
 
     function setTab(tab) {
-      activeTab = ROUNDS[tab] ? tab : "round5";
+      activeTab = ROUNDS[tab] ? tab : "round6";
       const select = document.getElementById("round-select");
       if (select.value !== activeTab) select.value = activeTab;
       const url = new URL(location.href);
-      if (activeTab === "round5") url.searchParams.delete("tab");
+      if (activeTab === "round6") url.searchParams.delete("tab");
       else url.searchParams.set("tab", activeTab);
       const next = url.pathname + url.search + url.hash;
       const current = location.pathname + location.search + location.hash;
       if (next !== current) history.replaceState(null, "", next);
+      document.getElementById("blurb-round6").classList.toggle("hidden", activeTab !== "round6");
       document.getElementById("blurb-round5").classList.toggle("hidden", activeTab !== "round5");
       document.getElementById("blurb-round4").classList.toggle("hidden", activeTab !== "round4");
       document.getElementById("blurb-round3").classList.toggle("hidden", activeTab !== "round3");
@@ -671,11 +686,11 @@
       .then((data) => {
         unlock = data;
         const requested = new URLSearchParams(location.search).get("tab");
-        const aliases = { round5: "round5", "round-5": "round5", "competition-round5": "round5", round4: "round4", "round-4": "round4", "competition-round4": "round4", round3: "round3", "round-3": "round3", "competition-round3": "round3", round2: "round2", "round-2": "round2", "competition-round2": "round2" };
+        const aliases = { round6: "round6", "round-6": "round6", "competition-round6": "round6", round5: "round5", "round-5": "round5", "competition-round5": "round5", round4: "round4", "round-4": "round4", "competition-round4": "round4", round3: "round3", "round-3": "round3", "competition-round3": "round3", round2: "round2", "round-2": "round2", "competition-round2": "round2" };
         const tab = aliases[requested] || requested;
         if (ROUNDS[tab]) setTab(tab);
         else if (data.defaultTab) setTab(data.defaultTab);
-        else setTab("round5");
+        else setTab("round6");
       })
       .catch((err) => {
         unlockMsg.className = "msg bad";
