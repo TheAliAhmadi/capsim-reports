@@ -21,6 +21,8 @@
       --neg: #9a3412;
       --shadow: 0 12px 32px rgba(10, 31, 61, 0.08);
       --radius: 18px;
+      --race-row-h: 46px;
+      --race-bar-h: 32px;
     }
         * { box-sizing: border-box; }
     [hidden] { display: none !important; }
@@ -890,9 +892,9 @@
       .info-btn { width: 1.75rem; height: 1.75rem; }
       #score-info { display: inline-grid; }
       .roster-scores { grid-template-columns: 1fr; }
-      thead { display: none; }
-      table, tbody, tr, td { display: block; }
-      tbody tr {
+      #board thead { display: none; }
+      #board table, #board tbody, #board tr, #board td { display: block; }
+      #board tbody tr {
         display: grid;
         grid-template-columns: auto 1fr auto;
         grid-template-areas:
@@ -905,9 +907,9 @@
         border-radius: 14px;
         background: #fff;
       }
-      tbody tr.is-podium { background: #fffaf0; }
-      td { border: 0; padding: 0; }
-      td.rank { grid-area: rank; }
+      #board tbody tr.is-podium { background: #fffaf0; }
+      #board td { border: 0; padding: 0; }
+      #board td.rank { grid-area: rank; }
       .pos-label {
         display: block;
         margin-top: 0.15rem;
@@ -918,14 +920,14 @@
         color: var(--muted);
         text-align: center;
       }
-      td.team { grid-area: team; }
-      td.bsc { grid-area: bsc; text-align: right; }
-      td.section, td.industry, td.metric { display: none; }
+      #board td.team { grid-area: team; }
+      #board td.bsc { grid-area: bsc; text-align: right; }
+      #board td.section, #board td.industry, #board td.metric { display: none; }
       .roster-members { grid-template-columns: 1fr; }
       .float-tools { top: auto; bottom: 0.75rem; }
-      td.extras { grid-area: extras; color: var(--muted); font-size: 0.82rem; }
-      .team-sub { display: block; }
-      .bsc-bar { margin-right: 0; }
+      #board td.extras { grid-area: extras; color: var(--muted); font-size: 0.82rem; }
+      #board .team-sub { display: block; }
+      #board .bsc-bar { margin-right: 0; }
     }
     @media (min-width: 681px) {
       td.extras { display: none; }
@@ -970,6 +972,723 @@
     @media print {
       .fireworks, .float-tools { display: none !important; }
     }
+
+    button.tab {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .sec-lab {
+      font-weight: 700;
+      color: var(--navy-2);
+      font-size: 0.82em;
+      letter-spacing: 0;
+    }
+    .congrats {
+      background: linear-gradient(135deg, #fffaf0 0%, #fff 46%, #f8fbff 100%);
+      border-color: rgba(212, 168, 75, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+    .congrats::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, #f0d48a, #d4a84b);
+    }
+    .congrats-kicker {
+      margin: 0 0 0.35rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a6a1f;
+      font-weight: 800;
+    }
+    .congrats h2 {
+      margin: 0 0 0.4rem;
+      color: var(--navy);
+      font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+      letter-spacing: -0.02em;
+    }
+    .congrats p { margin: 0; max-width: 46rem; line-height: 1.55; }
+    .firm-swatch { display: inline-block; flex: none; }
+
+    /* ---- Season journey panel ---- */
+    .season-panel {
+      border-color: rgba(212, 168, 75, 0.55);
+      box-shadow: var(--shadow), 0 0 0 1px rgba(212, 168, 75, 0.12);
+    }
+    .season-panel .section-head h2 {
+      display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .new-pill {
+      display: inline-block;
+      background: var(--gold-soft);
+      color: #8a6a1f;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 0.18rem 0.5rem;
+      vertical-align: 0.15em;
+    }
+    .season-controls {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0.85rem 1.1rem;
+      margin: 1.05rem 0 0.85rem;
+    }
+    .transport { display: flex; align-items: center; gap: 0.4rem; }
+    .transport button {
+      appearance: none; border: 1.5px solid var(--border);
+      background: #fff; color: var(--navy);
+      font-weight: 800; cursor: pointer;
+      border-radius: 12px;
+      min-width: 2.5rem; height: 2.5rem;
+      display: inline-grid; place-items: center;
+      font-size: 1.15rem; line-height: 1;
+    }
+    .transport button:hover { border-color: var(--gold); background: var(--gold-soft); }
+    .transport button:disabled { opacity: 0.4; cursor: default; background: #fff; border-color: var(--border); }
+    #play-btn {
+      min-width: 6.4rem; height: 2.5rem;
+      border-radius: 999px;
+      background: var(--navy); color: #fff; border-color: var(--navy);
+      font-size: 0.88rem; letter-spacing: 0.02em; padding: 0 0.9rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    #play-btn:hover { background: var(--navy-2); border-color: var(--navy-2); color: #fff; }
+    #play-btn[aria-pressed="true"] { background: #8a6a1f; border-color: #8a6a1f; }
+    .slider-wrap { flex: 1 1 16rem; min-width: 0; }
+    .slider-inner { padding: 0 8px; } /* half the 16px thumb, so ticks share the thumb-center scale */
+    .slider-wrap input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; cursor: pointer; margin: 0; padding: 0;
+      height: 16px; background: transparent;
+    }
+    .slider-wrap input[type="range"]:focus { outline: none; }
+    .slider-wrap input[type="range"]:focus-visible { outline: 2px solid #2b5f9e; outline-offset: 3px; border-radius: 999px; }
+    .slider-wrap input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--navy) var(--progress, 0%), #d9e1ec var(--progress, 0%));
+    }
+    .slider-wrap input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 16px; height: 16px; margin-top: -5px; border-radius: 50%;
+      background: var(--navy); border: 2px solid #fff;
+      box-shadow: 0 0 0 1.5px var(--navy);
+    }
+    .slider-wrap input[type="range"]::-moz-range-track {
+      height: 6px; border-radius: 999px; background: #d9e1ec; border: 0;
+    }
+    .slider-wrap input[type="range"]::-moz-range-progress {
+      height: 6px; border-radius: 999px; background: var(--navy); border: 0;
+    }
+    .slider-wrap input[type="range"]::-moz-range-thumb {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--navy); border: 2px solid #fff;
+      box-shadow: 0 0 0 1.5px var(--navy);
+    }
+    .ticks { position: relative; height: 1.45rem; margin-top: 0.2rem; }
+    .ticks button {
+      appearance: none; border: 0; background: none;
+      color: var(--muted); font-size: 0.72rem; font-weight: 800;
+      cursor: pointer; padding: 0.15rem 0; letter-spacing: 0.02em;
+      position: absolute; top: 0; transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    .ticks button:hover { color: var(--navy); }
+    .ticks button[aria-current="true"] { color: var(--navy); }
+    .ticks button[data-round="8"] { color: #8a6a1f; }
+    .ticks button[data-round="8"][aria-current="true"] { color: #8a6a1f; }
+    .kb-hint { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.75rem; }
+
+    .callouts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin: 0.85rem 0 1.05rem;
+    }
+    .callout {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.7rem 0.8rem 0.8rem;
+      min-width: 0;
+    }
+    .callout .k {
+      display: block;
+      font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #8a6a1f; font-weight: 800; margin-bottom: 0.28rem;
+    }
+    .callout .v {
+      margin: 0; color: var(--navy); font-size: 0.9rem; line-height: 1.4; font-weight: 600;
+    }
+    .callout .v em { font-style: normal; font-weight: 800; }
+
+    .subhead {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 0.5rem; flex-wrap: wrap;
+      margin: 0 0 0.55rem;
+    }
+    .subhead h3 { margin: 0; color: var(--navy); font-size: 1.02rem; }
+    .subhead p { margin: 0; color: var(--muted); font-size: 0.8rem; }
+
+    .race-stage {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.7rem 0.7rem 0.85rem;
+    }
+    .race-axis-row {
+      display: grid; grid-template-columns: 2.1rem 1fr;
+      gap: 0.35rem; margin: 0 0 0.2rem;
+    }
+    .race-axis {
+      position: relative; height: 1rem;
+      color: var(--muted); font-size: 0.68rem; font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .race-axis span { position: absolute; top: 0; transform: translateX(-50%); }
+    .race-axis span.is-start { transform: none; }
+    .race-axis span.is-end { transform: translateX(-100%); }
+    .race-track-wrap { position: relative; }
+    .race-watermark {
+      position: absolute;
+      right: 0.15rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(3.6rem, 13vw, 7rem);
+      font-weight: 800;
+      color: var(--navy);
+      opacity: 0.07;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      line-height: 1;
+      z-index: 0;
+      user-select: none;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .race-slots {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .race-slot {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: var(--race-row-h);
+      display: grid;
+      grid-template-columns: 2.1rem 1fr;
+      gap: 0.4rem;
+      align-items: center;
+      padding: 0 0.1rem;
+    }
+    .race-rank {
+      font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums;
+      font-size: 0.92rem; text-align: center;
+    }
+    .race-slot-track {
+      height: var(--race-bar-h);
+      background: rgba(10,31,61,0.055);
+      border-radius: 9px;
+    }
+    .race-rows {
+      position: relative;
+      z-index: 1;
+      height: calc(12 * var(--race-row-h));
+      overflow: hidden;
+    }
+    .race-row {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: var(--race-row-h);
+      display: grid;
+      grid-template-columns: 2.1rem 1fr;
+      gap: 0.4rem;
+      align-items: center;
+      padding: 0 0.1rem;
+      opacity: 1;
+      cursor: pointer;
+      background: transparent;
+      will-change: transform;
+    }
+    .race-bar-track {
+      position: relative;
+      height: var(--race-bar-h);
+      background: transparent;
+      border-radius: 9px;
+      overflow: visible;
+    }
+    .race-bar {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 0;
+      border-radius: 9px;
+      box-shadow: inset 0 0 0 1px rgba(10,31,61,0.06);
+    }
+    .race-name {
+      position: absolute;
+      left: 0.5rem; top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      font-weight: 800; color: var(--navy); font-size: 0.9rem;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      white-space: nowrap; pointer-events: none;
+      text-shadow: 0 0 4px #fff, 0 1px 0 #fff, 0 0 10px #fff;
+    }
+    .firm-swatch {
+      width: 0.62rem; height: 0.62rem; border-radius: 50%; flex: none;
+      box-shadow: 0 0 0 2px rgba(10,31,61,0.08);
+    }
+    .race-meta {
+      color: var(--navy-2); font-size: 0.72rem; font-weight: 650;
+      opacity: 0.8;
+    }
+    .race-end {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(8px, -50%);
+      z-index: 2;
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      white-space: nowrap; pointer-events: none;
+    }
+    .race-row.is-long .race-end { transform: translate(calc(-100% - 8px), -50%); }
+    .race-score {
+      font-weight: 800; color: var(--navy);
+      font-variant-numeric: tabular-nums; font-size: 0.95rem;
+      text-shadow: 0 0 4px #fff, 0 1px 0 #fff, 0 0 10px #fff;
+    }
+
+    .palette {
+      display: flex; flex-wrap: wrap; gap: 0.45rem 0.8rem;
+      margin: 0.7rem 0 0; padding: 0; list-style: none;
+    }
+    .palette li {
+      display: inline-flex; align-items: center; gap: 0.32rem;
+      font-size: 0.75rem; font-weight: 700; color: var(--navy);
+    }
+
+    .bump-stage {
+      margin-top: 1.1rem;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.7rem 0.55rem 0.55rem;
+    }
+    .bump-svg { width: 100%; min-width: 640px; height: auto; display: block; overflow: visible; }
+    .bump-grid { stroke: #d9e1ec; stroke-width: 1; }
+    .bump-grid.is-break { stroke: #b7c3d1; stroke-dasharray: 3 3; }
+    .bump-axis { fill: var(--muted); font-size: 13px; font-weight: 700; font-family: inherit; }
+    .bump-axis.is-now { fill: var(--navy); font-weight: 800; }
+    .bump-line {
+      fill: none; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round;
+      opacity: 0.92; cursor: pointer;
+      transition: opacity 0.25s ease, stroke-width 0.25s ease;
+    }
+    .bump-stage.is-dim .bump-line, .bump-stage.is-dim .bump-dot, .bump-stage.is-dim .bump-label {
+      opacity: 0.14;
+    }
+    .bump-stage.is-dim .bump-line.is-hot,
+    .bump-stage.is-dim .bump-dot.is-hot,
+    .bump-stage.is-dim .bump-label.is-hot { opacity: 1; }
+    .bump-line.is-hot { stroke-width: 3.6; }
+    .bump-dot { stroke: #fff; stroke-width: 1.5; cursor: pointer; }
+    .bump-now { stroke: var(--navy); stroke-width: 1.5; stroke-dasharray: 3 4; opacity: 0.55; }
+    .bump-label { font-size: 12.5px; font-weight: 800; font-family: inherit; cursor: pointer; }
+    .bump-tip {
+      position: absolute; pointer-events: none; z-index: 5;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.4rem 0.55rem;
+      box-shadow: 0 8px 20px rgba(10,31,61,0.12);
+      font-size: 0.78rem; color: var(--navy); line-height: 1.35;
+      min-width: 10rem; max-width: 16rem;
+    }
+    .bump-tip strong { display: block; }
+    .shell, .stack, .panel, .bump-stage { min-width: 0; max-width: 100%; }
+    .bump-wrap {
+      position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+    }
+
+    .bump-scroll-hint { display: none; }
+    @media (max-width: 680px) {
+      .bump-scroll-hint { display: block; margin: 0.35rem 0 0; color: var(--muted); font-size: 0.75rem; text-align: center; }
+    }
+    .continue-note {
+      margin: 0.4rem 0 0; color: var(--muted); font-size: 0.85rem; text-align: center;
+    }
+    footer { margin-top: 1.35rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer a { color: var(--navy); font-weight: 700; }
+    footer .credit { display: block; margin-top: 0.35rem; font-size: 0.78rem; }
+
+    @media (max-width: 800px) {
+      .callouts { grid-template-columns: 1fr; }
+      .podium-next { max-width: none; }
+    }
+    @media (max-width: 680px) {
+      .podium-main { grid-template-columns: 1fr 1fr; }
+      .podium-main .rank-1 { grid-column: 1 / -1; order: -1; }
+      :root { --race-row-h: 48px; --race-bar-h: 34px; }
+      .race-meta { font-size: 0.68rem; }
+      .race-watermark { font-size: 4.2rem; right: 0; }
+      .tab { flex: 1 1 0; padding: 0.55rem 0.35rem; font-size: 0.78rem; }
+      .transport button { min-width: 2.7rem; height: 2.7rem; }
+      #play-btn { min-width: 5.6rem; }
+      .ticks button { font-size: 0.66rem; }
+      .kb-hint { display: none; }
+      .bump-svg { min-width: 620px; }
+      /* 200 and 600 collide with 0 / 707.7 on a narrow bar axis */
+      .race-axis span:nth-child(2),
+      .race-axis span:nth-child(4) { display: none; }
+    }
+
+    /* ---- Persistent bar race: glow on the bar only ---- */
+    .race-row:hover .race-bar, .race-row.is-hot .race-bar {
+      box-shadow: 0 0 0 2px rgba(10, 31, 61, 0.28);
+    }
+    .race-row.is-passing .race-bar {
+      box-shadow: 0 0 0 2px rgba(212, 168, 75, 0.95), 0 0 14px rgba(212, 168, 75, 0.5);
+    }
+
+    /* ---- Insight panels ---- */
+    .insight-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin: 0.95rem 0 0.85rem;
+    }
+    .insight-stat {
+      background: linear-gradient(180deg, #f8fbff 0%, #f3f6fb 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.7rem 0.8rem 0.75rem;
+    }
+    .insight-stat strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+    .insight-stat span {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+    .takeaway {
+      margin: 0.85rem 0 0;
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 168, 75, 0.45);
+      border-radius: 14px;
+      padding: 0.7rem 0.85rem 0.75rem;
+      color: var(--navy);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .takeaway .kicker {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #8a6a1f;
+      margin-bottom: 0.15rem;
+    }
+    .chart-stage {
+      position: relative;
+      margin-top: 0.35rem;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.55rem 0.45rem 0.45rem;
+    }
+    .chart-svg { width: 100%; height: auto; display: block; overflow: visible; min-width: 640px; }
+    .chart-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+    }
+    .chart-scroll-hint { display: none; }
+    .chart-tip {
+      position: absolute; pointer-events: none; z-index: 6;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.4rem 0.55rem;
+      box-shadow: 0 8px 20px rgba(10,31,61,0.12);
+      font-size: 0.78rem; color: var(--navy); line-height: 1.35;
+      min-width: 10rem; max-width: 19rem;
+    }
+    .chart-tip strong { display: block; }
+    .chart-axis { fill: var(--muted); font-size: 12px; font-weight: 700; font-family: inherit; }
+    .chart-axis-title { fill: var(--navy); font-size: 12px; font-weight: 800; font-family: inherit; }
+    .chart-anno {
+      fill: var(--navy); font-size: 11.5px; font-weight: 800; font-family: inherit;
+      opacity: 0.78;
+    }
+    .chart-anno-sub { fill: var(--muted); font-size: 10.5px; font-weight: 700; font-family: inherit; }
+
+    /* Group buttons (Early lead) */
+    .group-bar {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      align-items: center;
+      margin: 0.85rem 0 0.65rem;
+    }
+    .group-btn {
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.42rem 0.85rem;
+      font-weight: 800;
+      color: var(--navy);
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-family: inherit;
+      line-height: 1.2;
+    }
+    .group-btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+    .group-btn .dot {
+      display: inline-block; width: 0.55rem; height: 0.55rem;
+      border-radius: 50%; margin-right: 0.35rem; vertical-align: 0.05em;
+    }
+    .group-btn[data-group="all"] .dot { background: var(--navy); }
+    .group-btn[data-group="climbed"] .dot { background: #1f7a4d; }
+    .group-btn[data-group="held"] .dot { background: #1d4ed8; }
+    .group-btn[data-group="slipped"] .dot { background: #b45309; }
+    .group-btn.is-on { color: #fff; }
+    .group-btn[data-group="all"].is-on { background: var(--navy); border-color: var(--navy); }
+    .group-btn[data-group="climbed"].is-on { background: #1f7a4d; border-color: #1f7a4d; }
+    .group-btn[data-group="held"].is-on { background: #1d4ed8; border-color: #1d4ed8; }
+    .group-btn[data-group="slipped"].is-on { background: #b45309; border-color: #b45309; }
+    .group-replay {
+      margin-left: auto;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.42rem 0.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: inherit;
+    }
+    .group-replay[hidden] { display: none; }
+    .group-insight {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.75rem 0.9rem 0.8rem;
+      margin: 0 0 0.7rem;
+      color: var(--navy);
+    }
+    .group-insight h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+    }
+    .group-insight p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--navy-2);
+    }
+
+    /* Early-lead trajectories */
+    .early-line { fill: none; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; }
+    .early-line.is-avg { stroke-linecap: round; pointer-events: none; }
+    .early-hit { fill: none; stroke: transparent; stroke-width: 14; cursor: pointer; }
+    .early-dot { stroke: #fff; stroke-width: 1.2; cursor: pointer; }
+    .early-label { font-size: 11.5px; font-weight: 800; font-family: inherit; }
+    .early-stage.is-group .early-line.is-dim,
+    .early-stage.is-group .early-dot.is-dim { opacity: 0.07; }
+    .early-stage .early-line.is-hot { stroke-width: 3.2; opacity: 1; }
+    .early-stage .early-dot.is-hot { opacity: 1; }
+    @keyframes early-draw {
+      from { stroke-dashoffset: 1; }
+      to { stroke-dashoffset: 0; }
+    }
+    .early-line.is-anim {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: early-draw 1.15s ease-out forwards;
+    }
+    .early-line.is-avg.is-anim { animation-duration: 1.35s; animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+
+    /* Volatility */
+    .vol-dot { stroke: #fff; stroke-width: 1.4; cursor: pointer; opacity: 0.92; }
+    .vol-dot.is-top { stroke-width: 1.6; }
+    .vol-label { font-size: 11px; font-weight: 800; font-family: inherit; cursor: pointer; }
+    .vol-stage.is-dim .vol-dot, .vol-stage.is-dim .vol-label, .vol-stage.is-dim .vol-lead { opacity: 0.12; }
+    .vol-stage.is-dim .vol-dot.is-hot, .vol-stage.is-dim .vol-label.is-hot, .vol-stage.is-dim .vol-lead.is-hot { opacity: 1; }
+    .vol-trend { fill: none; stroke: #0a1f3d; stroke-width: 2.4; stroke-dasharray: 6 5; }
+    .vol-trend-label {
+      fill: #0a1f3d; font-size: 12px; font-weight: 800; font-family: inherit;
+    }
+
+    /* Finance */
+    .fin-block { margin-top: 1.05rem; }
+    .fin-block > h3 {
+      margin: 0 0 0.2rem;
+      font-size: 1.02rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    .fin-block > .fin-lead {
+      margin: 0 0 0.55rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+    .pill-bar {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin: 0.15rem 0 0.6rem;
+    }
+    .ind-pill {
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.32rem 0.7rem;
+      font-weight: 800;
+      color: var(--navy);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+    .ind-pill .dot {
+      display: inline-block; width: 0.5rem; height: 0.5rem;
+      border-radius: 50%; margin-right: 0.3rem; vertical-align: 0.05em;
+    }
+    .ind-pill.is-on { color: #fff; background: var(--navy); border-color: var(--navy); }
+    .ind-pill:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+    .fin-summary {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.7rem 0.85rem;
+      margin: 0 0 0.65rem;
+      color: var(--navy);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .fin-summary strong { color: var(--navy); }
+    .fin-legend {
+      display: flex; flex-wrap: wrap; gap: 0.7rem 1rem;
+      margin: 0.15rem 0.4rem 0.4rem;
+      font-size: 0.75rem; font-weight: 700; color: var(--navy);
+    }
+    .fin-legend i {
+      display: inline-block; width: 0.85rem; height: 0.22rem;
+      border-radius: 2px; margin-right: 0.3rem; vertical-align: 0.15em;
+    }
+    .fin-legend i.bar {
+      width: 0.7rem; height: 0.7rem;
+      background: rgba(20, 50, 95, 0.28);
+    }
+    .fin-legend i.class {
+      height: 0.28rem; background: #0a1f3d; width: 1rem;
+    }
+    .ind-line { fill: none; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; }
+    .ind-line.is-class { pointer-events: none; }
+    .ind-stage.is-pick .ind-line.is-dim { opacity: 0.14; }
+    .ind-stage.is-pick .ind-line.is-on { opacity: 1; }
+    .loan-dot { stroke: #fff; stroke-width: 1.15; cursor: pointer; }
+    .loan-avg { stroke-width: 2.2; }
+    .loan-col-label { fill: var(--navy); font-size: 12.5px; font-weight: 800; font-family: inherit; }
+    .loan-avg-label { fill: var(--navy); font-size: 11px; font-weight: 800; font-family: inherit; }
+    .loan-stage.is-dim .loan-dot { opacity: 0.16; }
+    .loan-stage.is-dim .loan-dot.is-hot { opacity: 1; }
+
+    @media (max-width: 800px) {
+      .insight-stats { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .group-replay { margin-left: 0; }
+      .slope-label, .vol-label, .early-label { font-size: 13px; }
+      .chart-scroll-hint { display: block; margin: 0.3rem 0 0; color: var(--muted); font-size: 0.75rem; text-align: center; }
+      .chart-svg { min-width: 620px; }
+    }
+  #adj-lb { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; margin-top: 1.15rem; }
+  #adj-lb > .panel { min-width: 0; }
+  #adj-lb .fl-intro p { margin: 0.35rem 0 0; color: var(--muted); line-height: 1.55; max-width: 46rem; }
+  #adj-lb .fl-intro .fl-lead { color: var(--text); font-size: 1.02rem; }
+  #adj-lb .fl-quote { margin: 0.85rem 0 0; background: var(--gold-soft); border: 1px solid #e4d2a4; border-radius: 14px; padding: 0.7rem 0.9rem; color: var(--navy); font-weight: 700; line-height: 1.45; }
+  #adj-lb .fl-quote span { font-weight: 500; color: var(--muted); display: block; font-size: 0.85rem; margin-top: 0.15rem; }
+  #adj-lb details.fl-how { margin-top: 0.85rem; border: 1px solid var(--border); border-radius: 14px; background: #f7f9fc; }
+  #adj-lb details.fl-how summary { cursor: pointer; padding: 0.7rem 0.9rem; font-weight: 800; color: var(--navy); list-style: none; display: flex; align-items: center; gap: 0.5rem; }
+  #adj-lb details.fl-how summary::-webkit-details-marker { display: none; }
+  #adj-lb details.fl-how summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.35rem; height: 1.35rem; border-radius: 50%; border: 1.5px solid var(--navy); font-size: 0.9rem; line-height: 1; flex: none; }
+  #adj-lb details.fl-how[open] summary::before { content: "–"; background: var(--navy); color: #fff; }
+  #adj-lb .fl-how-body { padding: 0 1rem 0.9rem 2.75rem; color: var(--text); line-height: 1.55; font-size: 0.92rem; }
+  #adj-lb .fl-how-body ol { margin: 0.2rem 0 0.4rem; padding-left: 1.1rem; }
+  #adj-lb .fl-how-body li { margin: 0.3rem 0; }
+  #adj-lb .fl-how-body p { margin: 0.45rem 0 0; color: var(--muted); max-width: none; }
+  #adj-lb .podium-card .place-score strong { font-size: 1.75rem; }
+  #adj-lb .podium-card.rank-1 .place-score strong { font-size: 2.1rem; }
+  #adj-lb .fl-podium-main { max-width: 860px; margin: 0 auto; }
+  #adj-lb .fl-champs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-top: 0.9rem; }
+  #adj-lb .fl-champ { appearance: none; text-align: left; font: inherit; color: inherit; cursor: pointer; position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 0.8rem 0.8rem 0.85rem 0.95rem; box-shadow: 0 8px 18px rgba(10,31,61,0.04); transition: transform 0.18s ease, border-color 0.18s ease; }
+  #adj-lb .fl-champ:hover { transform: translateY(-2px); border-color: #e4d2a4; }
+  #adj-lb .fl-champ::before { content: ""; position: absolute; left: 0; top: 0.7rem; bottom: 0.7rem; width: 4px; border-radius: 0 4px 4px 0; background: var(--gold); }
+  #adj-lb .fl-champ-k { margin: 0; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8a6a1f; font-weight: 800; }
+  #adj-lb .fl-champ-who { display: flex; align-items: center; gap: 0.5rem; margin: 0.35rem 0 0.3rem; }
+  #adj-lb .fl-champ-who img { width: 52px; height: 52px; flex: none; }
+  #adj-lb .fl-champ-who strong { display: block; color: var(--navy); font-size: 1.05rem; }
+  #adj-lb .fl-champ-who span { display: block; color: var(--muted); font-size: 0.78rem; }
+  #adj-lb .fl-champ-v { margin: 0; font-weight: 800; color: var(--navy); font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+  #adj-lb .fl-champ-v small { font-size: 0.72rem; font-weight: 700; color: var(--muted); letter-spacing: 0; }
+  #adj-lb .fl-champ-n { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.78rem; line-height: 1.35; }
+  #adj-lb .fl-tough { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 0.9rem; }
+  #adj-lb .fl-ind { background: #f7f9fc; border: 1px solid var(--border); border-radius: 14px; padding: 0.7rem 0.75rem 0.75rem; }
+  #adj-lb .fl-ind h3 { margin: 0; font-size: 0.92rem; color: var(--navy); }
+  #adj-lb .fl-ind .fl-code { display: block; font-size: 0.72rem; color: var(--muted); font-weight: 600; margin-top: 0.05rem; }
+  #adj-lb .fl-meter { margin-top: 0.55rem; }
+  #adj-lb .fl-meter-top { display: flex; justify-content: space-between; gap: 0.4rem; font-size: 0.72rem; color: var(--muted); font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+  #adj-lb .fl-meter-top b { color: var(--navy); font-variant-numeric: tabular-nums; text-transform: none; letter-spacing: 0; font-size: 0.82rem; }
+  #adj-lb .fl-track { height: 6px; background: #e3eaf3; border-radius: 99px; overflow: hidden; margin-top: 0.25rem; }
+  #adj-lb .fl-track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--navy-2), var(--gold)); }
+  #adj-lb .fl-track.fl-gold i { background: linear-gradient(90deg, #e9cf8e, #c8942f); }
+  #adj-lb .fl-note { margin: 0.85rem 0 0; color: var(--navy); background: #eef3f9; border-radius: 12px; padding: 0.65rem 0.85rem; line-height: 1.5; font-size: 0.9rem; }
+  #adj-lb .fl-nw { white-space: nowrap; }
+  #adj-lb .fl-lab { font-weight: 600; color: var(--muted); font-size: 0.85em; white-space: nowrap; }
+  #adj-lb .fl-pct { font-weight: 800; color: var(--navy); white-space: nowrap; font-size: 1.02rem; }
+  #adj-lb .fl-z { display: block; margin-top: 0.18rem; font-size: 0.7rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  #adj-lb .fl-chip { display: inline-flex; align-items: center; border-radius: 999px; padding: 0.14rem 0.5rem; font-size: 0.72rem; font-weight: 800; white-space: nowrap; color: var(--navy); background: #eef3f9; font-variant-numeric: tabular-nums; }
+  #adj-lb .fl-chip-gold { background: var(--gold-soft); color: #7a5c17; }
+  #adj-lb .fl-tops { font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums; }
+  #adj-lb .fl-tops small { display: block; font-weight: 600; color: var(--muted); font-size: 0.7rem; }
+  #adj-lb td.fl-official { color: var(--navy); font-weight: 700; font-variant-numeric: tabular-nums; }
+  #adj-lb .fl-extras { display: flex; flex-wrap: wrap; gap: 0.3rem 0.45rem; align-items: center; margin-top: 0.2rem; }
+  #adj-lb tbody tr.fl-hit { animation: flash 1.6s ease; }
+  @media (max-width: 900px) {
+    #adj-lb .fl-champs, #adj-lb .fl-tough { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 680px) {
+    #adj-lb .fl-how-body { padding: 0 0.85rem 0.85rem 0.95rem; }
+    #adj-lb .fl-champs { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    #adj-lb .fl-champ { padding: 0.65rem 0.6rem 0.7rem 0.8rem; }
+    #adj-lb .fl-champ-who img { width: 36px; height: 36px; }
+    #adj-lb .fl-champ-who strong { font-size: 0.95rem; }
+    #adj-lb .fl-champ-v small { display: block; margin-top: 0.05rem; }
+    #adj-lb .fl-tough { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    #adj-lb td.fl-official, #adj-lb td.fl-vs { display: none; }
+    #adj-lb .podium-card .place-score strong { font-size: 1.45rem; }
+    #adj-lb .podium-card.rank-1 .place-score strong { font-size: 1.8rem; }
+  }
+  @media (max-width: 380px) {
+    #adj-lb .fl-champs, #adj-lb .fl-tough { grid-template-columns: 1fr; }
+  }
   </style>
 </head>
 <body>
@@ -1002,13 +1721,20 @@
     <nav class="tabs" aria-label="Reports and leaderboard">
       <a class="tab" href="index.html" id="reports-tab">Competition Round 8</a>
       <a class="tab" href="index.html?tab=practice">Practice Round Recap</a>
-      <a class="tab" href="leaderboard.html" aria-current="page">Leaderboard</a>
+      <button type="button" class="tab" id="tab-leaderboard" aria-current="page">Leaderboard</button>
+      <button type="button" class="tab" id="tab-adjusted">Adjusted Leaderboard</button>
     </nav>
 
+    <div id="view-main">
     <p class="panel" id="loading">Loading the leaderboard…</p>
     <p class="panel" id="load-error" hidden role="alert">The leaderboard didn’t load. Refresh the page to try again.</p>
 
     <div class="stack" id="app" hidden>
+      <section class="panel congrats" aria-labelledby="congrats-title">
+        <p class="congrats-kicker">Bob is delivering Ali’s message of congratulations</p>
+        <h2 id="congrats-title">Congratulations on finishing Capsim!</h2>
+        <p><strong>A message from Ali:</strong> You finished eight rounds of strategy, tough calls, and teamwork across all 58 teams. You ran a company, made the hard calls, and stayed with your teammates through the whole semester. That is worth celebrating. Be proud of what you built together.</p>
+      </section>
       <section class="panel" aria-labelledby="podium-title">
         <div class="section-head">
           <div class="head-row">
@@ -1022,6 +1748,154 @@
           <div class="podium-next" id="podium-next"></div>
           <div class="spotlight" id="spotlight"></div>
         </div>
+      </section>
+
+      <section class="panel season-panel" id="season-panel" aria-labelledby="season-title">
+        <div class="section-head">
+          <h2 id="season-title">The race, round by round</h2>
+          <p>The podium above is the official finish. Drag the slider, or press Play, to watch the cumulative leaderboard move continuously through the season. Totals are Round 1 through the current position, with no Practice Recap. Bar length is drawn on a fixed scale so you can see the totals grow: full width is the final first-place score of 707.7.</p>
+        </div>
+
+        <div class="season-controls">
+          <div class="transport">
+            <button type="button" id="prev-btn" aria-label="Previous round">‹</button>
+            <button type="button" id="play-btn" aria-pressed="false">▶ Play</button>
+            <button type="button" id="next-btn" aria-label="Next round">›</button>
+          </div>
+          <div class="slider-wrap">
+            <div class="slider-inner">
+              <label class="sr-only" for="round-slider">Competition round</label>
+              <input type="range" id="round-slider" min="1" max="8" step="0.01" value="1" />
+              <div class="ticks" id="ticks"></div>
+            </div>
+          </div>
+        </div>
+        <p class="kb-hint">Arrow keys jump to a whole round. Space plays or pauses. Drag the slider to move continuously.</p>
+        <p class="sr-only" id="season-live" aria-live="polite"></p>
+
+        <div class="callouts" id="callouts"></div>
+
+        <div class="race-stage">
+          <div class="subhead">
+            <h3 id="race-title">Top 12 · Cumulative after Round 1</h3>
+            <p>Colors follow the Capsim firm name, across every industry.</p>
+          </div>
+          <div class="race-axis-row" aria-hidden="true">
+            <div></div>
+            <div class="race-axis" id="race-axis"></div>
+          </div>
+          <div class="race-track-wrap">
+            <div class="race-slots" id="race-slots" aria-hidden="true"></div>
+            <div class="race-watermark" id="race-watermark" aria-hidden="true">Rd 1</div>
+            <div class="race-rows" id="race-rows"></div>
+          </div>
+          <ul class="palette" id="palette"></ul>
+        </div>
+
+        <div class="bump-stage" id="bump-stage">
+          <div class="subhead">
+            <h3>Rank journey · Final top 10</h3>
+            <p>How this semester’s top ten moved in the cumulative ranking. Hover or select a line to follow a team. The dashed line marks the round on the slider.</p>
+          </div>
+          <div class="bump-wrap">
+            <svg class="bump-svg" id="bump-svg" viewBox="0 0 800 500" role="img" aria-labelledby="bump-desc" preserveAspectRatio="xMidYMid meet"></svg>
+            <p class="sr-only" id="bump-desc">Bump chart of cumulative rank for the final top 10 teams across rounds 1 through 8.</p>
+            <div class="bump-tip" id="bump-tip" hidden></div>
+          </div>
+          <p class="bump-scroll-hint">Swipe sideways to read the team labels.</p>
+        </div>
+      </section>
+
+      <section class="panel insight-panel" id="early-lead" aria-labelledby="early-title">
+        <div class="section-head">
+          <h2 id="early-title">Who climbed, held, or slipped</h2>
+          <p>Every team is grouped by how its cumulative rank changed from Round 2 to the Final: climbed 5 or more places, stayed within 4 places, or slipped 5 or more. Click a group to isolate those journeys and watch them draw in. The same highlight stays in sync with the race and the rank journey chart.</p>
+        </div>
+        <div class="insight-stats">
+          <div class="insight-stat"><strong>16 climbed</strong><span>gained 5 or more places after Round 2 · average gain of 10 places</span></div>
+          <div class="insight-stat"><strong>27 held steady</strong><span>finished within 4 places of their Round 2 rank, including 4 who finished in the exact same place</span></div>
+          <div class="insight-stat"><strong>15 slipped</strong><span>lost 5 or more places · average drop of 11 places</span></div>
+        </div>
+        <div class="group-bar" role="tablist" aria-label="Rank-change groups">
+          <button type="button" class="group-btn is-on" data-group="all" role="tab" aria-selected="true"><span class="dot" aria-hidden="true"></span>All groups (58)</button>
+          <button type="button" class="group-btn" data-group="climbed" role="tab" aria-selected="false"><span class="dot" aria-hidden="true"></span>Climbed (16)</button>
+          <button type="button" class="group-btn" data-group="held" role="tab" aria-selected="false"><span class="dot" aria-hidden="true"></span>Held steady (27)</button>
+          <button type="button" class="group-btn" data-group="slipped" role="tab" aria-selected="false"><span class="dot" aria-hidden="true"></span>Slipped (15)</button>
+          <button type="button" class="group-replay" id="early-replay" hidden>Replay paths</button>
+        </div>
+        <div class="group-insight" id="early-insight" aria-live="polite"></div>
+        <div class="chart-stage slope-stage early-stage" id="slope-stage">
+          <div class="chart-scroll">
+          <svg class="chart-svg" id="slope-svg" viewBox="0 0 840 540" role="img" aria-labelledby="slope-desc" preserveAspectRatio="xMidYMid meet"></svg>
+          <p class="sr-only" id="slope-desc">Trajectories of cumulative rank from Round 2 to the Final for all 58 teams, bundled into climbed, held-steady, and slipped groups.</p>
+          </div>
+          <p class="chart-scroll-hint">Swipe sideways to read the team labels.</p>
+          <div class="chart-tip" id="slope-tip" hidden></div>
+        </div>
+        <p class="takeaway"><span class="kicker">Learning point</span> An early lead often compounded — 3 of the final top five, and 7 of the final top ten, were already in those groups after Round 2 (rank correlation 0.86). It was not locked in, though: 16 teams still climbed 5 or more places, including two who reached the final top ten.</p>
+      </section>
+
+      <section class="panel insight-panel" id="volatility" aria-labelledby="vol-title">
+        <div class="section-head">
+          <h2 id="vol-title">How scores moved across the season</h2>
+          <p>Each team is one dot. The horizontal axis is its average Balanced Scorecard across the eight rounds. The vertical axis is how much those eight scores moved from round to round (the standard deviation). A team that scored about 60 every round sits near the bottom. A team that started around 55 and climbed to 100 sits higher, because its scores changed a lot over the season. Dot colour follows the Capsim firm name. Hover a dot to see the actual Round 1 → Final path.</p>
+        </div>
+        <div class="insight-stats">
+          <div class="insight-stat"><strong>r = 0.66</strong><span>correlation between average score and how much scores moved — the trend line slants up</span></div>
+          <div class="insight-stat"><strong>54 → 99</strong><span>average Round 1 and Final scores of the final top ten — a steep climb, not a flat line</span></div>
+          <div class="insight-stat"><strong>Flattest at the bottom</strong><span>the smallest round-to-round movement belonged to teams that stayed near the foot of the board</span></div>
+        </div>
+        <div class="chart-stage vol-stage" id="vol-stage">
+          <div class="chart-scroll">
+          <svg class="chart-svg" id="vol-svg" viewBox="0 0 840 520" role="img" aria-labelledby="vol-desc" preserveAspectRatio="xMidYMid meet"></svg>
+          <p class="sr-only" id="vol-desc">Scatter plot of each team’s average eight-round score versus how much those scores moved, with a trend line and the final top ten labelled.</p>
+          </div>
+          <p class="chart-scroll-hint">Swipe sideways to read the team labels.</p>
+          <div class="chart-tip" id="vol-tip" hidden></div>
+        </div>
+        <p class="takeaway"><span class="kicker">Learning point</span> The upward trend does not mean random ups and downs helped. It is there because the top teams improved steeply — the final top ten averaged 53.9 in Round 1 and 98.7 in the Final — while the flattest lines belonged to teams that stayed stuck at lower scores. A rising score, not a flat one, marked the top of the board.</p>
+      </section>
+
+      <section class="panel insight-panel" id="finance" aria-labelledby="fin-title">
+        <div class="section-head">
+          <h2 id="fin-title">Financial health across the class</h2>
+          <p>These charts look at the whole market, not one company. Watch how the eight industries matured together — profits climbing as emergency loans fell — and how avoiding those loans related to final standing.</p>
+        </div>
+        <div class="insight-stats">
+          <div class="insight-stat"><strong>17 teams</strong><span>never took an emergency loan · average final rank 13.7</span></div>
+          <div class="insight-stat"><strong>18 teams</strong><span>borrowed once · average final rank 26.8 — still recoverable</span></div>
+          <div class="insight-stat"><strong>23 teams</strong><span>borrowed two or more times · average final rank 43.3</span></div>
+        </div>
+
+        <div class="fin-block">
+          <h3>Industry profit and emergency loans, Rounds 1–8</h3>
+          <p class="fin-lead">Average profit per firm in each industry, with the class average in bold. The bars underneath count how many teams took an emergency loan that round, falling from 20 in Round 1 to 4 in the Final. Click an industry to highlight its path.</p>
+          <div class="pill-bar" id="ind-pills" role="tablist" aria-label="Industries"></div>
+          <div class="fin-summary" id="fin-summary" aria-live="polite"></div>
+          <div class="chart-stage fin-stage ind-stage" id="ind-stage">
+            <div class="fin-legend" id="ind-legend"></div>
+            <div class="chart-scroll">
+            <svg class="chart-svg" id="ind-svg" viewBox="0 0 840 440" role="img" aria-labelledby="ind-desc" preserveAspectRatio="xMidYMid meet"></svg>
+            <p class="sr-only" id="ind-desc">Average profit per firm by round for all eight industries, with class emergency-loan counts underneath.</p>
+            </div>
+            <p class="chart-scroll-hint">Swipe sideways to read the industry chart.</p>
+            <div class="chart-tip" id="ind-tip" hidden></div>
+          </div>
+        </div>
+
+        <div class="fin-block">
+          <h3>Emergency loans versus final standing</h3>
+          <p class="fin-lead">All 58 teams, split by how many emergency loans they took, plotted against official final rank (1 is first place). The gold markers show each group’s average rank.</p>
+          <div class="chart-stage loan-stage" id="loan-stage">
+            <div class="chart-scroll">
+            <svg class="chart-svg" id="loan-svg" viewBox="0 0 840 380" role="img" aria-labelledby="loan-desc" preserveAspectRatio="xMidYMid meet"></svg>
+            <p class="sr-only" id="loan-desc">Dot plot of final rank for teams with zero, one, or two or more emergency loans.</p>
+            </div>
+            <p class="chart-scroll-hint">Swipe sideways to read the standing chart.</p>
+            <div class="chart-tip" id="loan-tip" hidden></div>
+          </div>
+        </div>
+        <p class="takeaway"><span class="kicker">Learning point</span> Avoiding emergency loans separated the class: the 17 teams that never borrowed finished at an average rank of 13.7, versus 26.8 after one loan and 43.3 after two or more. The market also matured together — class-average profit per firm rose from a loss in Rounds 1–2 to $36,851 by the Final, while emergency loans fell from 20 teams in Round 1 to 4. One early loan was still recoverable: Chester Sec3_ind2 borrowed once in Round 1 and still finished 2nd.</p>
       </section>
 
       <section class="panel" aria-labelledby="awards-title">
@@ -1047,7 +1921,7 @@
         </div>
         <div class="toolbar">
           <label>Search
-            <input id="q" type="search" placeholder="Firm name, e.g. Andrews" autocomplete="off" />
+            <input id="q" type="search" placeholder="Firm, Sec4_ind1, or Section 4" autocomplete="off" />
           </label>
           <label>Section
             <select id="section"><option value="">All sections</option></select>
@@ -1107,6 +1981,101 @@
         </p>
         <p class="closing">Every firm is still in the simulation. Cumulative Total is the story so far, and a strong next round can still rewrite it.</p>
       </section>
+    </div>
+    </div>
+
+    <div id="view-adjusted" hidden>
+      <p class="panel" id="adj-error" hidden role="alert">The adjusted leaderboard didn’t load. Refresh the page to try again.</p>
+<div id="adj-lb" aria-label="Adjusted Leaderboard">
+  <section class="panel fl-intro" aria-labelledby="fl-title">
+    <div class="section-head">
+      <h2 id="fl-title">Adjusted Leaderboard · You vs. your own industry</h2>
+    </div>
+    <p class="fl-lead">Every team spent the semester competing only against the other firms in its own industry. Different industries had different rivals and market conditions, so this view ranks each team by how it did against its <strong>own industry rivals</strong>, round by round.</p>
+    <p>It sits beside the official leaderboard rather than replacing it. Think of it as a second way to see strong play: a team that kept beating tough rivals shows up here even if its raw total sits lower on the main board.</p>
+    <p class="fl-quote" id="fl-quote"></p>
+    <details class="fl-how">
+      <summary>How this is calculated</summary>
+      <div class="fl-how-body">
+        <ol>
+          <li><strong>Each round, compare with your industry.</strong> In every competition round (1 to 8) we look at your Balanced Scorecard (BSC) and count how many of your industry rivals you outscored. A rival with exactly the same score counts as half. Divide by the number of rivals (6 or 7) to get your <em>round percentile</em>: 100% means you beat every rival that round.</li>
+          <li><strong>Average the eight rounds.</strong> Your Adjusted score is the average of those eight round percentiles. That's the "outscored X% of your industry rivals each round" number.</li>
+          <li><strong>Break ties with margin.</strong> If two teams have the same average, the one that beat its rivals by bigger margins goes first. That margin is the average number of industry standard deviations above the industry mean each round, shown as "+1.13 SD".</li>
+          <li><strong>#1 rounds.</strong> These are the rounds where a team had the top BSC in its industry. A shared top score counts for every tied team.</li>
+        </ol>
+        <p>One honest caveat: a within-industry rank can't tell apart strong opponents from a tough market, so this view sits alongside the official Balanced Scorecard ranking rather than replacing it.</p>
+        <p>This tab lists the top 30 of the 58 teams. Places are worked out across all 58, and the industry averages use every team.</p>
+        <p>The Practice Round Recap isn't included, the same as on the official board. The official Cumulative Total and ranks don't change. This is a separate view for recognition.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="panel" aria-labelledby="fl-podium-title">
+    <div class="section-head">
+      <h2 id="fl-podium-title">Podium · Adjusted Leaderboard</h2>
+      <p>The three teams that most consistently outscored their own industry rivals across Rounds 1–8. Select a place to find the team on the board.</p>
+    </div>
+    <div class="stage">
+      <div class="podium-main fl-podium-main" id="fl-podium"></div>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="fl-champs-title">
+    <div class="section-head">
+      <h2 id="fl-champs-title">Industry champions</h2>
+      <p>The #1 team on this measure in each of the eight industries: the firm that did best against the exact rivals it faced.</p>
+    </div>
+    <div class="fl-champs" id="fl-champs"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="fl-tough-title">
+    <div class="section-head">
+      <h2 id="fl-tough-title">How tough was your industry?</h2>
+      <p>Two averages per industry over Rounds 1–8. <strong>Concentration</strong> (normalized Herfindahl index of unit market share): 0 means sales were shared evenly, and higher means a few firms held more of the market. <strong>Mean BSC</strong> is the average round score of all teams in the industry.</p>
+    </div>
+    <div class="fl-tough" id="fl-tough"></div>
+    <p class="fl-note" id="fl-tough-note"></p>
+  </section>
+
+  <section class="panel" id="fl-board" aria-labelledby="fl-board-title">
+    <div class="section-head">
+      <h2 id="fl-board-title">Top 30 teams · Adjusted Leaderboard</h2>
+      <p>The top 30 of all 58 teams, ranked by the average share of industry rivals outscored each round. The Official column shows each team's place on the main leaderboard for reference. Search by firm, section or industry (for example "Baldwin", "Section 3" or "Sec3_ind1").</p>
+    </div>
+    <div class="toolbar">
+      <label>Search
+        <input id="fl-q" type="search" placeholder="e.g. Baldwin or Sec3_ind1" autocomplete="off" />
+      </label>
+      <label>Section
+        <select id="fl-section"><option value="">All sections</option></select>
+      </label>
+      <label>Industry
+        <select id="fl-industry"><option value="">All industries</option></select>
+      </label>
+      <button type="button" class="btn-quiet" id="fl-clear" hidden>Clear</button>
+    </div>
+    <p class="status" id="fl-status" aria-live="polite"></p>
+    <div class="table-wrap">
+      <table aria-describedby="fl-status">
+        <thead>
+          <tr>
+            <th scope="col">Adjusted #</th>
+            <th scope="col">Team</th>
+            <th scope="col">Section</th>
+            <th scope="col">Industry</th>
+            <th scope="col" class="num">Rivals outscored</th>
+            <th scope="col" class="num">#1 rounds</th>
+            <th scope="col" class="num">Official #</th>
+            <th scope="col" class="num">vs official</th>
+          </tr>
+        </thead>
+        <tbody id="fl-body"></tbody>
+      </table>
+    </div>
+    <p class="legend"><span class="swatch" aria-hidden="true"></span><span>Gold edge marks the Adjusted podium, places 1–3. "vs official" counts the places between this view and the main leaderboard. It's a different lens, not a change to anyone's score. "+1.13 SD" is the average winning margin over industry rivals, which breaks ties.</span></p>
+    <p class="closing">Congratulations to the top 30, and to every team that ran a company against real rivals for eight rounds. That's a lot of good decisions worth being proud of.</p>
+  </section>
+</div>
     </div>
 
     <footer>
@@ -1509,12 +2478,20 @@
       }
       return el;
     }
+    function formatTiedName(part) {
+      const cleaned = String(part || "").trim();
+      const coded = /^(.*?)\s*\((CP\d+_\d+)\)\s*$/.exec(cleaned);
+      if (!coded) return cleaned.replace(/\s*\(CP\d+_\d+\)/g, "");
+      const firm = coded[1].trim();
+      const team = data && data.allTeams && data.allTeams.find((t) => t.industryCode === coded[2] && t.team === firm);
+      return team ? team.team + " " + secInd(team) : firm;
+    }
     function awardNoteText(note, key) {
       const match = /^Tie \((\d+)\): (.+)$/.exec(String(note || ""));
-      if (!match) return note;
+      if (!match) return String(note || "").replace(/\s*\(CP\d+_\d+\)/g, "");
       const pieces = match[2].split(";");
-      const names = pieces[0].split(",").map((part) => part.trim()).filter(Boolean);
-      if (!names.length) return note;
+      const names = pieces[0].split(",").map(formatTiedName).filter(Boolean);
+      if (!names.length) return String(note || "").replace(/\s*\(CP\d+_\d+\)/g, "");
       const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
       const what = key === "highestROE" ? "return on equity" : "this result";
       let text = "Shared honor. " + list + " tied on " + what + ".";
@@ -1542,8 +2519,18 @@
       sortBtn.dataset.sort = metric.key;
       sortBtn.dataset.label = metric.label;
     }
+    function secInd(team) {
+      return "Sec" + team.section + "_ind" + team.industry;
+    }
     function placeLine(team) {
       return "Section " + team.section + " · Industry " + team.industry;
+    }
+    function matchesQuery(team, q) {
+      if (!q) return true;
+      if (String(team.team).toLowerCase().includes(q)) return true;
+      if (secInd(team).toLowerCase().includes(q)) return true;
+      if (q.length >= 3 && placeLine(team).toLowerCase().includes(q)) return true;
+      return false;
     }
     function badgeClass(rank) {
       if (rank >= 1 && rank <= 5) return "r" + rank;
@@ -1563,11 +2550,11 @@
     function renderHero() {
       const roundName = data.roundLabel || ("Competition Round " + currentRound());
       document.getElementById("round-label").textContent = roundName + " · Final";
-      document.title = "Capsim Leaderboard · " + roundName + " · Final";
+      applyDocumentTitle();
       const reportsTab = document.getElementById("reports-tab");
       if (reportsTab) reportsTab.textContent = data.roundLabel || ("Competition Round " + currentRound());
       const sections = new Set(data.allTeams.map((t) => t.section));
-      const industries = new Set(data.allTeams.map((t) => t.industry));
+      const industries = new Set(data.allTeams.map((t) => secInd(t)));
       const leader = top30[0];
       const root = document.getElementById("hero-stats");
       root.replaceChildren(
@@ -1613,7 +2600,8 @@
       if (change) nameRow.append(change);
       const meta = document.createElement("p");
       meta.className = "place-meta";
-      meta.textContent = placeLine(team) + (team.industryCode ? " · " + team.industryCode : "");
+      meta.textContent = secInd(team);
+      meta.title = placeLine(team);
       const score = document.createElement("p");
       score.className = "place-score";
       const strong = document.createElement("strong");
@@ -1633,7 +2621,7 @@
       btn.addEventListener("focus", () => showSpotlight(team, false));
       btn.addEventListener("click", () => {
         state.pinnedId = team.id;
-        document.querySelectorAll(".podium-card").forEach((card) => {
+        document.querySelectorAll("#view-main .podium-card").forEach((card) => {
           card.setAttribute("aria-pressed", card.dataset.id === team.id ? "true" : "false");
         });
         showSpotlight(team, true);
@@ -1673,7 +2661,7 @@
       name.addEventListener("click", () => openRoster(team));
       const sub = document.createElement("div");
       sub.className = "sub";
-      sub.textContent = placeLine(team);
+      sub.textContent = secInd(team) + " · " + placeLine(team);
       who.append(name, sub);
       const change = rankChangeBadge(team);
       if (change) who.append(change);
@@ -1750,7 +2738,7 @@
           const titles = g.titles.slice();
           const last = titles.pop();
           const list = titles.length ? titles.join(", ") + " and " + last : last;
-          p.textContent = g.team.team + " · " + placeLine(g.team) + " earned " + g.titles.length + " honors: " + list + ".";
+          p.textContent = g.team.team + " " + secInd(g.team) + " earned " + g.titles.length + " honors: " + list + ".";
           sweep.append(p);
         });
       }
@@ -1781,7 +2769,7 @@
         blurb.textContent = awardText(def.blurb);
         const teamName = document.createElement("p");
         teamName.className = "team";
-        teamName.textContent = team.team;
+        teamName.textContent = team.team + " " + secInd(team);
         const meta = document.createElement("p");
         meta.className = "meta";
         meta.textContent = placeLine(team);
@@ -1845,7 +2833,7 @@
         top.addEventListener("click", () => hit.click());
         hit.addEventListener("click", () => {
           state.pinnedId = team.id;
-          document.querySelectorAll(".podium-card").forEach((el) => {
+          document.querySelectorAll("#view-main .podium-card").forEach((el) => {
             el.setAttribute("aria-pressed", el.dataset.id === team.id ? "true" : "false");
           });
           showSpotlight(team, true);
@@ -1865,8 +2853,8 @@
       const source = filtering ? data.allTeams : top30;
       const rows = source.filter((team) => {
         if (state.section && String(team.section) !== state.section) return false;
-        if (state.industry && String(team.industry) !== state.industry) return false;
-        if (q && !String(team.team).toLowerCase().includes(q)) return false;
+        if (state.industry && secInd(team) !== state.industry) return false;
+        if (q && !matchesQuery(team, q)) return false;
         return true;
       });
       const dir = state.sortDir === "asc" ? 1 : -1;
@@ -1888,11 +2876,21 @@
 
     function refreshIndustries() {
       const pool = data.allTeams.filter((t) => !state.section || String(t.section) === state.section);
-      const industries = [...new Set(pool.map((t) => t.industry))].sort((a, b) => a - b);
+      const seen = new Set();
+      const keys = [];
+      pool.slice().sort((a, b) => a.section - b.section || a.industry - b.industry).forEach((team) => {
+        const key = secInd(team);
+        if (seen.has(key)) return;
+        seen.add(key);
+        keys.push(key);
+      });
       const current = state.industry;
       industryEl.replaceChildren(new Option("All industries", ""));
-      industries.forEach((n) => industryEl.append(new Option("Industry " + n, String(n))));
-      if (!industries.map(String).includes(current)) state.industry = "";
+      keys.forEach((key) => {
+        const team = pool.find((t) => secInd(t) === key);
+        industryEl.append(new Option(key + " (Section " + team.section + " · Industry " + team.industry + ")", key));
+      });
+      if (!keys.includes(current)) state.industry = "";
       industryEl.value = state.industry;
     }
 
@@ -2012,7 +3010,7 @@
         tr.setAttribute("role", "button");
         tr.setAttribute("aria-haspopup", "dialog");
         const move = rankChangeInfo(team);
-        let rowLabel = "Open roster for " + team.team + ", ";
+        let rowLabel = "Open roster for " + team.team + " " + secInd(team) + ", ";
         const officialRank = viewRank(team);
         const officialPhrase = (isRoundView() ? "official Round " + currentRound() + " rank " : "official cumulative rank ") + officialRank;
         rowLabel += official
@@ -2044,7 +3042,11 @@
         const teamCell = document.createElement("td");
         teamCell.className = "team";
         const teamName = document.createElement("span");
-        teamName.textContent = team.team;
+        teamName.append(document.createTextNode(team.team + " "));
+        const secLab = document.createElement("span");
+        secLab.className = "sec-lab";
+        secLab.textContent = secInd(team);
+        teamName.append(secLab);
         const nameRow = document.createElement("span");
         nameRow.className = "team-name-row";
         nameRow.append(teamName);
@@ -2052,7 +3054,7 @@
         if (change) nameRow.append(change);
         const sub = document.createElement("span");
         sub.className = "team-sub";
-        sub.textContent = placeLine(team);
+        sub.textContent = secInd(team) + " · " + placeLine(team);
         const identity = document.createElement("span");
         identity.className = "team-id";
         const copy = document.createElement("span");
@@ -2072,7 +3074,7 @@
         section.textContent = String(team.section);
         const industry = document.createElement("td");
         industry.className = "industry";
-        industry.textContent = String(team.industry);
+        industry.textContent = secInd(team);
         const bscCell = document.createElement("td");
         bscCell.className = "bsc num";
         const stack = document.createElement("span");
@@ -2201,8 +3203,7 @@
       document.getElementById("roster-kicker").textContent = isRoundView()
         ? "Round " + currentRound() + " #" + roundRank(full) + " · BSC " + bsc(roundBscValue(full))
         : "Cumulative #" + full.rank + " · " + bsc(full.cumulativeTotal) + " pts";
-      const code = full.industryCode ? " · " + full.industryCode : "";
-      document.getElementById("roster-place").textContent = "Section " + full.section + " · Industry " + full.industry + code;
+      document.getElementById("roster-place").textContent = secInd(full) + " · " + placeLine(full);
       const moveHost = document.getElementById("roster-move");
       moveHost.replaceChildren();
       ["cumulative", roundViewKey()].forEach((mode) => {
@@ -2669,6 +3670,48 @@
       if (event.target !== dialog && !dialog.contains(event.target)) dialog.focus();
     });
 
+
+    function adjustedViewOn() {
+      const view = document.getElementById("view-adjusted");
+      return !!(view && !view.hidden);
+    }
+    function applyDocumentTitle() {
+      if (adjustedViewOn()) {
+        document.title = "Capsim Leaderboard · Adjusted Leaderboard";
+        return;
+      }
+      const roundName = (data && (data.roundLabel || ("Competition Round " + currentRound()))) || "Competition Round 8";
+      document.title = "Capsim Leaderboard · " + roundName + " · Final";
+    }
+    function showLeaderboardTab(name) {
+      const adjusted = name === "adjusted";
+      const main = document.getElementById("view-main");
+      const alt = document.getElementById("view-adjusted");
+      if (main) main.hidden = adjusted;
+      if (alt) alt.hidden = !adjusted;
+      const mainTab = document.getElementById("tab-leaderboard");
+      const altTab = document.getElementById("tab-adjusted");
+      if (mainTab) {
+        if (adjusted) mainTab.removeAttribute("aria-current");
+        else mainTab.setAttribute("aria-current", "page");
+      }
+      if (altTab) {
+        if (adjusted) altTab.setAttribute("aria-current", "page");
+        else altTab.removeAttribute("aria-current");
+      }
+      const url = new URL(window.location.href);
+      if (adjusted) url.searchParams.set("tab", "adjusted");
+      else url.searchParams.delete("tab");
+      const next = url.pathname + url.search + url.hash;
+      const current = window.location.pathname + window.location.search + window.location.hash;
+      if (next !== current) history.replaceState(null, "", next);
+      applyDocumentTitle();
+      if (!adjusted && typeof window.refreshSeasonLayout === "function") window.refreshSeasonLayout();
+    }
+    document.getElementById("tab-leaderboard").addEventListener("click", () => showLeaderboardTab("main"));
+    document.getElementById("tab-adjusted").addEventListener("click", () => showLeaderboardTab("adjusted"));
+    if (new URLSearchParams(location.search).get("tab") === "adjusted") showLeaderboardTab("adjusted");
+
     fetch("leaderboard-data.json")
       .then((res) => {
         if (!res.ok) throw new Error("Could not load leaderboard data");
@@ -2679,6 +3722,1714 @@
         console.error(err);
         document.getElementById("loading").hidden = true;
         document.getElementById("load-error").hidden = false;
+      });
+  </script>
+
+  <script>
+function initSeasonPanels(payload) {
+  const HISTORY = payload;
+  const teams = HISTORY.teams;
+  const byId = new Map(teams.map((t) => [t.id, t]));
+  const finalMax = Math.max(...teams.map((t) => t.rounds[t.rounds.length - 1].cumulative));
+  const finalTop10 = teams.slice().sort((a, b) => a.rounds[7].cumulativeRank - b.rounds[7].cumulativeRank).slice(0, 10);
+    const TEAM_COLORS = {
+      Andrews: "#b44a4a",
+      Baldwin: "#5b4f8a",
+      Chester: "#c8962e",
+      Digby: "#1f7a6d",
+      Erie: "#2b6aa3",
+      Ferris: "#c4652b",
+      Garrett: "#3d7a4a",
+      Harper: "#8a4e6e"
+    };
+    function bsc(n) { return (Math.round(Number(n) * 10) / 10).toFixed(1); }
+    function teamColor(name) { return TEAM_COLORS[name] || "#14325f"; }
+    function secInd(t) { return "Sec" + t.section + "_ind" + t.industry; }
+    function teamTag(t) { return t.team + " " + secInd(t); }
+    function placeLine(t) { return secInd(t); }
+    function snap(t, r) { return t.rounds[r - 1]; }
+    function atRound(r) {
+      return teams.slice().sort((a, b) => snap(a, r).cumulativeRank - snap(b, r).cumulativeRank);
+    }
+    function changeChip(kind, text, label) {
+      const el = document.createElement("span");
+      el.className = "rank-change rank-change-" + kind;
+      el.title = label;
+      const visual = document.createElement("span");
+      visual.setAttribute("aria-hidden", "true");
+      visual.textContent = text;
+      const spoken = document.createElement("span");
+      spoken.className = "sr-only";
+      spoken.textContent = label;
+      el.append(visual, spoken);
+      return el;
+    }
+    function cumChange(t, r) {
+      if (r <= 1) return { kind: "flat", text: "–", label: "Opening cumulative place (Round 1)" };
+      const prev = snap(t, r - 1).cumulativeRank;
+      const now = snap(t, r).cumulativeRank;
+      const change = prev - now;
+      if (change > 0) {
+        const places = change === 1 ? "place" : "places";
+        return { kind: "up", text: "↑ +" + change, label: "Up " + change + " " + places + " in the cumulative ranking since Round " + (r - 1) + " (#" + prev + " → #" + now + ")" };
+      }
+      if (change < 0) {
+        const n = Math.abs(change);
+        const places = n === 1 ? "place" : "places";
+        return { kind: "down", text: "↓ -" + n, label: "Down " + n + " " + places + " in the cumulative ranking since Round " + (r - 1) + " (#" + prev + " → #" + now + ")" };
+      }
+      return { kind: "flat", text: "–", label: "No change in the cumulative ranking since Round " + (r - 1) + " (still #" + now + ")" };
+    }
+    function listTeams(arr) {
+      const names = arr.map((t) => teamTag(t));
+      if (names.length === 1) return names[0];
+      if (names.length === 2) return names[0] + " and " + names[1];
+      return names.slice(0, -1).join(", ") + ", and " + names[names.length - 1];
+    }
+    function emph(t) {
+      return teamTag(t);
+    }
+    const TOP_VISIBLE = 12;
+    const TOP_PAD = 14;           /* extra ranks that slide in/out below the fold */
+    const MOVE_MS = 3000;         /* autoplay time to travel one round */
+    const PAUSE_MS = 700;         /* brief pause on each whole round */
+    const FINAL_PAUSE_MS = 2000;  /* longer hold on Final */
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const state = { t: 1, playing: false, hotId: null, lastCallout: null, phase: null, phaseStart: 0, moveFrom: 1, moveTo: 2 };
+    let playRaf = null;
+    const rowEls = new Map();
+
+    function lerp(a, b, u) { return a + (b - a) * u; }
+    function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+    function nearestRound(t) { return clamp(Math.round(t), 1, 8); }
+    function almostWhole(t) { return Math.abs(t - Math.round(t)) < 0.02; }
+    function watermarkText(t) {
+      if (t >= 8 - 1e-4) return "Final";
+      return "Rd " + Math.floor(t + 1e-6);
+    }
+    function titleText(t) {
+      if (almostWhole(t)) {
+        const r = nearestRound(t);
+        return r === 8 ? "Top 12 · Cumulative after Round 8 · Final" : "Top 12 · Cumulative after Round " + r;
+      }
+      const lo = Math.floor(t);
+      return "Top 12 · Between Rounds " + lo + " and " + (lo + 1);
+    }
+    function sampleAt(t) {
+      t = clamp(t, 1, 8);
+      const lo = Math.floor(t);
+      const hi = Math.ceil(t);
+      const u = hi === lo ? 0 : (t - lo);
+      return { lo, hi, u };
+    }
+    function interpTeam(t, team) {
+      const { lo, hi, u } = sampleAt(t);
+      const a = snap(team, lo);
+      const b = snap(team, hi);
+      return {
+        score: lerp(a.cumulative, b.cumulative, u),
+        rank: lerp(a.cumulativeRank, b.cumulativeRank, u),
+        lo, hi, u,
+        rankLo: a.cumulativeRank,
+        rankHi: b.cumulativeRank
+      };
+    }
+    function prevWhole(t) {
+      const eps = 0.02;
+      if (t <= 1 + eps) return 1;
+      return Math.max(1, Math.ceil(t - eps) - 1);
+    }
+    function nextWhole(t) {
+      const eps = 0.02;
+      if (t >= 8 - eps) return 8;
+      return Math.min(8, Math.floor(t + eps) + 1);
+    }
+    function rowHeight() {
+      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--race-row-h")) || 46;
+    }
+
+    function setTime(t, fromUser) {
+      t = clamp(Number(t) || 1, 1, 8);
+      if (fromUser) stopPlay();
+      state.t = t;
+      const slider = document.getElementById("round-slider");
+      slider.value = String(t.toFixed(2));
+      slider.style.setProperty("--progress", ((t - 1) / 7 * 100) + "%");
+      const near = nearestRound(t);
+      document.querySelectorAll(".ticks button").forEach((b) => {
+        b.setAttribute("aria-current", Number(b.dataset.round) === near ? "true" : "false");
+      });
+      document.getElementById("prev-btn").disabled = t <= 1 + 1e-4;
+      document.getElementById("next-btn").disabled = t >= 8 - 1e-4;
+      document.getElementById("race-title").textContent = titleText(t);
+      const wm = document.getElementById("race-watermark");
+      if (wm && wm.textContent !== watermarkText(t)) wm.textContent = watermarkText(t);
+      if (state.lastCallout !== near) {
+        state.lastCallout = near;
+        renderCallouts(near);
+        const leader = atRound(near)[0];
+        const label = near === 8 ? "Round 8 · Final" : "Round " + near;
+        document.getElementById("season-live").textContent =
+          "Showing cumulative standings after " + label + ". Leader: " + emph(leader) + " with " + bsc(snap(leader, near).cumulative) + " points.";
+      }
+      renderBars(t);
+      updateBump(t);
+    }
+
+    function renderTicks() {
+      const root = document.getElementById("ticks");
+      HISTORY.rounds.forEach((n) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.dataset.round = String(n);
+        b.textContent = n === 8 ? "Final" : "Rd " + n;
+        b.style.left = ((n - 1) / 7 * 100) + "%";
+        b.addEventListener("click", () => setTime(n, true));
+        root.append(b);
+      });
+    }
+    function renderPalette() {
+      const root = document.getElementById("palette");
+      Object.keys(TEAM_COLORS).forEach((name) => {
+        const li = document.createElement("li");
+        const sw = document.createElement("span");
+        sw.className = "firm-swatch";
+        sw.style.background = TEAM_COLORS[name];
+        li.append(sw, document.createTextNode(name));
+        root.append(li);
+      });
+    }
+    function renderAxis() {
+      const root = document.getElementById("race-axis");
+      const marks = [0, 200, 400, 600, finalMax];
+      marks.forEach((v, i) => {
+        const s = document.createElement("span");
+        s.textContent = v === finalMax ? bsc(v) : String(v);
+        s.style.left = (v / finalMax * 100) + "%";
+        if (i === 0) s.className = "is-start";
+        if (i === marks.length - 1) s.className = "is-end";
+        root.append(s);
+      });
+    }
+
+    function renderCallouts(r) {
+      const ranked = atRound(r);
+      const leaders = ranked.filter((t) => snap(t, r).cumulativeRank === 1);
+      const best = Math.max(...teams.map((t) => snap(t, r).bsc));
+      const bestTeams = teams.filter((t) => snap(t, r).bsc === best)
+        .sort((a, b) => snap(a, r).cumulativeRank - snap(b, r).cumulativeRank);
+      let climbTitle = "Biggest climb this round";
+      let climbBody;
+      if (r === 1) {
+        climbTitle = "The field";
+        climbBody = HISTORY.teamCount + " teams posted a Round 1 score — the cumulative race starts here.";
+      } else {
+        const climbs = teams.map((t) => ({ t, gain: snap(t, r - 1).cumulativeRank - snap(t, r).cumulativeRank }));
+        const maxGain = Math.max(...climbs.map((c) => c.gain));
+        const winners = climbs.filter((c) => c.gain === maxGain).sort((a, b) => snap(a.t, r).cumulativeRank - snap(b.t, r).cumulativeRank);
+        if (maxGain <= 0) {
+          climbBody = "No team moved up in the cumulative ranking this round.";
+        } else if (winners.length === 1) {
+          const w = winners[0];
+          const now = snap(w.t, r).cumulativeRank;
+          climbBody = emph(w.t) + " moved up " + maxGain + " " + (maxGain === 1 ? "place" : "places") + " to #" + now + ".";
+        } else {
+          climbBody = listTeams(winners.map((w) => w.t)) + " each moved up " + maxGain + " places.";
+        }
+      }
+      let leadBody;
+      if (leaders.length === 1) {
+        const team = leaders[0];
+        const verb = r === 8 ? "finishes the semester in first" : "leads after Round " + r;
+        leadBody = emph(team) + " " + verb + " with a cumulative " + bsc(snap(team, r).cumulative) + ".";
+      } else {
+        leadBody = "A tie at the top after Round " + r + ": " + listTeams(leaders) + " share a cumulative " + bsc(snap(leaders[0], r).cumulative) + ".";
+      }
+      let bestBody;
+      if (bestTeams.length === 1) {
+        bestBody = "Best Round " + r + " score: " + emph(bestTeams[0]) + " with " + bsc(best) + ".";
+      } else {
+        bestBody = "Best Round " + r + " score: a " + bestTeams.length + "-way tie at " + bsc(best) + " — " + listTeams(bestTeams) + ".";
+      }
+      const items = [
+        ["Leader after this round", leadBody],
+        [climbTitle, climbBody],
+        ["Best score this round", bestBody]
+      ];
+      const root = document.getElementById("callouts");
+      root.replaceChildren();
+      items.forEach(([k, v]) => {
+        const art = document.createElement("article");
+        art.className = "callout";
+        const kk = document.createElement("span");
+        kk.className = "k";
+        kk.textContent = k;
+        const vv = document.createElement("p");
+        vv.className = "v";
+        vv.textContent = v;
+        art.append(kk, vv);
+        root.append(art);
+      });
+    }
+
+    function segmentChange(t, team, v) {
+      if (t <= 1 + 1e-6) return cumChange(team, 1);
+      if (almostWhole(t)) return cumChange(team, nearestRound(t));
+      const change = v.rankLo - v.rankHi;
+      const now = Math.round(v.rank);
+      if (change > 0.5) {
+        const n = Math.round(change);
+        const places = n === 1 ? "place" : "places";
+        return { kind: "up", text: "↑ +" + n, label: "Climbing " + n + " " + places + " between Round " + v.lo + " and Round " + v.hi };
+      }
+      if (change < -0.5) {
+        const n = Math.round(Math.abs(change));
+        const places = n === 1 ? "place" : "places";
+        return { kind: "down", text: "↓ -" + n, label: "Moving down " + n + " " + places + " between Round " + v.lo + " and Round " + v.hi };
+      }
+      return { kind: "flat", text: "–", label: "Holding place between Round " + v.lo + " and Round " + v.hi };
+    }
+
+    const passUntil = new Map();
+    const racePos = new Map();
+    const RACE_TAU = 0.11;         /* ~330 ms to settle 95% of the way to the target slot */
+    let raceRaf = null;
+    let lastRaceTick = 0;
+    let lastRaceT = null;
+
+    function ensureRaceRows() {
+      const root = document.getElementById("race-rows");
+      teams.forEach((tm) => {
+        if (rowEls.has(tm.id)) return;
+        const row = buildRow(tm);
+        rowEls.set(tm.id, row);
+        root.append(row);
+      });
+    }
+    function renderSlotLabels() {
+      const root = document.getElementById("race-slots");
+      if (!root) return;
+      root.replaceChildren();
+      const h = rowHeight();
+      for (let n = 1; n <= TOP_VISIBLE; n++) {
+        const slot = document.createElement("div");
+        slot.className = "race-slot";
+        slot.style.transform = "translate3d(0," + ((n - 1) * h) + "px,0)";
+        slot.innerHTML = '<div class="race-rank">' + n + '</div><div class="race-slot-track"></div>';
+        root.append(slot);
+      }
+    }
+    function markPassing(id) {
+      if (reduced) return;
+      const row = rowEls.get(id);
+      if (!row) return;
+      const until = performance.now() + 420;
+      passUntil.set(id, until);
+      row.classList.add("is-passing");
+      window.setTimeout(() => {
+        if ((passUntil.get(id) || 0) <= performance.now() + 16) {
+          row.classList.remove("is-passing");
+          passUntil.delete(id);
+        }
+      }, 450);
+    }
+    function slotTargetY(slot, h) {
+      return (Math.min(slot, TOP_PAD + 1) - 1) * h;
+    }
+    function paintRaceRow(id, pos, h) {
+      const row = rowEls.get(id);
+      if (!row) return;
+      h = h || rowHeight();
+      row.style.transform = "translate3d(0," + pos.y + "px,0)";
+      const displaySlot = pos.y / h + 1;
+      const fade = displaySlot <= TOP_VISIBLE
+        ? 1
+        : (displaySlot >= TOP_PAD ? 0 : clamp(1 - (displaySlot - TOP_VISIBLE) / (TOP_PAD - TOP_VISIBLE), 0, 1));
+      row.style.opacity = String(fade);
+      row.style.pointerEvents = fade < 0.15 ? "none" : "auto";
+      const rising = pos.y > pos.target + 0.5 || passUntil.has(id);
+      row.style.zIndex = String(Math.round(80 - displaySlot) + (rising ? 40 : 0));
+    }
+    function ensureRaceTick() {
+      if (reduced || raceRaf) return;
+      lastRaceTick = performance.now();
+      raceRaf = requestAnimationFrame(tickRace);
+    }
+    function tickRace(now) {
+      raceRaf = null;
+      const dt = Math.min(0.05, Math.max(0, (now - lastRaceTick) / 1000)) || 0.016;
+      lastRaceTick = now;
+      const k = 1 - Math.exp(-dt / RACE_TAU);
+      const h = rowHeight();
+      let settling = false;
+      racePos.forEach((pos, id) => {
+        const dy = pos.target - pos.y;
+        if (Math.abs(dy) > 0.4) {
+          pos.y += dy * k;
+          settling = true;
+        } else {
+          pos.y = pos.target;
+        }
+        paintRaceRow(id, pos, h);
+      });
+      if (settling) ensureRaceTick();
+    }
+
+    function renderBars(t) {
+      ensureRaceRows();
+      const h = rowHeight();
+      const jumped = lastRaceT == null || Math.abs(t - lastRaceT) > 0.15;
+      const samples = teams.map((team) => ({ team, v: interpTeam(t, team) }));
+      /* Pack by interpolated score so the list stays dense. At whole rounds,
+         official ranks (and the official tie-break) win. */
+      if (almostWhole(t)) {
+        samples.sort((a, b) => a.v.rank - b.v.rank || a.team.team.localeCompare(b.team.team) || a.team.industryCode.localeCompare(b.team.industryCode));
+      } else {
+        samples.sort((a, b) => b.v.score - a.v.score || a.team.team.localeCompare(b.team.team) || a.team.industryCode.localeCompare(b.team.industryCode));
+      }
+      const enterY = TOP_VISIBLE * h; /* first y just below the clip edge */
+      samples.forEach((s, i) => {
+        const team = s.team, v = s.v, slot = i + 1;
+        const row = rowEls.get(team.id);
+        const ch = segmentChange(t, team, v);
+        const chipHost = row.querySelector(".chip-host");
+        if (chipHost.dataset.kind !== ch.kind || chipHost.dataset.text !== ch.text) {
+          chipHost.dataset.kind = ch.kind;
+          chipHost.dataset.text = ch.text;
+          chipHost.replaceChildren(changeChip(ch.kind, ch.text, ch.label));
+        }
+        const scoreTxt = bsc(v.score);
+        const scoreEl = row.querySelector(".race-score");
+        if (scoreEl.textContent !== scoreTxt) scoreEl.textContent = scoreTxt;
+        const pct = Math.max(1.2, (v.score / finalMax) * 100);
+        row.querySelector(".race-bar").style.width = pct + "%";
+        placeEndLabel(row, pct);
+        row.classList.toggle("is-hot", state.hotId === team.id);
+        row.setAttribute("aria-label", teamTag(team) + ", slot " + slot + ", " + scoreTxt + " points");
+
+        const target = slotTargetY(slot, h);
+        let pos = racePos.get(team.id);
+        if (!pos) {
+          const initY = slot <= TOP_PAD ? target : enterY;
+          pos = { y: reduced ? target : initY, target: target, slot: slot, prevSlot: slot };
+          racePos.set(team.id, pos);
+        } else {
+          if (!jumped && !reduced && slot < pos.slot && slot <= TOP_VISIBLE) markPassing(team.id);
+          if (pos.slot > TOP_PAD && slot <= TOP_PAD && pos.y > enterY) pos.y = enterY;
+          pos.prevSlot = pos.slot;
+          pos.slot = slot;
+          pos.target = target;
+          if (reduced || jumped) pos.y = target;
+        }
+        paintRaceRow(team.id, pos, h);
+      });
+      lastRaceT = t;
+      if (!reduced && !jumped) ensureRaceTick();
+    }
+    function placeEndLabel(row, pct) {
+      const track = row.querySelector(".race-bar-track");
+      const end = row.querySelector(".race-end");
+      const name = row.querySelector(".race-name");
+      const tw = track.clientWidth;
+      if (!tw) {
+        end.style.left = pct + "%";
+        row.classList.toggle("is-long", pct > 86);
+        return;
+      }
+      const barPx = tw * (pct / 100);
+      const nameW = name.offsetWidth || 0;
+      const endW = end.offsetWidth || 56;
+      const inside = barPx > nameW + endW + 24;
+      row.classList.toggle("is-long", inside);
+      if (inside) end.style.left = barPx + "px";
+      else end.style.left = Math.max(barPx, nameW + 14) + "px";
+    }
+    function buildRow(tm) {
+      const row = document.createElement("div");
+      row.className = "race-row";
+      row.dataset.id = tm.id;
+      row.tabIndex = 0;
+      row.innerHTML =
+        '<div class="race-gutter" aria-hidden="true"></div>' +
+        '<div class="race-bar-track">' +
+          '<div class="race-bar"></div>' +
+          '<span class="race-name"><span class="firm-swatch"></span><span class="nm"></span><span class="race-meta"></span></span>' +
+          '<span class="race-end"><span class="race-score"></span><span class="chip-host"></span></span>' +
+        "</div>";
+      row.querySelector(".nm").textContent = tm.team;
+      row.querySelector(".race-meta").textContent = " " + secInd(tm);
+      row.querySelector(".firm-swatch").style.background = teamColor(tm.team);
+      row.querySelector(".race-bar").style.background =
+        "linear-gradient(90deg, " + teamColor(tm.team) + " 0%, " + teamColor(tm.team) + "d8 100%)";
+      const activate = () => setHot(tm.id);
+      row.addEventListener("mouseenter", activate);
+      row.addEventListener("focus", activate);
+      row.addEventListener("click", activate);
+      return row;
+    }
+
+    /* ----- Bump chart ----- */
+    const bumpPad = { l: 42, r: 158, t: 16, b: 36 };
+    const bumpW = 800, bumpH = 500;
+    const bumpMaxRank = Math.max(...finalTop10.flatMap((t) => t.rounds.map((r) => r.cumulativeRank)));
+    const bumpSplit = 12; // ranks 1–12 use most of the height; deeper ranks are compressed
+    function bx(round) {
+      return bumpPad.l + ((round - 1) / 7) * (bumpW - bumpPad.l - bumpPad.r);
+    }
+    function by(rank) {
+      const top = bumpPad.t, bot = bumpH - bumpPad.b, h = bot - top;
+      const splitY = top + h * 0.74;
+      if (rank <= bumpSplit) return top + ((rank - 1) / (bumpSplit - 1)) * (splitY - top);
+      return splitY + ((rank - bumpSplit) / (bumpMaxRank - bumpSplit)) * (bot - splitY);
+    }
+    function smoothPath(pts) {
+      if (pts.length < 2) return "";
+      let d = "M " + pts[0][0] + " " + pts[0][1];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[Math.max(0, i - 1)];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = pts[Math.min(pts.length - 1, i + 2)];
+        const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+        const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+        const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+        const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+        d += " C " + c1x + " " + c1y + ", " + c2x + " " + c2y + ", " + p2[0] + " " + p2[1];
+      }
+      return d;
+    }
+    function shortLabel(t) {
+      return teamTag(t);
+    }
+    function renderBump() {
+      const svg = document.getElementById("bump-svg");
+      const NS = "http://www.w3.org/2000/svg";
+      svg.replaceChildren();
+      const ticks = [1, 5, 10, 12, 20, 35].filter((r) => r <= bumpMaxRank);
+      ticks.forEach((r) => {
+        const line = document.createElementNS(NS, "line");
+        line.setAttribute("x1", bumpPad.l);
+        line.setAttribute("x2", bumpW - bumpPad.r);
+        line.setAttribute("y1", by(r));
+        line.setAttribute("y2", by(r));
+        line.setAttribute("class", "bump-grid" + (r === bumpSplit ? " is-break" : ""));
+        svg.append(line);
+        const lab = document.createElementNS(NS, "text");
+        lab.setAttribute("x", bumpPad.l - 8);
+        lab.setAttribute("y", by(r) + 4);
+        lab.setAttribute("text-anchor", "end");
+        lab.setAttribute("class", "bump-axis");
+        lab.textContent = "#" + r;
+        svg.append(lab);
+      });
+      HISTORY.rounds.forEach((n) => {
+        const lab = document.createElementNS(NS, "text");
+        lab.setAttribute("x", bx(n));
+        lab.setAttribute("y", bumpH - 12);
+        lab.setAttribute("text-anchor", "middle");
+        lab.setAttribute("class", "bump-axis bump-x");
+        lab.dataset.round = String(n);
+        lab.textContent = n === 8 ? "Final" : "Rd " + n;
+        svg.append(lab);
+      });
+      const now = document.createElementNS(NS, "line");
+      now.setAttribute("id", "bump-now");
+      now.setAttribute("class", "bump-now");
+      now.setAttribute("y1", bumpPad.t - 2);
+      now.setAttribute("y2", bumpH - bumpPad.b);
+      svg.append(now);
+
+      const linesG = document.createElementNS(NS, "g");
+      linesG.setAttribute("id", "bump-lines");
+      svg.append(linesG);
+      finalTop10.slice().reverse().forEach((t) => {
+        const pts = t.rounds.map((rr) => [bx(rr.round), by(rr.cumulativeRank)]);
+        const path = document.createElementNS(NS, "path");
+        path.setAttribute("d", smoothPath(pts));
+        path.setAttribute("class", "bump-line");
+        path.setAttribute("stroke", teamColor(t.team));
+        path.dataset.id = t.id;
+        path.addEventListener("mouseenter", (e) => { setHot(t.id); showTip(t, e); });
+        path.addEventListener("mousemove", (e) => showTip(t, e));
+        path.addEventListener("mouseleave", hideTip);
+        path.addEventListener("click", () => setHot(t.id));
+        linesG.append(path);
+      });
+      const dotsG = document.createElementNS(NS, "g");
+      dotsG.setAttribute("id", "bump-dots");
+      svg.append(dotsG);
+      const labelsG = document.createElementNS(NS, "g");
+      labelsG.setAttribute("id", "bump-labels");
+      svg.append(labelsG);
+      finalTop10.forEach((t) => {
+        const end = t.rounds[7];
+        const lab = document.createElementNS(NS, "text");
+        lab.setAttribute("x", bx(8) + 10);
+        lab.setAttribute("y", by(end.cumulativeRank) + 3);
+        lab.setAttribute("class", "bump-label");
+        lab.setAttribute("fill", teamColor(t.team));
+        lab.dataset.id = t.id;
+        lab.textContent = shortLabel(t);
+        lab.addEventListener("mouseenter", (e) => { setHot(t.id); showTip(t, e); });
+        lab.addEventListener("mouseleave", hideTip);
+        lab.addEventListener("click", () => setHot(t.id));
+        labelsG.append(lab);
+      });
+      updateBump(state.t);
+    }
+    function ensureBumpDots() {
+      const dotsG = document.getElementById("bump-dots");
+      if (!dotsG || dotsG.childElementCount) return;
+      const NS = "http://www.w3.org/2000/svg";
+      finalTop10.forEach((team) => {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("r", "4.2");
+        c.setAttribute("fill", teamColor(team.team));
+        c.setAttribute("class", "bump-dot");
+        c.dataset.id = team.id;
+        c.addEventListener("mouseenter", (e) => { setHot(team.id); showTip(team, e); });
+        c.addEventListener("mouseleave", hideTip);
+        c.addEventListener("click", () => setHot(team.id));
+        dotsG.append(c);
+      });
+    }
+    function updateBump(t) {
+      const now = document.getElementById("bump-now");
+      if (!now) return;
+      ensureBumpDots();
+      now.setAttribute("x1", bx(t));
+      now.setAttribute("x2", bx(t));
+      const near = nearestRound(t);
+      document.querySelectorAll(".bump-x").forEach((el) => {
+        el.classList.toggle("is-now", Number(el.dataset.round) === near);
+      });
+      document.getElementById("bump-dots").querySelectorAll(".bump-dot").forEach((c) => {
+        const team = byId.get(c.dataset.id);
+        if (!team) return;
+        const v = interpTeam(t, team);
+        c.setAttribute("cx", bx(t));
+        c.setAttribute("cy", by(v.rank));
+        c.setAttribute("r", state.hotId === team.id ? 6 : 4.2);
+        c.classList.toggle("is-hot", state.hotId === team.id);
+      });
+      syncHot();
+    }
+    function setHot(id) {
+      state.hotId = id;
+      syncHot();
+      syncFinanceFromHot();
+    }
+    function syncHot() {
+      const stage = document.getElementById("bump-stage");
+      stage.classList.toggle("is-dim", !!state.hotId);
+      stage.querySelectorAll("[data-id]").forEach((el) => {
+        el.classList.toggle("is-hot", el.dataset.id === state.hotId);
+      });
+      document.querySelectorAll(".race-row").forEach((el) => {
+        el.classList.toggle("is-hot", el.dataset.id === state.hotId);
+      });
+      syncInsightHot();
+    }
+    function showTip(team, ev) {
+      const tip = document.getElementById("bump-tip");
+      const v = interpTeam(state.t, team);
+      const label = almostWhole(state.t)
+        ? ("After Rd " + nearestRound(state.t))
+        : ("Between Rd " + v.lo + " and " + v.hi);
+      tip.hidden = false;
+      tip.innerHTML = "<strong>" + teamTag(team) + "</strong>" +
+        label + ": #" + Math.round(v.rank) + " · " + bsc(v.score) + " pts";
+      const wrap = document.querySelector(".bump-wrap").getBoundingClientRect();
+      tip.style.left = (ev.clientX - wrap.left + 12) + "px";
+      tip.style.top = (ev.clientY - wrap.top + 12) + "px";
+    }
+    function hideTip() { document.getElementById("bump-tip").hidden = true; }
+
+    /* ----- Transport ----- */
+    function stopPlay() {
+      state.playing = false;
+      state.phase = null;
+      const btn = document.getElementById("play-btn");
+      btn.setAttribute("aria-pressed", "false");
+      btn.textContent = "▶ Play";
+      if (playRaf) { cancelAnimationFrame(playRaf); playRaf = null; }
+    }
+    function beginMove(from, to, now) {
+      state.phase = "move";
+      state.moveFrom = from;
+      state.moveTo = to;
+      state.phaseStart = now;
+      const dist = Math.abs(to - from);
+      state.moveDur = reduced ? 0 : Math.max(80, MOVE_MS * dist);
+    }
+    function playTick(now) {
+      if (!state.playing) return;
+      if (state.phase === "pause") {
+        const hold = (state.t >= 8 - 1e-4) ? (reduced ? 700 : FINAL_PAUSE_MS) : (reduced ? 450 : PAUSE_MS);
+        if (now - state.phaseStart >= hold) {
+          if (state.t >= 8 - 1e-4) {
+            setTime(1, false);
+            beginMove(1, 2, now);
+          } else {
+            const dest = Math.min(8, Math.floor(state.t + 1e-4) + 1);
+            beginMove(state.t, dest, now);
+          }
+        }
+      } else if (state.phase === "move") {
+        const dur = state.moveDur || MOVE_MS;
+        const u = dur <= 0 ? 1 : Math.min(1, (now - state.phaseStart) / dur);
+        setTime(lerp(state.moveFrom, state.moveTo, u), false);
+        if (u >= 1) {
+          setTime(state.moveTo, false);
+          state.phase = "pause";
+          state.phaseStart = now;
+        }
+      }
+      playRaf = requestAnimationFrame(playTick);
+    }
+    function togglePlay() {
+      if (state.playing) { stopPlay(); return; }
+      state.playing = true;
+      const btn = document.getElementById("play-btn");
+      btn.setAttribute("aria-pressed", "true");
+      btn.textContent = "❚❚ Pause";
+      const now = performance.now();
+      if (state.t >= 8 - 1e-4) {
+        setTime(1, false);
+        beginMove(1, 2, now);
+      } else if (almostWhole(state.t)) {
+        const dest = Math.min(8, nearestRound(state.t) + 1);
+        beginMove(nearestRound(state.t), dest, now);
+      } else {
+        beginMove(state.t, Math.min(8, Math.floor(state.t) + 1), now);
+      }
+      playRaf = requestAnimationFrame(playTick);
+    }
+    const FINANCE = payload.finance;
+    /* ----- Insight charts ----- */
+    function meanOf(arr) { return arr.reduce((s, x) => s + x, 0) / arr.length; }
+    function stdevOf(arr) {
+      const m = meanOf(arr);
+      return Math.sqrt(arr.reduce((s, x) => s + (x - m) * (x - m), 0) / (arr.length - 1));
+    }
+    function money(n) {
+      const sign = n < 0 ? "−" : "";
+      return sign + "$" + Math.abs(Math.round(n)).toLocaleString("en-US");
+    }
+    function svgEl(name, attrs) {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", name);
+      Object.keys(attrs || {}).forEach((k) => el.setAttribute(k, attrs[k]));
+      return el;
+    }
+    function placeChartTip(tip, ev, root) {
+      const box = root.getBoundingClientRect();
+      let x = ev.clientX - box.left + 12;
+      let y = ev.clientY - box.top + 12;
+      tip.hidden = false;
+      const tw = 210, th = 110;
+      if (x + tw > box.width - 8) x = ev.clientX - box.left - tw - 8;
+      if (y + th > box.height - 8) y = ev.clientY - box.top - th - 8;
+      tip.style.left = Math.max(6, x) + "px";
+      tip.style.top = Math.max(6, y) + "px";
+    }
+
+    const EARLY_THRESH = 5;
+    const EARLY_COLORS = { climbed: "#1f7a4d", held: "#1d4ed8", slipped: "#b45309" };
+    const EARLY_LABELS = { climbed: "Climbed", held: "Held steady", slipped: "Slipped" };
+    const earlyRows = teams.map((t) => {
+      const ranks = t.rounds.slice(1).map((r) => r.cumulativeRank); /* R2..R8 */
+      const r2 = ranks[0], fin = ranks[ranks.length - 1];
+      const delta = r2 - fin; /* + = climbed */
+      const group = delta >= EARLY_THRESH ? "climbed" : delta <= -EARLY_THRESH ? "slipped" : "held";
+      return { t, ranks, r2, fin, delta, group };
+    });
+    const earlyAvgs = ["climbed", "held", "slipped"].map((g) => {
+      const rows = earlyRows.filter((r) => r.group === g);
+      const avgs = [0, 1, 2, 3, 4, 5, 6].map((i) => meanOf(rows.map((r) => r.ranks[i])));
+      return { group: g, n: rows.length, avgs };
+    });
+    const EARLY_EXAMPLES = {
+      climbed: ["CP136219_1__Chester", "CP136220_2__Andrews", "CP136221_2__Ferris"],
+      held: ["CP136222_1__Chester", "CP136221_1__Baldwin", "CP136219_1__Digby"],
+      slipped: ["CP136220_1__Ferris", "CP136222_1__Erie"]
+    };
+    const earlyInsights = {
+      all: {
+        title: "All 58 teams, in three bundles",
+        body: "The bold lines are each group’s average path from Round 2 to the Final. Climbers rose from an average of #37 to #27. Teams that held steady stayed near #28. Teams that slipped fell from #24 to #35. Three of the final top five — and seven of the final top ten — were already in those groups after Round 2 (correlation 0.86), but 16 teams still climbed 5 or more places. Click a group to watch those journeys."
+      },
+      climbed: {
+        title: "Climbed 5 or more places · 16 teams",
+        body: "These 16 teams gained an average of 10 places after Round 2. Chester Sec1_ind1 made the biggest move, from #47 to #19. Andrews Sec2_ind2 climbed from #15 to #6, and Ferris Sec3_ind2 from #11 to #5 — both reached the final top ten. A late, steady push could still change the board."
+      },
+      held: {
+        title: "Held steady (within 4 places) · 27 teams",
+        body: "Twenty-seven teams finished within 4 places of their Round 2 rank, and 4 finished in the exact same place. Most of the final podium was already near the top after two rounds: Chester Sec4_ind1 went from #4 to #1, Chester Sec3_ind2 from #6 to #2, and Baldwin Sec3_ind1 held #3. An early edge often compounded when the team kept delivering."
+      },
+      slipped: {
+        title: "Slipped 5 or more places · 15 teams",
+        body: "These 15 teams lost an average of 11 places after Round 2. Three early top-ten teams drifted: Ferris Sec2_ind1 from #1 to #9, Erie Sec4_ind1 from #2 to #7, and Chester Sec2_ind1 from #8 to #13. An early lead still needed later-round follow-through."
+      }
+    };
+    let earlyGroup = "all";
+    let earlyAnimToken = 0;
+
+    function setEarlyInsight(group) {
+      const box = document.getElementById("early-insight");
+      const rec = earlyInsights[group];
+      box.innerHTML = "<h3>" + rec.title + "</h3><p>" + rec.body + "</p>";
+    }
+
+    function renderEarly(opts) {
+      const animate = !!(opts && opts.animate) && !reduced;
+      const svg = document.getElementById("slope-svg");
+      svg.replaceChildren();
+      const W = 840, H = 540;
+      const pad = { l: 52, r: 168, t: 22, b: 42 };
+      const rounds = [2, 3, 4, 5, 6, 7, 8];
+      const xOf = (rd) => pad.l + ((rd - 2) / 6) * (W - pad.l - pad.r);
+      const yOf = (rank) => pad.t + ((rank - 1) / 57) * (H - pad.t - pad.b);
+      const stage = document.getElementById("slope-stage");
+      stage.classList.toggle("is-group", earlyGroup !== "all");
+
+      [1, 10, 20, 30, 40, 50, 58].forEach((rk) => {
+        const y = yOf(rk);
+        svg.append(svgEl("line", { x1: pad.l, x2: W - pad.r, y1: y, y2: y, stroke: rk === 1 ? "#c5d0de" : "#d9e1ec", "stroke-width": 1 }));
+        const lab = svgEl("text", { x: pad.l - 8, y: y + 4, "text-anchor": "end", class: "chart-axis" });
+        lab.textContent = "#" + rk;
+        svg.append(lab);
+      });
+      rounds.forEach((rd) => {
+        const lab = svgEl("text", { x: xOf(rd), y: H - 16, "text-anchor": "middle", class: "chart-axis" });
+        lab.textContent = rd === 8 ? "Final" : ("Rd " + rd);
+        svg.append(lab);
+      });
+      const yTitle = svgEl("text", { x: 16, y: 16, class: "chart-axis-title" });
+      yTitle.textContent = "Cumulative rank (1 is first)";
+      svg.append(yTitle);
+
+      const linesG = svgEl("g", {});
+      const avgG = svgEl("g", {});
+      const dotsG = svgEl("g", {});
+      const labelsG = svgEl("g", {});
+      svg.append(linesG, avgG, dotsG, labelsG);
+
+      function pathFor(vals) {
+        const pts = vals.map((rk, i) => [xOf(rounds[i]), yOf(rk)]);
+        return smoothPath(pts);
+      }
+
+      const showGroup = earlyGroup;
+      earlyRows.forEach((row) => {
+        const isSel = showGroup === "all" || row.group === showGroup;
+        const d = pathFor(row.ranks);
+        const color = EARLY_COLORS[row.group];
+        const width = showGroup === "all" ? 1.35 : (isSel ? 2.15 : 1.2);
+        const opacity = showGroup === "all" ? 0.22 : (isSel ? 0.92 : 0.07);
+        const line = svgEl("path", {
+          d, class: "early-line" + (isSel && showGroup !== "all" ? " is-anim-ready" : "") + (isSel ? "" : " is-dim"),
+          stroke: color, "stroke-width": width, opacity: opacity,
+          "data-id": row.t.id, "data-group": row.group, fill: "none",
+          pathLength: "1"
+        });
+        const hit = svgEl("path", { d, class: "early-hit", "data-id": row.t.id, "data-group": row.group });
+        linesG.append(line, hit);
+        const lastX = xOf(8), lastY = yOf(row.fin);
+        const dot = svgEl("circle", {
+          cx: lastX, cy: lastY, r: isSel && showGroup !== "all" ? 3.6 : 2.4,
+          class: "early-dot" + (isSel ? "" : " is-dim"),
+          fill: color, opacity: opacity, "data-id": row.t.id, "data-group": row.group
+        });
+        dotsG.append(dot);
+        const bind = (el) => {
+          el.addEventListener("mouseenter", (ev) => { setHot(row.t.id); showEarlyTip(row, ev); });
+          el.addEventListener("mousemove", (ev) => showEarlyTip(row, ev));
+          el.addEventListener("mouseleave", hideEarlyTip);
+          el.addEventListener("click", () => setHot(row.t.id));
+        };
+        bind(hit); bind(line); bind(dot);
+      });
+
+      const avgLabelItems = [];
+      earlyAvgs.forEach((avg) => {
+        const isSel = showGroup === "all" || avg.group === showGroup;
+        const d = pathFor(avg.avgs);
+        const color = EARLY_COLORS[avg.group];
+        const line = svgEl("path", {
+          d, class: "early-line is-avg" + (isSel && showGroup !== "all" ? " is-anim-ready" : "") + (isSel ? "" : " is-dim"),
+          stroke: color, "stroke-width": showGroup === "all" || isSel ? 3.7 : 2,
+          opacity: isSel ? 1 : 0.1,
+          fill: "none", "data-group": avg.group, pathLength: "1"
+        });
+        avgG.append(line);
+        const endX = xOf(8), endY = yOf(avg.avgs[6]);
+        const dot = svgEl("circle", { cx: endX, cy: endY, r: 5, fill: color, opacity: isSel ? 1 : 0.1, class: "early-dot" + (isSel ? "" : " is-dim") });
+        avgG.append(dot);
+        if (isSel) avgLabelItems.push({ avg, endX, y: endY, color });
+      });
+      avgLabelItems.sort((a, b) => a.y - b.y);
+      for (let i = 1; i < avgLabelItems.length; i++) {
+        if (avgLabelItems[i].y - avgLabelItems[i - 1].y < 16) avgLabelItems[i].y = avgLabelItems[i - 1].y + 16;
+      }
+      avgLabelItems.forEach((item) => {
+        const lab = svgEl("text", {
+          x: item.endX + 10, y: item.y + 4, class: "early-label", fill: item.color
+        });
+        lab.textContent = EARLY_LABELS[item.avg.group] + " avg";
+        labelsG.append(lab);
+      });
+
+      if (showGroup !== "all") {
+        const ids = EARLY_EXAMPLES[showGroup] || [];
+        const items = [];
+        ids.forEach((id) => {
+          const row = earlyRows.find((r) => r.t.id === id);
+          if (!row) return;
+          items.push({ row, y: yOf(row.fin) });
+        });
+        items.sort((a, b) => a.y - b.y);
+        for (let i = 1; i < items.length; i++) {
+          if (items[i].y - items[i - 1].y < 14) items[i].y = items[i - 1].y + 14;
+        }
+        items.forEach((item) => {
+          const lab = svgEl("text", {
+            x: xOf(8) + 10, y: item.y + 4, class: "early-label",
+            fill: EARLY_COLORS[item.row.group], "data-id": item.row.t.id
+          });
+          lab.textContent = teamTag(item.row.t);
+          lab.addEventListener("mouseenter", (ev) => { setHot(item.row.t.id); showEarlyTip(item.row, ev); });
+          lab.addEventListener("mouseleave", hideEarlyTip);
+          lab.addEventListener("click", () => setHot(item.row.t.id));
+          labelsG.append(lab);
+        });
+      }
+
+      if (animate) {
+        earlyAnimToken += 1;
+        const token = earlyAnimToken;
+        const paths = svg.querySelectorAll(".early-line.is-anim-ready");
+        paths.forEach((p) => {
+          p.classList.remove("is-anim");
+          p.style.strokeDasharray = "1";
+          p.style.strokeDashoffset = "1";
+        });
+        requestAnimationFrame(() => {
+          if (token !== earlyAnimToken) return;
+          paths.forEach((p) => p.classList.add("is-anim"));
+        });
+      } else {
+        svg.querySelectorAll(".early-line").forEach((p) => {
+          p.style.strokeDasharray = "none";
+          p.style.strokeDashoffset = "0";
+        });
+      }
+      syncInsightHot();
+    }
+
+    function showEarlyTip(row, ev) {
+      const tip = document.getElementById("slope-tip");
+      const moved = row.delta;
+      const verb = moved > 0 ? ("climbed " + moved + (moved === 1 ? " place" : " places"))
+        : moved < 0 ? ("dropped " + Math.abs(moved) + (moved === -1 ? " place" : " places"))
+        : "held the same rank";
+      tip.innerHTML = "<strong>" + teamTag(row.t) + "</strong>" +
+        EARLY_LABELS[row.group] + " · " + verb +
+        "<br>After Round 2: #" + row.r2 +
+        "<br>Final: #" + row.fin;
+      placeChartTip(tip, ev, document.getElementById("slope-stage"));
+    }
+    function hideEarlyTip() { document.getElementById("slope-tip").hidden = true; }
+
+    function setEarlyGroup(group, animate) {
+      earlyGroup = group;
+      document.querySelectorAll(".group-btn").forEach((btn) => {
+        const on = btn.dataset.group === group;
+        btn.classList.toggle("is-on", on);
+        btn.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      const replay = document.getElementById("early-replay");
+      replay.hidden = group === "all";
+      setEarlyInsight(group);
+      renderEarly({ animate: animate && group !== "all" });
+    }
+
+    /* ----- Score variation ----- */
+    const volRows = teams.map((t) => {
+      const scores = t.rounds.map((r) => r.bsc);
+      return {
+        t,
+        mean: meanOf(scores),
+        sd: stdevOf(scores),
+        finalRank: t.rounds[7].cumulativeRank,
+        r2Rank: t.rounds[1].cumulativeRank,
+        scores
+      };
+    });
+    const volMeanX = meanOf(volRows.map((r) => r.mean));
+    const volMeanY = meanOf(volRows.map((r) => r.sd));
+    const volSlope = volRows.reduce((s, r) => s + (r.mean - volMeanX) * (r.sd - volMeanY), 0) /
+      volRows.reduce((s, r) => s + (r.mean - volMeanX) * (r.mean - volMeanX), 0);
+    const volIntercept = volMeanY - volSlope * volMeanX;
+    const volR = (() => {
+      const num = volRows.reduce((s, r) => s + (r.mean - volMeanX) * (r.sd - volMeanY), 0);
+      const den = Math.sqrt(
+        volRows.reduce((s, r) => s + (r.mean - volMeanX) * (r.mean - volMeanX), 0) *
+        volRows.reduce((s, r) => s + (r.sd - volMeanY) * (r.sd - volMeanY), 0)
+      );
+      return num / den;
+    })();
+
+    function renderVol() {
+      const svg = document.getElementById("vol-svg");
+      svg.replaceChildren();
+      const W = 840, H = 520;
+      const pad = { l: 78, r: 178, t: 36, b: 62 };
+      const xMin = 20, xMax = 96, yMin = 3, yMax = 25;
+      const xOf = (v) => pad.l + ((v - xMin) / (xMax - xMin)) * (W - pad.l - pad.r);
+      const yOf = (v) => pad.t + ((yMax - v) / (yMax - yMin)) * (H - pad.t - pad.b);
+
+      [30, 40, 50, 60, 70, 80, 90].forEach((v) => {
+        const x = xOf(v);
+        svg.append(svgEl("line", { x1: x, x2: x, y1: pad.t, y2: H - pad.b, stroke: "#d9e1ec", "stroke-width": 1 }));
+        const lab = svgEl("text", { x, y: H - pad.b + 18, "text-anchor": "middle", class: "chart-axis" });
+        lab.textContent = String(v);
+        svg.append(lab);
+      });
+      [5, 10, 15, 20, 25].forEach((v) => {
+        const y = yOf(v);
+        svg.append(svgEl("line", { x1: pad.l, x2: W - pad.r, y1: y, y2: y, stroke: "#d9e1ec", "stroke-width": 1 }));
+        const lab = svgEl("text", { x: pad.l - 8, y: y + 4, "text-anchor": "end", class: "chart-axis" });
+        lab.textContent = String(v);
+        svg.append(lab);
+      });
+      const xTitle = svgEl("text", { x: (pad.l + W - pad.r) / 2, y: H - 16, "text-anchor": "middle", class: "chart-axis-title" });
+      xTitle.textContent = "Average score across the 8 rounds (pts)";
+      svg.append(xTitle);
+      const yMid = (pad.t + H - pad.b) / 2;
+      const yTitle = svgEl("text", {
+        x: 20, y: yMid, class: "chart-axis-title",
+        "text-anchor": "middle",
+        transform: "rotate(-90 20 " + yMid + ")"
+      });
+      yTitle.textContent = "How much scores moved round to round (pts)";
+      svg.append(yTitle);
+
+      /* region annotations — sit in the top padding so they never cover dots */
+      const a3 = svgEl("text", { x: xOf(52), y: 22, class: "chart-anno", "text-anchor": "middle" });
+      a3.textContent = "Steep mid-season climb";
+      svg.append(a3);
+      const a2 = svgEl("text", { x: W - pad.r - 8, y: 22, class: "chart-anno", "text-anchor": "end" });
+      a2.textContent = "Started mid-pack, climbed to 100";
+      svg.append(a2);
+      const a1 = svgEl("text", { x: xOf(38), y: yOf(5.0) - 8, class: "chart-anno", "text-anchor": "middle" });
+      a1.textContent = "Flat scores near the bottom";
+      svg.append(a1);
+
+      /* OLS trend */
+      const x0 = 24, x1 = 92;
+      const trend = svgEl("line", {
+        x1: xOf(x0), y1: yOf(volIntercept + volSlope * x0),
+        x2: xOf(x1), y2: yOf(volIntercept + volSlope * x1),
+        class: "vol-trend"
+      });
+      svg.append(trend);
+      const tlab = svgEl("text", {
+        x: xOf(28), y: yOf(15.2), class: "vol-trend-label",
+        stroke: "#f4f7fb", "stroke-width": 7, "paint-order": "stroke", "stroke-linejoin": "round"
+      });
+      tlab.textContent = "Upward trend  ·  r = " + volR.toFixed(2);
+      svg.append(tlab);
+
+      const dotsG = svgEl("g", {});
+      const labelsG = svgEl("g", {});
+      svg.append(dotsG, labelsG);
+
+      const sorted = volRows.slice().sort((a, b) => b.finalRank - a.finalRank);
+      sorted.forEach((row) => {
+        const isTop = row.finalRank <= 10;
+        const c = svgEl("circle", {
+          cx: xOf(row.mean), cy: yOf(row.sd),
+          r: isTop ? 6.2 : 5,
+          class: "vol-dot" + (isTop ? " is-top" : ""),
+          fill: teamColor(row.t.team),
+          "data-id": row.t.id
+        });
+        c.addEventListener("mouseenter", (ev) => { setHot(row.t.id); showVolTip(row, ev); });
+        c.addEventListener("mousemove", (ev) => showVolTip(row, ev));
+        c.addEventListener("mouseleave", hideVolTip);
+        c.addEventListener("click", () => setHot(row.t.id));
+        dotsG.append(c);
+      });
+
+      const labelItems = volRows.filter((r) => r.finalRank <= 10).map((r) => ({
+        row: r, cx: xOf(r.mean), cy: yOf(r.sd), y: yOf(r.sd)
+      }));
+      labelItems.sort((a, b) => a.y - b.y);
+      const minGap = 13.5;
+      for (let i = 1; i < labelItems.length; i++) {
+        if (labelItems[i].y - labelItems[i - 1].y < minGap) {
+          labelItems[i].y = labelItems[i - 1].y + minGap;
+        }
+      }
+      const lx = W - pad.r + 10;
+      labelItems.forEach((item) => {
+        const lead = svgEl("path", {
+          d: "M" + (item.cx + 8) + "," + item.cy + " L" + (lx - 6) + "," + item.y + " L" + lx + "," + item.y,
+          fill: "none",
+          stroke: teamColor(item.row.t.team),
+          "stroke-width": "1",
+          opacity: "0.55",
+          class: "vol-lead",
+          "data-id": item.row.t.id
+        });
+        labelsG.append(lead);
+        const lab = svgEl("text", {
+          x: lx + 2, y: item.y + 4, class: "vol-label",
+          fill: teamColor(item.row.t.team), "data-id": item.row.t.id
+        });
+        lab.textContent = teamTag(item.row.t);
+        lab.addEventListener("mouseenter", (ev) => { setHot(item.row.t.id); showVolTip(item.row, ev); });
+        lab.addEventListener("mouseleave", hideVolTip);
+        lab.addEventListener("click", () => setHot(item.row.t.id));
+        labelsG.append(lab);
+      });
+    }
+    function showVolTip(row, ev) {
+      const tip = document.getElementById("vol-tip");
+      const r1 = row.scores[0], r8 = row.scores[7];
+      tip.innerHTML = "<strong>" + teamTag(row.t) + "</strong>" +
+        "Final rank #" + row.finalRank +
+        "<br>Average " + bsc(row.mean) + " · movement " + bsc(row.sd) +
+        "<br>Rd 1: " + bsc(r1) + " → Final Rd 8: " + bsc(r8);
+      placeChartTip(tip, ev, document.getElementById("vol-stage"));
+    }
+    function hideVolTip() { document.getElementById("vol-tip").hidden = true; }
+
+    /* ----- Financial health: industries + loan standing ----- */
+    const IND_COLORS = {
+      "Sec1_ind1": "#1d4ed8",
+      "Sec1_ind2": "#7c3aed",
+      "Sec2_ind1": "#0f766e",
+      "Sec2_ind2": "#0891b2",
+      "Sec3_ind1": "#b45309",
+      "Sec3_ind2": "#be185d",
+      "Sec4_ind1": "#166534",
+      "Sec4_ind2": "#4338ca"
+    };
+    const INDUSTRIES = (() => {
+      const map = new Map();
+      teams.forEach((t) => {
+        const key = secInd(t);
+        if (!map.has(key)) {
+          map.set(key, { key, section: t.section, industry: t.industry, members: [], profits: Array(8).fill(0), loans: Array(8).fill(0) });
+        }
+        const ind = map.get(key);
+        ind.members.push(t);
+        const fin = FINANCE.teams[t.id];
+        if (fin) {
+          fin.p.forEach((p, i) => { ind.profits[i] += p; });
+          fin.l.forEach((l, i) => { if (l > 0) ind.loans[i] += 1; });
+        }
+      });
+      const list = [];
+      map.forEach((ind) => {
+        ind.n = ind.members.length;
+        ind.avgProfit = ind.profits.map((s) => s / ind.n);
+        ind.totalLoanEvents = ind.loans.reduce((a, b) => a + b, 0);
+        ind.avgFinalProfit = ind.avgProfit[7];
+        let best = 0;
+        ind.avgProfit.forEach((v, i) => { if (v >= ind.avgProfit[best]) best = i; });
+        ind.bestRound = best + 1;
+        list.push(ind);
+      });
+      return list.sort((a, b) => a.section - b.section || a.industry - b.industry);
+    })();
+    const CLASS_AVG_PROFIT = Array(8).fill(0).map((_, i) => {
+      let s = 0, n = 0;
+      INDUSTRIES.forEach((ind) => { s += ind.avgProfit[i] * ind.n; n += ind.n; });
+      return s / n;
+    });
+    const CLASS_LOANS = FINANCE.loansByRound.slice();
+    let selectedIndustry = null;
+
+    function industrySummaryText(key) {
+      if (!key) {
+        return "All eight industries follow the same arc: losses or thin profits early, then a steep climb. Class-average profit per firm went from " +
+          money(CLASS_AVG_PROFIT[0]) + " in Round 1 and " + money(CLASS_AVG_PROFIT[1]) + " in Round 2 to " +
+          money(CLASS_AVG_PROFIT[7]) + " in the Final, while emergency loans fell from " + CLASS_LOANS[0] +
+          " teams to " + CLASS_LOANS[7] + ". Click an industry pill to compare it with the class.";
+      }
+      const ind = INDUSTRIES.find((d) => d.key === key);
+      const vs = ind.avgFinalProfit - CLASS_AVG_PROFIT[7];
+      const vsTxt = vs >= 0
+        ? money(vs) + " above the class average of " + money(CLASS_AVG_PROFIT[7])
+        : money(Math.abs(vs)) + " below the class average of " + money(CLASS_AVG_PROFIT[7]);
+      const best = ind.bestRound === 8 ? "the Final (Round 8)" : ("Round " + ind.bestRound);
+      return "<strong>" + ind.key + "</strong> · " + ind.n + " firms. Total emergency-loan events: " +
+        ind.totalLoanEvents + " across the season (industries ranged from 7 to 14). Average final profit per firm: " +
+        money(ind.avgFinalProfit) + ", " + vsTxt + ". Highest-profit round: " + best +
+        " at " + money(ind.avgProfit[ind.bestRound - 1]) + ".";
+    }
+
+    function renderIndustryPills() {
+      const bar = document.getElementById("ind-pills");
+      bar.replaceChildren();
+      const all = document.createElement("button");
+      all.type = "button";
+      all.className = "ind-pill" + (selectedIndustry ? "" : " is-on");
+      all.dataset.key = "";
+      all.innerHTML = '<span class="dot" style="background:#0a1f3d"></span>All industries';
+      all.addEventListener("click", () => setIndustry(null));
+      bar.append(all);
+      INDUSTRIES.forEach((ind) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "ind-pill" + (selectedIndustry === ind.key ? " is-on" : "");
+        btn.dataset.key = ind.key;
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dot.style.background = IND_COLORS[ind.key];
+        btn.append(dot, document.createTextNode(ind.key));
+        btn.addEventListener("click", () => setIndustry(ind.key));
+        bar.append(btn);
+      });
+    }
+
+    function setIndustry(key) {
+      selectedIndustry = key;
+      document.querySelectorAll(".ind-pill").forEach((btn) => {
+        const val = btn.dataset.key || null;
+        const on = (key ? val === key : !val);
+        btn.classList.toggle("is-on", on);
+      });
+      document.getElementById("fin-summary").innerHTML = industrySummaryText(key);
+      const stage = document.getElementById("ind-stage");
+      stage.classList.toggle("is-pick", !!key);
+      stage.querySelectorAll(".ind-line[data-key]").forEach((el) => {
+        const k = el.dataset.key;
+        const on = k === key;
+        el.classList.toggle("is-on", on);
+        el.classList.toggle("is-dim", !!key && !on && k !== "class");
+      });
+      renderIndustryLoansOverlay();
+    }
+
+    function renderIndustryChart() {
+      const svg = document.getElementById("ind-svg");
+      svg.replaceChildren();
+      const W = 840, H = 440;
+      const pad = { l: 64, r: 36, t: 18 };
+      const yTop = 18, yMid = 292, yBot = 318, yEnd = 412;
+      const xOf = (rd) => pad.l + ((rd - 1) / 7) * (W - pad.l - pad.r);
+      const pMin = -8000, pMax = 48000;
+      const yProfit = (v) => yTop + ((pMax - v) / (pMax - pMin)) * (yMid - yTop);
+      const yLoan = (n) => yEnd - (n / 22) * (yEnd - yBot);
+
+      /* profit grid */
+      [-5000, 0, 10000, 20000, 30000, 40000].forEach((v) => {
+        const y = yProfit(v);
+        svg.append(svgEl("line", { x1: pad.l, x2: W - pad.r, y1: y, y2: y, stroke: "#d9e1ec", "stroke-width": 1 }));
+        const lab = svgEl("text", { x: pad.l - 8, y: y + 4, "text-anchor": "end", class: "chart-axis" });
+        lab.textContent = (v < 0 ? "−" : "") + "$" + (Math.abs(v) / 1000) + "k";
+        svg.append(lab);
+      });
+      const yTitle = svgEl("text", { x: 16, y: 14, class: "chart-axis-title" });
+      yTitle.textContent = "Average profit per firm";
+      svg.append(yTitle);
+
+      /* loan grid / baseline */
+      svg.append(svgEl("line", { x1: pad.l, x2: W - pad.r, y1: yEnd, y2: yEnd, stroke: "#c5d0de", "stroke-width": 1 }));
+      [0, 10, 20].forEach((n) => {
+        const y = yLoan(n);
+        const lab = svgEl("text", { x: pad.l - 8, y: y + 4, "text-anchor": "end", class: "chart-axis" });
+        lab.textContent = String(n);
+        svg.append(lab);
+      });
+      const loanTitle = svgEl("text", { x: 16, y: yBot - 6, class: "chart-axis-title" });
+      loanTitle.textContent = "Teams with an emergency loan";
+      svg.append(loanTitle);
+
+      HISTORY.rounds.forEach((rd) => {
+        const lab = svgEl("text", { x: xOf(rd), y: H - 8, "text-anchor": "middle", class: "chart-axis" });
+        lab.textContent = rd === 8 ? "Final" : ("Rd " + rd);
+        svg.append(lab);
+      });
+
+      /* class loan bars */
+      const barW = (xOf(2) - xOf(1)) * 0.46;
+      const loanG = svgEl("g", { id: "ind-loan-bars" });
+      CLASS_LOANS.forEach((n, i) => {
+        const rd = i + 1;
+        const x = xOf(rd) - barW / 2;
+        const y = yLoan(n);
+        const bar = svgEl("rect", {
+          x, y, width: barW, height: Math.max(0, yEnd - y),
+          fill: "rgba(20,50,95,0.28)", rx: 3,
+          "data-round": rd
+        });
+        bar.addEventListener("mouseenter", (ev) => showIndTip("class-loan", ev, rd));
+        bar.addEventListener("mousemove", (ev) => showIndTip("class-loan", ev, rd));
+        bar.addEventListener("mouseleave", hideIndTip);
+        loanG.append(bar);
+        const nlab = svgEl("text", { x: xOf(rd), y: y - 4, "text-anchor": "middle", class: "chart-axis" });
+        nlab.textContent = String(n);
+        loanG.append(nlab);
+      });
+      svg.append(loanG);
+      /* placeholder group for selected-industry loan overlay */
+      svg.append(svgEl("g", { id: "ind-loan-overlay" }));
+
+      function profitPath(vals) {
+        const pts = vals.map((v, i) => [xOf(i + 1), yProfit(v)]);
+        return smoothPath(pts);
+      }
+
+      const linesG = svgEl("g", {});
+      svg.append(linesG);
+      INDUSTRIES.forEach((ind) => {
+        const d = profitPath(ind.avgProfit);
+        const line = svgEl("path", {
+          d, class: "ind-line",
+          stroke: IND_COLORS[ind.key], "stroke-width": 2.15, fill: "none",
+          opacity: 0.92, "data-key": ind.key, pathLength: "1"
+        });
+        const hit = svgEl("path", { d, class: "early-hit", "data-key": ind.key, fill: "none" });
+        const bind = (el) => {
+          el.addEventListener("mouseenter", (ev) => showIndTip(ind.key, ev));
+          el.addEventListener("mousemove", (ev) => showIndTip(ind.key, ev));
+          el.addEventListener("mouseleave", hideIndTip);
+          el.addEventListener("click", () => setIndustry(ind.key));
+        };
+        bind(line); bind(hit);
+        linesG.append(line, hit);
+        const end = svgEl("circle", {
+          cx: xOf(8), cy: yProfit(ind.avgProfit[7]), r: 3.6,
+          fill: IND_COLORS[ind.key], class: "ind-line", "data-key": ind.key
+        });
+        bind(end);
+        linesG.append(end);
+      });
+      /* class average on top */
+      const classLine = svgEl("path", {
+        d: profitPath(CLASS_AVG_PROFIT),
+        class: "ind-line is-class",
+        stroke: "#0a1f3d", "stroke-width": 3.4, fill: "none",
+        "data-key": "class"
+      });
+      linesG.append(classLine);
+      const classEnd = svgEl("circle", {
+        cx: xOf(8), cy: yProfit(CLASS_AVG_PROFIT[7]), r: 5,
+        fill: "#0a1f3d"
+      });
+      linesG.append(classEnd);
+      const classLab = svgEl("text", {
+        x: xOf(8) - 8, y: yProfit(CLASS_AVG_PROFIT[7]) - 10,
+        "text-anchor": "end", class: "chart-axis-title"
+      });
+      classLab.textContent = "Class average";
+      linesG.append(classLab);
+
+      const legend = document.getElementById("ind-legend");
+      legend.replaceChildren();
+      const add = (color, label, extraClass) => {
+        const span = document.createElement("span");
+        span.innerHTML = '<i class="' + (extraClass || "") + '" style="background:' + color + '"></i>' + label;
+        legend.append(span);
+      };
+      add("#0a1f3d", "Class average", "class");
+      add("rgba(20,50,95,0.28)", "Class emergency loans", "bar");
+      INDUSTRIES.forEach((ind) => add(IND_COLORS[ind.key], ind.key));
+
+      renderIndustryLoansOverlay();
+    }
+
+    function renderIndustryLoansOverlay() {
+      const g = document.getElementById("ind-loan-overlay");
+      if (!g) return;
+      g.replaceChildren();
+      if (!selectedIndustry) return;
+      const ind = INDUSTRIES.find((d) => d.key === selectedIndustry);
+      if (!ind) return;
+      const W = 840, padL = 64, padR = 36;
+      const xOf = (rd) => padL + ((rd - 1) / 7) * (W - padL - padR);
+      const yBot = 318, yEnd = 412;
+      const yLoan = (n) => yEnd - (n / 22) * (yEnd - yBot);
+      const pts = ind.loans.map((n, i) => [xOf(i + 1), yLoan(n)]);
+      const d = pts.map((p, i) => (i ? "L" : "M") + p[0] + " " + p[1]).join(" ");
+      g.append(svgEl("path", { d, fill: "none", stroke: IND_COLORS[ind.key], "stroke-width": 2.4, "stroke-linecap": "round" }));
+      pts.forEach((p, i) => {
+        g.append(svgEl("circle", { cx: p[0], cy: p[1], r: 3.4, fill: IND_COLORS[ind.key], stroke: "#fff", "stroke-width": 1 }));
+      });
+    }
+
+    function showIndTip(key, ev, rd) {
+      const tip = document.getElementById("ind-tip");
+      if (key === "class-loan") {
+        tip.innerHTML = "<strong>Class emergency loans</strong>Round " + (rd === 8 ? "8 (Final)" : rd) +
+          ": " + CLASS_LOANS[rd - 1] + " teams";
+      } else {
+        const ind = INDUSTRIES.find((d) => d.key === key);
+        if (!ind) return;
+        const parts = ind.avgProfit.map((v, i) => "R" + (i + 1) + " " + money(v));
+        tip.innerHTML = "<strong>" + ind.key + "</strong>" +
+          ind.n + " firms · " + ind.totalLoanEvents + " loan events" +
+          "<br>Final avg profit " + money(ind.avgFinalProfit) +
+          " vs class " + money(CLASS_AVG_PROFIT[7]);
+      }
+      placeChartTip(tip, ev, document.getElementById("ind-stage"));
+    }
+    function hideIndTip() { document.getElementById("ind-tip").hidden = true; }
+
+    const loanRows = teams.map((t) => {
+      const fin = FINANCE.teams[t.id] || { l: [] };
+      const n = fin.l.filter((x) => x > 0).length;
+      const bucket = n === 0 ? 0 : n === 1 ? 1 : 2;
+      return { t, n, bucket, finalRank: t.rounds[7].cumulativeRank, cum: t.rounds[7].cumulative };
+    });
+    const LOAN_BUCKETS = [
+      { id: 0, title: "0 emergency loans", short: "0 loans", n: loanRows.filter((r) => r.bucket === 0).length },
+      { id: 1, title: "1 emergency loan", short: "1 loan", n: loanRows.filter((r) => r.bucket === 1).length },
+      { id: 2, title: "2+ emergency loans", short: "2+ loans", n: loanRows.filter((r) => r.bucket === 2).length }
+    ];
+    LOAN_BUCKETS.forEach((b) => {
+      const rows = loanRows.filter((r) => r.bucket === b.id);
+      b.avgRank = meanOf(rows.map((r) => r.finalRank));
+    });
+
+    function hashJitter(id) {
+      let h = 0;
+      for (let i = 0; i < id.length; i++) h = ((h << 5) - h + id.charCodeAt(i)) | 0;
+      return ((h % 1000) / 1000);
+    }
+
+    function renderLoanStandings() {
+      const svg = document.getElementById("loan-svg");
+      svg.replaceChildren();
+      const W = 840, H = 380;
+      const pad = { l: 52, r: 28, t: 28, b: 48 };
+      const colW = (W - pad.l - pad.r) / 3;
+      const xCol = (b) => pad.l + colW * (b + 0.5);
+      const yOf = (rank) => pad.t + ((rank - 1) / 57) * (H - pad.t - pad.b);
+
+      [1, 10, 20, 30, 40, 50, 58].forEach((rk) => {
+        const y = yOf(rk);
+        svg.append(svgEl("line", { x1: pad.l, x2: W - pad.r, y1: y, y2: y, stroke: "#d9e1ec", "stroke-width": 1 }));
+        const lab = svgEl("text", { x: pad.l - 8, y: y + 4, "text-anchor": "end", class: "chart-axis" });
+        lab.textContent = "#" + rk;
+        svg.append(lab);
+      });
+      const yTitle = svgEl("text", { x: 16, y: 16, class: "chart-axis-title" });
+      yTitle.textContent = "Final cumulative rank";
+      svg.append(yTitle);
+
+      const colors = ["#1f7a4d", "#1d4ed8", "#b45309"];
+      LOAN_BUCKETS.forEach((b) => {
+        const x = xCol(b.id);
+        const lab = svgEl("text", { x, y: H - 22, "text-anchor": "middle", class: "loan-col-label" });
+        lab.textContent = b.title;
+        svg.append(lab);
+        const sub = svgEl("text", { x, y: H - 8, "text-anchor": "middle", class: "chart-axis" });
+        sub.textContent = b.n + " teams";
+        svg.append(sub);
+      });
+
+      const dotsG = svgEl("g", {});
+      svg.append(dotsG);
+      loanRows.forEach((row) => {
+        const jitter = (hashJitter(row.t.id) - 0.5) * 42;
+        const x = xCol(row.bucket) + jitter;
+        const y = yOf(row.finalRank);
+        const c = svgEl("circle", {
+          cx: x, cy: y, r: 5.2,
+          class: "loan-dot",
+          fill: teamColor(row.t.team),
+          opacity: 0.88,
+          "data-id": row.t.id
+        });
+        c.addEventListener("mouseenter", (ev) => { setHot(row.t.id); showLoanTip(row, ev); });
+        c.addEventListener("mousemove", (ev) => showLoanTip(row, ev));
+        c.addEventListener("mouseleave", hideLoanTip);
+        c.addEventListener("click", () => setHot(row.t.id));
+        dotsG.append(c);
+      });
+
+      /* group average markers, drawn on top */
+      LOAN_BUCKETS.forEach((b) => {
+        const x = xCol(b.id);
+        const y = yOf(b.avgRank);
+        svg.append(svgEl("line", {
+          x1: x - 54, x2: x + 54, y1: y, y2: y,
+          stroke: "#c4a056", "stroke-width": 2.6, class: "loan-avg"
+        }));
+        const alab = svgEl("text", {
+          x: x + 58, y: y + 4, class: "loan-avg-label", fill: "#8a6a1f"
+        });
+        alab.textContent = "avg #" + b.avgRank.toFixed(1);
+        svg.append(alab);
+      });
+    }
+    function showLoanTip(row, ev) {
+      const tip = document.getElementById("loan-tip");
+      const times = row.n === 0 ? "No emergency loans" : (row.n === 1 ? "1 emergency loan" : (row.n + " emergency loans"));
+      tip.innerHTML = "<strong>" + teamTag(row.t) + "</strong>" +
+        times + "<br>Final rank #" + row.finalRank + " · " + bsc(row.cum) + " pts";
+      placeChartTip(tip, ev, document.getElementById("loan-stage"));
+    }
+    function hideLoanTip() { document.getElementById("loan-tip").hidden = true; }
+
+    function syncInsightHot() {
+      const early = document.getElementById("slope-stage");
+      if (early) {
+        early.querySelectorAll("[data-id]").forEach((el) => {
+          el.classList.toggle("is-hot", !!state.hotId && el.dataset.id === state.hotId);
+        });
+      }
+      const vol = document.getElementById("vol-stage");
+      if (vol) {
+        vol.classList.toggle("is-dim", !!state.hotId);
+        vol.querySelectorAll("[data-id]").forEach((el) => {
+          el.classList.toggle("is-hot", el.dataset.id === state.hotId);
+        });
+      }
+      const loan = document.getElementById("loan-stage");
+      if (loan) {
+        loan.classList.toggle("is-dim", !!state.hotId);
+        loan.querySelectorAll("[data-id]").forEach((el) => {
+          el.classList.toggle("is-hot", el.dataset.id === state.hotId);
+        });
+      }
+    }
+    function syncFinanceFromHot() {
+      if (!state.hotId) return;
+      const team = byId.get(state.hotId);
+      if (!team) return;
+      /* Highlight the team's industry without forcing a permanent pick if none is selected. */
+      const stage = document.getElementById("ind-stage");
+      if (stage && !selectedIndustry) {
+        const key = secInd(team);
+        stage.querySelectorAll(".ind-line[data-key]").forEach((el) => {
+          const on = el.dataset.key === key;
+          el.classList.toggle("is-on", on);
+          el.classList.toggle("is-dim", el.dataset.key !== "class" && !on);
+        });
+        stage.classList.add("is-pick");
+      }
+    }
+
+    function initInsights() {
+      setEarlyInsight("all");
+      renderEarly({ animate: false });
+      document.querySelectorAll(".group-btn").forEach((btn) => {
+        btn.addEventListener("click", () => setEarlyGroup(btn.dataset.group, true));
+      });
+      document.getElementById("early-replay").addEventListener("click", () => {
+        if (earlyGroup !== "all") renderEarly({ animate: true });
+      });
+      renderVol();
+      renderIndustryPills();
+      document.getElementById("fin-summary").innerHTML = industrySummaryText(null);
+      renderIndustryChart();
+      renderLoanStandings();
+    }
+
+    function initControls() {
+      document.getElementById("prev-btn").addEventListener("click", () => setTime(prevWhole(state.t), true));
+      document.getElementById("next-btn").addEventListener("click", () => setTime(nextWhole(state.t), true));
+      document.getElementById("play-btn").addEventListener("click", togglePlay);
+      document.getElementById("round-slider").addEventListener("input", (e) => setTime(Number(e.target.value), true));
+      document.addEventListener("keydown", (e) => {
+        if (document.body.classList.contains("roster-open")) return;
+        const adjView = document.getElementById("view-adjusted");
+        if (adjView && !adjView.hidden) return;
+        const tag = (e.target && e.target.tagName) || "";
+        if (tag === "SELECT" || tag === "TEXTAREA") return;
+        if (tag === "INPUT" && e.target.type !== "range") return;
+        if (e.key === "ArrowLeft") { e.preventDefault(); setTime(prevWhole(state.t), true); }
+        else if (e.key === "ArrowRight") { e.preventDefault(); setTime(nextWhole(state.t), true); }
+        else if (e.key === " " || e.code === "Space") {
+          if (tag === "BUTTON" || tag === "INPUT") return;
+          e.preventDefault();
+          togglePlay();
+        }
+      });
+    }
+
+    const params = new URLSearchParams(location.search);
+    const startRound = clamp(parseFloat(params.get("round") || "1") || 1, 1, 8);
+
+    renderTicks();
+    renderPalette();
+    renderAxis();
+    renderSlotLabels();
+    renderBump();
+    ensureRaceRows();
+    initInsights();
+    initControls();
+    window.addEventListener("resize", () => {
+      renderSlotLabels();
+      racePos.forEach((pos) => { pos.y = pos.target; });
+      renderBars(state.t);
+    });
+    setTime(startRound, false);
+    requestAnimationFrame(() => renderBars(state.t));
+    if (params.get("play") === "1") togglePlay();
+}
+
+    fetch("leaderboard-insights-data.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Could not load season insights");
+        return res.json();
+      })
+      .then((payload) => initSeasonPanels(payload))
+      .catch((err) => {
+        console.error(err);
+        const panel = document.getElementById("season-panel");
+        if (!panel) return;
+        const note = document.createElement("p");
+        note.className = "status";
+        note.setAttribute("role", "alert");
+        note.textContent = "The round-by-round panels didn’t load. Refresh the page to try again.";
+        panel.append(note);
+      });
+  </script>
+  <script>
+function initAdjustedLeaderboard(root, data, opts) {
+  opts = opts || {};
+  const ART = ["character-female-a.png","character-female-b.png","character-female-c.png","character-female-d.png","character-female-e.png","character-female-f.png","character-male-a.png","character-male-b.png","character-male-c.png","character-male-d.png","character-male-e.png","character-male-f.png"];
+  const artSrc = (i) => (opts.art && opts.art[i]) || ((opts.artBase || "assets/kenney-mini-characters/") + ART[i]);
+  const $ = (sel) => root.querySelector(sel);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const pct = (p) => Math.round(p * 100) + "%";
+  const sd = (z) => (z >= 0 ? "+" : "−") + Math.abs(z).toFixed(2) + " SD";
+  const chunks = (node, parts) => { parts.forEach((p, i) => { if (i) node.append(document.createTextNode(" · ")); node.append(el("span", "fl-nw", p)); }); return node; };
+  const where = (t) => "Section " + t.section + " · Industry " + t.industry;
+  const lab = (t) => "Sec" + t.section + "_ind" + t.industry;
+  const norm = (x) => String(x || "").toLowerCase().replace(/[·,]/g, " ").replace(/\s+/g, " ").trim();
+  const hay = (t) => norm([t.team + " " + lab(t), lab(t), "section " + t.section + " industry " + t.industry, "section " + t.section, "sec " + t.section, "industry " + t.industry].join(" | "));
+  function charIndex(id) { let h = 2166136261; for (let i = 0; i < id.length; i++) { h ^= id.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) % ART.length; }
+  function avatar(t, cls) {
+    const i = charIndex(String(t.id)); const img = el("img", "pixel " + cls); img.src = artSrc(i); img.alt = ""; img.width = 64; img.height = 64;
+    img.style.setProperty("--wiggle-delay", (-(i % 12) * 0.31).toFixed(2) + "s"); img.style.setProperty("--wiggle-dur", (2.35 + (i % 7) * 0.22).toFixed(2) + "s"); return img;
+  }
+  function vsChip(t) {
+    const d = t.vsOfficial;
+    const c = el("span", "fl-chip", d === 0 ? "Same as official" : Math.abs(d) + (d > 0 ? " higher" : " lower") + " than official");
+    c.title = "Official #" + t.officialRank + ", Adjusted #" + t.adjustedRank; return c;
+  }
+  const teams = data.teams.slice().sort((a, b) => a.adjustedRank - b.adjustedRank);
+  const byId = new Map(teams.map((t) => [t.id, t]));
+  const state = { q: "", section: "", industry: "" };
+
+  // intro quote
+  const lead = teams[0];
+  $("#fl-quote").replaceChildren(document.createTextNode("“On average you outscored X% of your industry rivals each round.”"),
+    el("span", null, "That's the Adjusted score. " + lead.team + " " + lab(lead) + " leads with " + pct(lead.avgPercentile) + ". This tab celebrates the top " + teams.length + " of " + (data.totalTeams || teams.length) + " teams."));
+
+  function goTo(id) {
+    state.q = ""; state.section = ""; state.industry = ""; $("#fl-q").value = ""; $("#fl-section").value = ""; $("#fl-industry").value = ""; renderBoard();
+    const row = root.querySelector('tr[data-id="' + id + '"]');
+    if (row) { row.scrollIntoView({ behavior: "smooth", block: "center" }); row.classList.remove("fl-hit"); void row.offsetWidth; row.classList.add("fl-hit"); row.focus({ preventScroll: true }); }
+  }
+
+  // podium (2,1,3)
+  const pod = $("#fl-podium"); pod.replaceChildren();
+  [2, 1, 3].forEach((r) => {
+    const t = teams[r - 1]; if (!t) return;
+    const b = el("button", "podium-card rank-" + r); b.type = "button"; b.setAttribute("aria-label", "Adjusted place " + r + ": " + t.team + " " + lab(t));
+    const w = el("div", "mascot-wrap"); w.append(avatar(t, "mascot"));
+    const nr = el("div", "podium-name"); nr.append(el("h3", null, t.team));
+    const meta = el("p", "place-meta", lab(t)); meta.title = where(t);
+    const sc = el("p", "place-score"); sc.append(el("strong", null, pct(t.avgPercentile)), el("span", "score-kicker", "Rivals outscored"),
+      chunks(el("span", "alt-score"), ["#1 in " + t.industryTopRounds + " of 8 rounds", "Official #" + t.officialRank]));
+    const ped = el("div", "pedestal"); ped.setAttribute("aria-hidden", "true");
+    b.append(w, nr, meta, sc, ped); b.addEventListener("click", () => goTo(t.id)); pod.append(b);
+  });
+
+  // champions
+  const ch = $("#fl-champs"); ch.replaceChildren();
+  data.industries.slice().sort((a, b) => a.section - b.section || a.industry - b.industry).forEach((ind) => {
+    const t = byId.get(ind.champion); if (!t) return;
+    const c = el("button", "fl-champ"); c.type = "button";
+    c.append(el("p", "fl-champ-k", where(ind)));
+    const who = el("div", "fl-champ-who"); const tx = el("div"); tx.append(el("strong", null, t.team), el("span", null, lab(t)));
+    who.append(avatar(t, ""), tx);
+    const v = el("p", "fl-champ-v", pct(t.avgPercentile) + " "); v.append(el("small", null, "rivals outscored"));
+    c.append(who, v, el("p", "fl-champ-n", "#1 in " + t.industryTopRounds + " of 8 rounds"), el("p", "fl-champ-n", "Adjusted #" + t.adjustedRank + " · Official #" + t.officialRank));
+    c.addEventListener("click", () => goTo(t.id)); ch.append(c);
+  });
+
+  // tough strip
+  const inds = data.industries.slice().sort((a, b) => a.section - b.section || a.industry - b.industry);
+  const maxH = Math.max(...inds.map((i) => i.avgHHINormalized));
+  const tough = $("#fl-tough"); tough.replaceChildren();
+  inds.forEach((i) => {
+    const box = el("div", "fl-ind");
+    const h = el("h3", null, lab(i)); h.append(el("span", "fl-code", where(i) + " · " + i.teams + " teams"));
+    const meter = (label, val, frac, gold) => { const m = el("div", "fl-meter"); const top = el("div", "fl-meter-top"); top.append(el("span", null, label), el("b", null, val));
+      const tr = el("div", "fl-track" + (gold ? " fl-gold" : "")); const bar = el("i"); bar.style.width = Math.max(4, Math.round(frac * 100)) + "%"; tr.append(bar); m.append(top, tr); return m; };
+    box.append(h, meter("Concentration", i.avgHHINormalized.toFixed(3), i.avgHHINormalized / maxH, false), meter("Mean BSC", i.meanBSC.toFixed(1), i.meanBSC / 100, true));
+    tough.append(box);
+  });
+  const share = Math.round((data.analysis.industryShareOfVariation || 0.1) * 100);
+  const hard = inds.slice().sort((a, b) => a.meanBSC - b.meanBSC);
+  const topH = inds.slice().sort((a, b) => b.avgHHINormalized - a.avgHHINormalized).slice(0, 2).map((i) => i.industryCode);
+  const alsoConc = topH.includes(hard[0].industryCode) && topH.includes(hard[1].industryCode);
+  $("#fl-tough-note").textContent = "Industries did differ. " + lab(hard[0]) + " and " + lab(hard[1]) + (alsoConc ? " were the most concentrated and" : "") + " had the lowest average scores (" + hard[0].meanBSC.toFixed(1) + " and " + hard[1].meanBSC.toFixed(1) + "). But after allowing for each round's overall level, industry conditions explain only about " + share + "% of the differences in round scores. Most of the gap between teams came from their own decisions, which is why this view compares you with your direct rivals.";
+
+  // filters
+  const secSel = $("#fl-section"), indSel = $("#fl-industry");
+  [...new Set(teams.map((t) => t.section))].sort((a, b) => a - b).forEach((s) => { const o = el("option", null, "Section " + s); o.value = String(s); secSel.append(o); });
+  inds.forEach((i) => { const o = el("option", null, lab(i) + " (Section " + i.section + " · Industry " + i.industry + ")"); o.value = lab(i); indSel.append(o); });
+  $("#fl-q").addEventListener("input", (e) => { state.q = norm(e.target.value); renderBoard(); });
+  secSel.addEventListener("change", (e) => { state.section = e.target.value; if (state.industry && state.section && !state.industry.startsWith("Sec" + state.section + "_")) { state.industry = ""; indSel.value = ""; } renderBoard(); });
+  indSel.addEventListener("change", (e) => { state.industry = e.target.value; renderBoard(); });
+  $("#fl-clear").addEventListener("click", () => { state.q = state.section = state.industry = ""; $("#fl-q").value = ""; secSel.value = ""; indSel.value = ""; renderBoard(); });
+
+  function renderBoard() {
+    const body = $("#fl-body");
+    const rows = teams.filter((t) => (!state.q || hay(t).includes(state.q))
+      && (!state.section || String(t.section) === state.section) && (!state.industry || lab(t) === state.industry));
+    body.replaceChildren();
+    rows.forEach((t) => {
+      const tr = el("tr", "is-team" + (t.adjustedRank <= 3 ? " is-podium" : "")); tr.dataset.id = t.id; tr.tabIndex = -1;
+      const tdR = el("td", "rank"); const badge = el("span", "badge " + (t.adjustedRank <= 3 ? "r" + t.adjustedRank : "rn"), String(t.adjustedRank)); tdR.append(badge);
+      const tdT = el("td", "team"); const idw = el("span", "team-id"); const aw = el("span", "avatar-wiggle"); aw.append(avatar(t, "team-avatar"));
+      const copy = el("span", "team-copy"); const nm = el("span", null, t.team + " "); nm.append(el("span", "fl-lab", lab(t))); copy.append(nm);
+      idw.append(aw, copy); tdT.append(idw);
+      const tdS = el("td", "section", String(t.section));
+      const tdI = el("td", "industry", lab(t));
+      const tdP = el("td", "num bsc"); tdP.append(el("span", "fl-pct", pct(t.avgPercentile)));
+      const bar = el("span", "bsc-bar"); const fill = el("span"); fill.style.width = Math.round(t.avgPercentile * 100) + "%"; bar.append(fill); tdP.append(bar, el("span", "fl-z", sd(t.avgZ)));
+      const tdW = el("td", "num metric fl-tops"); tdW.append(document.createTextNode(t.industryTopRounds ? t.industryTopRounds + " of 8" : "—"));
+      if (t.sharedTopRounds) tdW.append(el("small", null, t.sharedTopRounds + " shared"));
+      const tdO = el("td", "num metric fl-official", "#" + t.officialRank);
+      const tdV = el("td", "num metric fl-vs"); tdV.append(vsChip(t));
+      const tdX = el("td", "extras"); const ex = el("div", "fl-extras");
+      if (t.industryTopRounds) ex.append(el("span", "fl-chip fl-chip-gold", "#1 in " + t.industryTopRounds + " of 8 rounds"));
+      ex.append(el("span", "fl-chip", "Official #" + t.officialRank), vsChip(t)); tdX.append(ex);
+      tr.append(tdR, tdT, tdS, tdI, tdP, tdW, tdO, tdV, tdX); body.append(tr);
+    });
+    if (!rows.length) { const tr = el("tr"); const td = el("td", "empty", "No match among the top " + teams.length + " teams shown here. Try another firm name, section or industry, or clear the filters."); td.colSpan = 8; tr.append(td); body.append(tr); }
+    const filtered = state.q || state.section || state.industry;
+    $("#fl-clear").hidden = !filtered;
+    $("#fl-status").textContent = filtered ? "Showing " + rows.length + " of the top " + teams.length + " teams. Adjusted # stays the overall place." : "Top " + teams.length + " teams (of " + (data.totalTeams || teams.length) + " total), ranked by average share of industry rivals outscored each round.";
+  }
+  renderBoard();
+}
+
+    fetch("adjusted-leaderboard-data.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Could not load adjusted leaderboard");
+        return res.json();
+      })
+      .then((payload) => {
+        initAdjustedLeaderboard(document.getElementById("adj-lb"), payload, { artBase: "assets/kenney-mini-characters/" });
+      })
+      .catch((err) => {
+        console.error(err);
+        const fail = document.getElementById("adj-error");
+        if (fail) fail.hidden = false;
       });
   </script>
 </body>
