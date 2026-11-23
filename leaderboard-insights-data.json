@@ -1,0 +1,4573 @@
+{
+ "final": true,
+ "round": 8,
+ "rounds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "roundLabels": [
+  "Competition Round 1",
+  "Competition Round 2",
+  "Competition Round 3",
+  "Competition Round 4",
+  "Competition Round 5",
+  "Competition Round 6",
+  "Competition Round 7",
+  "Competition Round 8"
+ ],
+ "teamCount": 58,
+ "teams": [
+  {
+   "id": "CP136222_1__Chester",
+   "team": "Chester",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 56.7,
+     "cumulative": 56.7,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 2,
+     "bsc": 70.3,
+     "cumulative": 127.0,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 3,
+     "bsc": 86.7,
+     "cumulative": 213.7,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 4,
+     "bsc": 97.2,
+     "cumulative": 310.9,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 5,
+     "bsc": 99.7,
+     "cumulative": 410.6,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 6,
+     "bsc": 97.1,
+     "cumulative": 507.7,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 7,
+     "bsc": 100.0,
+     "cumulative": 607.7,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 707.7,
+     "cumulativeRank": 1
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Chester",
+   "team": "Chester",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 51.9,
+     "cumulative": 51.9,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 2,
+     "bsc": 72.8,
+     "cumulative": 124.7,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 3,
+     "bsc": 85.3,
+     "cumulative": 210.0,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 4,
+     "bsc": 98.9,
+     "cumulative": 308.9,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 5,
+     "bsc": 99.9,
+     "cumulative": 408.8,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 6,
+     "bsc": 97.0,
+     "cumulative": 505.8,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 7,
+     "bsc": 97.9,
+     "cumulative": 603.7,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 703.7,
+     "cumulativeRank": 2
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Baldwin",
+   "team": "Baldwin",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 55.2,
+     "cumulative": 55.2,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 2,
+     "bsc": 72.0,
+     "cumulative": 127.2,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 3,
+     "bsc": 82.6,
+     "cumulative": 209.8,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 4,
+     "bsc": 96.6,
+     "cumulative": 306.4,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 5,
+     "bsc": 99.6,
+     "cumulative": 406.0,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 6,
+     "bsc": 96.4,
+     "cumulative": 502.4,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 7,
+     "bsc": 99.8,
+     "cumulative": 602.2,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 702.2,
+     "cumulativeRank": 3
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Digby",
+   "team": "Digby",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 51.0,
+     "cumulative": 51.0,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 2,
+     "bsc": 75.6,
+     "cumulative": 126.6,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 3,
+     "bsc": 81.4,
+     "cumulative": 208.0,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 4,
+     "bsc": 93.9,
+     "cumulative": 301.9,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 5,
+     "bsc": 96.5,
+     "cumulative": 398.4,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 6,
+     "bsc": 99.6,
+     "cumulative": 498.0,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 7,
+     "bsc": 99.2,
+     "cumulative": 597.2,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 697.2,
+     "cumulativeRank": 4
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Ferris",
+   "team": "Ferris",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 51.6,
+     "cumulative": 51.6,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 2,
+     "bsc": 67.9,
+     "cumulative": 119.5,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 3,
+     "bsc": 82.8,
+     "cumulative": 202.3,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 4,
+     "bsc": 96.2,
+     "cumulative": 298.5,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 5,
+     "bsc": 98.8,
+     "cumulative": 397.3,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 6,
+     "bsc": 96.8,
+     "cumulative": 494.1,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 7,
+     "bsc": 100.0,
+     "cumulative": 594.1,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 694.1,
+     "cumulativeRank": 5
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Andrews",
+   "team": "Andrews",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.6,
+     "cumulative": 47.6,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 2,
+     "bsc": 67.1,
+     "cumulative": 114.7,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 3,
+     "bsc": 84.2,
+     "cumulative": 198.9,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 4,
+     "bsc": 97.8,
+     "cumulative": 296.7,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 5,
+     "bsc": 97.7,
+     "cumulative": 394.4,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 6,
+     "bsc": 98.4,
+     "cumulative": 492.8,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 7,
+     "bsc": 99.4,
+     "cumulative": 592.2,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 692.2,
+     "cumulativeRank": 6
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Erie",
+   "team": "Erie",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 53.1,
+     "cumulative": 53.1,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 2,
+     "bsc": 74.9,
+     "cumulative": 128.0,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 3,
+     "bsc": 77.7,
+     "cumulative": 205.7,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 4,
+     "bsc": 93.3,
+     "cumulative": 299.0,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 5,
+     "bsc": 92.4,
+     "cumulative": 391.4,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 6,
+     "bsc": 98.6,
+     "cumulative": 490.0,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 7,
+     "bsc": 98.0,
+     "cumulative": 588.0,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 8,
+     "bsc": 100.0,
+     "cumulative": 688.0,
+     "cumulativeRank": 7
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Ferris",
+   "team": "Ferris",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 57.4,
+     "cumulative": 57.4,
+     "cumulativeRank": 4
+    },
+    {
+     "round": 2,
+     "bsc": 66.8,
+     "cumulative": 124.2,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 3,
+     "bsc": 73.5,
+     "cumulative": 197.7,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 4,
+     "bsc": 94.9,
+     "cumulative": 292.6,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 5,
+     "bsc": 96.5,
+     "cumulative": 389.1,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 6,
+     "bsc": 97.6,
+     "cumulative": 486.7,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 7,
+     "bsc": 100.0,
+     "cumulative": 586.7,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 8,
+     "bsc": 95.0,
+     "cumulative": 681.7,
+     "cumulativeRank": 8
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Ferris",
+   "team": "Ferris",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 60.1,
+     "cumulative": 60.1,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 2,
+     "bsc": 72.8,
+     "cumulative": 132.9,
+     "cumulativeRank": 1
+    },
+    {
+     "round": 3,
+     "bsc": 80.6,
+     "cumulative": 213.5,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 4,
+     "bsc": 87.4,
+     "cumulative": 300.9,
+     "cumulativeRank": 5
+    },
+    {
+     "round": 5,
+     "bsc": 90.8,
+     "cumulative": 391.7,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 6,
+     "bsc": 96.5,
+     "cumulative": 488.2,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 7,
+     "bsc": 97.8,
+     "cumulative": 586.0,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 8,
+     "bsc": 93.2,
+     "cumulative": 679.2,
+     "cumulativeRank": 9
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Garrett",
+   "team": "Garrett",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 54.4,
+     "cumulative": 54.4,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 2,
+     "bsc": 63.1,
+     "cumulative": 117.5,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 3,
+     "bsc": 84.4,
+     "cumulative": 201.9,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 4,
+     "bsc": 86.9,
+     "cumulative": 288.8,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 5,
+     "bsc": 96.9,
+     "cumulative": 385.7,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 6,
+     "bsc": 95.0,
+     "cumulative": 480.7,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 7,
+     "bsc": 97.8,
+     "cumulative": 578.5,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 8,
+     "bsc": 98.7,
+     "cumulative": 677.2,
+     "cumulativeRank": 10
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Digby",
+   "team": "Digby",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 53.0,
+     "cumulative": 53.0,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 2,
+     "bsc": 68.7,
+     "cumulative": 121.7,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 3,
+     "bsc": 75.6,
+     "cumulative": 197.3,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 4,
+     "bsc": 92.1,
+     "cumulative": 289.4,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 5,
+     "bsc": 93.4,
+     "cumulative": 382.8,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 6,
+     "bsc": 97.9,
+     "cumulative": 480.7,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 7,
+     "bsc": 98.4,
+     "cumulative": 579.1,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 8,
+     "bsc": 95.0,
+     "cumulative": 674.1,
+     "cumulativeRank": 11
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Baldwin",
+   "team": "Baldwin",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.3,
+     "cumulative": 49.3,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 2,
+     "bsc": 71.0,
+     "cumulative": 120.3,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 3,
+     "bsc": 76.7,
+     "cumulative": 197.0,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 4,
+     "bsc": 94.9,
+     "cumulative": 291.9,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 5,
+     "bsc": 96.2,
+     "cumulative": 388.1,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 6,
+     "bsc": 95.2,
+     "cumulative": 483.3,
+     "cumulativeRank": 10
+    },
+    {
+     "round": 7,
+     "bsc": 93.5,
+     "cumulative": 576.8,
+     "cumulativeRank": 12
+    },
+    {
+     "round": 8,
+     "bsc": 92.2,
+     "cumulative": 669.0,
+     "cumulativeRank": 12
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Chester",
+   "team": "Chester",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 52.7,
+     "cumulative": 52.7,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 2,
+     "bsc": 71.1,
+     "cumulative": 123.8,
+     "cumulativeRank": 8
+    },
+    {
+     "round": 3,
+     "bsc": 70.9,
+     "cumulative": 194.7,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 4,
+     "bsc": 87.9,
+     "cumulative": 282.6,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 5,
+     "bsc": 95.4,
+     "cumulative": 378.0,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 6,
+     "bsc": 98.1,
+     "cumulative": 476.1,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 7,
+     "bsc": 96.1,
+     "cumulative": 572.2,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 8,
+     "bsc": 94.4,
+     "cumulative": 666.6,
+     "cumulativeRank": 13
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Chester",
+   "team": "Chester",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.3,
+     "cumulative": 47.3,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 2,
+     "bsc": 62.8,
+     "cumulative": 110.1,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 3,
+     "bsc": 67.8,
+     "cumulative": 177.9,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 4,
+     "bsc": 91.3,
+     "cumulative": 269.2,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 5,
+     "bsc": 97.7,
+     "cumulative": 366.9,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 6,
+     "bsc": 98.3,
+     "cumulative": 465.2,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 7,
+     "bsc": 96.7,
+     "cumulative": 561.9,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 8,
+     "bsc": 96.4,
+     "cumulative": 658.3,
+     "cumulativeRank": 14
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Harper",
+   "team": "Harper",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.2,
+     "cumulative": 49.2,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 2,
+     "bsc": 63.9,
+     "cumulative": 113.1,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 3,
+     "bsc": 74.1,
+     "cumulative": 187.2,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 4,
+     "bsc": 89.8,
+     "cumulative": 277.0,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 5,
+     "bsc": 87.6,
+     "cumulative": 364.6,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 6,
+     "bsc": 94.8,
+     "cumulative": 459.4,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 7,
+     "bsc": 98.6,
+     "cumulative": 558.0,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 8,
+     "bsc": 96.1,
+     "cumulative": 654.1,
+     "cumulativeRank": 15
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Garrett",
+   "team": "Garrett",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 43.1,
+     "cumulative": 43.1,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 2,
+     "bsc": 63.8,
+     "cumulative": 106.9,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 3,
+     "bsc": 72.4,
+     "cumulative": 179.3,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 4,
+     "bsc": 87.7,
+     "cumulative": 267.0,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 5,
+     "bsc": 90.8,
+     "cumulative": 357.8,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 6,
+     "bsc": 93.7,
+     "cumulative": 451.5,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 7,
+     "bsc": 98.4,
+     "cumulative": 549.9,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 8,
+     "bsc": 99.7,
+     "cumulative": 649.6,
+     "cumulativeRank": 16
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Baldwin",
+   "team": "Baldwin",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 50.5,
+     "cumulative": 50.5,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 2,
+     "bsc": 66.7,
+     "cumulative": 117.2,
+     "cumulativeRank": 13
+    },
+    {
+     "round": 3,
+     "bsc": 74.5,
+     "cumulative": 191.7,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 4,
+     "bsc": 77.2,
+     "cumulative": 268.9,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 5,
+     "bsc": 88.3,
+     "cumulative": 357.2,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 6,
+     "bsc": 95.1,
+     "cumulative": 452.3,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 7,
+     "bsc": 98.6,
+     "cumulative": 550.9,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 8,
+     "bsc": 98.6,
+     "cumulative": 649.5,
+     "cumulativeRank": 17
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Digby",
+   "team": "Digby",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 48.3,
+     "cumulative": 48.3,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 2,
+     "bsc": 58.2,
+     "cumulative": 106.5,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 3,
+     "bsc": 71.6,
+     "cumulative": 178.1,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 4,
+     "bsc": 88.9,
+     "cumulative": 267.0,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 5,
+     "bsc": 96.2,
+     "cumulative": 363.2,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 6,
+     "bsc": 97.4,
+     "cumulative": 460.6,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 7,
+     "bsc": 95.3,
+     "cumulative": 555.9,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 8,
+     "bsc": 92.9,
+     "cumulative": 648.8,
+     "cumulativeRank": 18
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Chester",
+   "team": "Chester",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 43.0,
+     "cumulative": 43.0,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 2,
+     "bsc": 48.7,
+     "cumulative": 91.7,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 3,
+     "bsc": 75.4,
+     "cumulative": 167.1,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 4,
+     "bsc": 89.4,
+     "cumulative": 256.5,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 5,
+     "bsc": 97.5,
+     "cumulative": 354.0,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 6,
+     "bsc": 97.9,
+     "cumulative": 451.9,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 7,
+     "bsc": 95.5,
+     "cumulative": 547.4,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 8,
+     "bsc": 95.7,
+     "cumulative": 643.1,
+     "cumulativeRank": 19
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Garrett",
+   "team": "Garrett",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 59.2,
+     "cumulative": 59.2,
+     "cumulativeRank": 2
+    },
+    {
+     "round": 2,
+     "bsc": 53.2,
+     "cumulative": 112.4,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 3,
+     "bsc": 69.8,
+     "cumulative": 182.2,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 4,
+     "bsc": 75.3,
+     "cumulative": 257.5,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 5,
+     "bsc": 92.8,
+     "cumulative": 350.3,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 6,
+     "bsc": 98.4,
+     "cumulative": 448.7,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 7,
+     "bsc": 96.7,
+     "cumulative": 545.4,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 8,
+     "bsc": 96.4,
+     "cumulative": 641.8,
+     "cumulativeRank": 20
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Digby",
+   "team": "Digby",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 43.6,
+     "cumulative": 43.6,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 2,
+     "bsc": 68.9,
+     "cumulative": 112.5,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 3,
+     "bsc": 68.7,
+     "cumulative": 181.2,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 4,
+     "bsc": 93.3,
+     "cumulative": 274.5,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 5,
+     "bsc": 91.0,
+     "cumulative": 365.5,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 6,
+     "bsc": 91.3,
+     "cumulative": 456.8,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 7,
+     "bsc": 92.5,
+     "cumulative": 549.3,
+     "cumulativeRank": 19
+    },
+    {
+     "round": 8,
+     "bsc": 92.0,
+     "cumulative": 641.3,
+     "cumulativeRank": 21
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Chester",
+   "team": "Chester",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 54.4,
+     "cumulative": 54.4,
+     "cumulativeRank": 9
+    },
+    {
+     "round": 2,
+     "bsc": 55.5,
+     "cumulative": 109.9,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 3,
+     "bsc": 67.6,
+     "cumulative": 177.5,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 4,
+     "bsc": 87.9,
+     "cumulative": 265.4,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 5,
+     "bsc": 91.0,
+     "cumulative": 356.4,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 6,
+     "bsc": 96.1,
+     "cumulative": 452.5,
+     "cumulativeRank": 18
+    },
+    {
+     "round": 7,
+     "bsc": 91.4,
+     "cumulative": 543.9,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 8,
+     "bsc": 88.9,
+     "cumulative": 632.8,
+     "cumulativeRank": 22
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Chester",
+   "team": "Chester",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 50.6,
+     "cumulative": 50.6,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 2,
+     "bsc": 57.9,
+     "cumulative": 108.5,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 3,
+     "bsc": 67.0,
+     "cumulative": 175.5,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 4,
+     "bsc": 79.8,
+     "cumulative": 255.3,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 5,
+     "bsc": 86.1,
+     "cumulative": 341.4,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 6,
+     "bsc": 92.4,
+     "cumulative": 433.8,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 7,
+     "bsc": 94.7,
+     "cumulative": 528.5,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 8,
+     "bsc": 94.7,
+     "cumulative": 623.2,
+     "cumulativeRank": 23
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Andrews",
+   "team": "Andrews",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 53.2,
+     "cumulative": 53.2,
+     "cumulativeRank": 11
+    },
+    {
+     "round": 2,
+     "bsc": 52.2,
+     "cumulative": 105.4,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 3,
+     "bsc": 57.4,
+     "cumulative": 162.8,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 4,
+     "bsc": 82.8,
+     "cumulative": 245.6,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 5,
+     "bsc": 90.9,
+     "cumulative": 336.5,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 6,
+     "bsc": 94.9,
+     "cumulative": 431.4,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 7,
+     "bsc": 92.6,
+     "cumulative": 524.0,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 8,
+     "bsc": 95.6,
+     "cumulative": 619.6,
+     "cumulativeRank": 24
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Digby",
+   "team": "Digby",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 44.5,
+     "cumulative": 44.5,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 2,
+     "bsc": 49.7,
+     "cumulative": 94.2,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 3,
+     "bsc": 70.8,
+     "cumulative": 165.0,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 4,
+     "bsc": 83.6,
+     "cumulative": 248.6,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 5,
+     "bsc": 84.3,
+     "cumulative": 332.9,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 6,
+     "bsc": 90.5,
+     "cumulative": 423.4,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 7,
+     "bsc": 96.9,
+     "cumulative": 520.3,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 8,
+     "bsc": 98.2,
+     "cumulative": 618.5,
+     "cumulativeRank": 25
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Erie",
+   "team": "Erie",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 58.2,
+     "cumulative": 58.2,
+     "cumulativeRank": 3
+    },
+    {
+     "round": 2,
+     "bsc": 58.1,
+     "cumulative": 116.3,
+     "cumulativeRank": 14
+    },
+    {
+     "round": 3,
+     "bsc": 57.8,
+     "cumulative": 174.1,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 4,
+     "bsc": 80.0,
+     "cumulative": 254.1,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 5,
+     "bsc": 84.2,
+     "cumulative": 338.3,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 6,
+     "bsc": 88.9,
+     "cumulative": 427.2,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 7,
+     "bsc": 91.6,
+     "cumulative": 518.8,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 8,
+     "bsc": 97.2,
+     "cumulative": 616.0,
+     "cumulativeRank": 26
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Andrews",
+   "team": "Andrews",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 50.9,
+     "cumulative": 50.9,
+     "cumulativeRank": 21
+    },
+    {
+     "round": 2,
+     "bsc": 57.2,
+     "cumulative": 108.1,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 3,
+     "bsc": 59.2,
+     "cumulative": 167.3,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 4,
+     "bsc": 75.0,
+     "cumulative": 242.3,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 5,
+     "bsc": 95.8,
+     "cumulative": 338.1,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 6,
+     "bsc": 97.5,
+     "cumulative": 435.6,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 7,
+     "bsc": 91.3,
+     "cumulative": 526.9,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 8,
+     "bsc": 89.0,
+     "cumulative": 615.9,
+     "cumulativeRank": 27
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Ferris",
+   "team": "Ferris",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.8,
+     "cumulative": 49.8,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 2,
+     "bsc": 48.2,
+     "cumulative": 98.0,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 3,
+     "bsc": 58.1,
+     "cumulative": 156.1,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 4,
+     "bsc": 76.0,
+     "cumulative": 232.1,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 5,
+     "bsc": 92.2,
+     "cumulative": 324.3,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 6,
+     "bsc": 90.8,
+     "cumulative": 415.1,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 7,
+     "bsc": 98.6,
+     "cumulative": 513.7,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 8,
+     "bsc": 95.4,
+     "cumulative": 609.1,
+     "cumulativeRank": 28
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Erie",
+   "team": "Erie",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.6,
+     "cumulative": 49.6,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 2,
+     "bsc": 54.2,
+     "cumulative": 103.8,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 3,
+     "bsc": 65.9,
+     "cumulative": 169.7,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 4,
+     "bsc": 69.6,
+     "cumulative": 239.3,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 5,
+     "bsc": 87.9,
+     "cumulative": 327.2,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 6,
+     "bsc": 92.3,
+     "cumulative": 419.5,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 7,
+     "bsc": 94.0,
+     "cumulative": 513.5,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 8,
+     "bsc": 91.8,
+     "cumulative": 605.3,
+     "cumulativeRank": 29
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Ferris",
+   "team": "Ferris",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 52.3,
+     "cumulative": 52.3,
+     "cumulativeRank": 16
+    },
+    {
+     "round": 2,
+     "bsc": 50.9,
+     "cumulative": 103.2,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 3,
+     "bsc": 69.3,
+     "cumulative": 172.5,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 4,
+     "bsc": 84.5,
+     "cumulative": 257.0,
+     "cumulativeRank": 22
+    },
+    {
+     "round": 5,
+     "bsc": 83.3,
+     "cumulative": 340.3,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 6,
+     "bsc": 86.0,
+     "cumulative": 426.3,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 7,
+     "bsc": 89.2,
+     "cumulative": 515.5,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 8,
+     "bsc": 84.5,
+     "cumulative": 600.0,
+     "cumulativeRank": 30
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Erie",
+   "team": "Erie",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 48.0,
+     "cumulative": 48.0,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 2,
+     "bsc": 49.0,
+     "cumulative": 97.0,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 3,
+     "bsc": 59.8,
+     "cumulative": 156.8,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 4,
+     "bsc": 74.0,
+     "cumulative": 230.8,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 5,
+     "bsc": 83.8,
+     "cumulative": 314.6,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 6,
+     "bsc": 87.7,
+     "cumulative": 402.3,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 7,
+     "bsc": 90.1,
+     "cumulative": 492.4,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 8,
+     "bsc": 89.9,
+     "cumulative": 582.3,
+     "cumulativeRank": 31
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Andrews",
+   "team": "Andrews",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 48.8,
+     "cumulative": 48.8,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 2,
+     "bsc": 61.3,
+     "cumulative": 110.1,
+     "cumulativeRank": 20
+    },
+    {
+     "round": 3,
+     "bsc": 63.1,
+     "cumulative": 173.2,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 4,
+     "bsc": 81.1,
+     "cumulative": 254.3,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 5,
+     "bsc": 78.9,
+     "cumulative": 333.2,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 6,
+     "bsc": 82.2,
+     "cumulative": 415.4,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 7,
+     "bsc": 77.3,
+     "cumulative": 492.7,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 8,
+     "bsc": 89.6,
+     "cumulative": 582.3,
+     "cumulativeRank": 32
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Harper",
+   "team": "Harper",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.2,
+     "cumulative": 47.2,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 2,
+     "bsc": 59.8,
+     "cumulative": 107.0,
+     "cumulativeRank": 26
+    },
+    {
+     "round": 3,
+     "bsc": 60.7,
+     "cumulative": 167.7,
+     "cumulativeRank": 29
+    },
+    {
+     "round": 4,
+     "bsc": 66.5,
+     "cumulative": 234.2,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 5,
+     "bsc": 77.5,
+     "cumulative": 311.7,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 6,
+     "bsc": 80.8,
+     "cumulative": 392.5,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 7,
+     "bsc": 89.7,
+     "cumulative": 482.2,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 8,
+     "bsc": 87.5,
+     "cumulative": 569.7,
+     "cumulativeRank": 33
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Garrett",
+   "team": "Garrett",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 52.2,
+     "cumulative": 52.2,
+     "cumulativeRank": 17
+    },
+    {
+     "round": 2,
+     "bsc": 56.3,
+     "cumulative": 108.5,
+     "cumulativeRank": 23
+    },
+    {
+     "round": 3,
+     "bsc": 59.5,
+     "cumulative": 168.0,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 4,
+     "bsc": 71.1,
+     "cumulative": 239.1,
+     "cumulativeRank": 31
+    },
+    {
+     "round": 5,
+     "bsc": 75.1,
+     "cumulative": 314.2,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 6,
+     "bsc": 76.6,
+     "cumulative": 390.8,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 7,
+     "bsc": 76.2,
+     "cumulative": 467.0,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 8,
+     "bsc": 83.7,
+     "cumulative": 550.7,
+     "cumulativeRank": 34
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Garrett",
+   "team": "Garrett",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 46.5,
+     "cumulative": 46.5,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 2,
+     "bsc": 59.2,
+     "cumulative": 105.7,
+     "cumulativeRank": 30
+    },
+    {
+     "round": 3,
+     "bsc": 59.2,
+     "cumulative": 164.9,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 4,
+     "bsc": 71.3,
+     "cumulative": 236.2,
+     "cumulativeRank": 33
+    },
+    {
+     "round": 5,
+     "bsc": 74.7,
+     "cumulative": 310.9,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 6,
+     "bsc": 76.0,
+     "cumulative": 386.9,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 7,
+     "bsc": 81.1,
+     "cumulative": 468.0,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 8,
+     "bsc": 80.7,
+     "cumulative": 548.7,
+     "cumulativeRank": 35
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Garrett",
+   "team": "Garrett",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 46.6,
+     "cumulative": 46.6,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 2,
+     "bsc": 48.6,
+     "cumulative": 95.2,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 3,
+     "bsc": 54.2,
+     "cumulative": 149.4,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 4,
+     "bsc": 65.2,
+     "cumulative": 214.6,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 5,
+     "bsc": 70.0,
+     "cumulative": 284.6,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 6,
+     "bsc": 78.3,
+     "cumulative": 362.9,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 7,
+     "bsc": 79.6,
+     "cumulative": 442.5,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 8,
+     "bsc": 87.8,
+     "cumulative": 530.3,
+     "cumulativeRank": 36
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Erie",
+   "team": "Erie",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.2,
+     "cumulative": 47.2,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 2,
+     "bsc": 59.4,
+     "cumulative": 106.6,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 3,
+     "bsc": 62.4,
+     "cumulative": 169.0,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 4,
+     "bsc": 70.1,
+     "cumulative": 239.1,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 5,
+     "bsc": 69.6,
+     "cumulative": 308.7,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 6,
+     "bsc": 77.5,
+     "cumulative": 386.2,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 7,
+     "bsc": 67.5,
+     "cumulative": 453.7,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 8,
+     "bsc": 66.1,
+     "cumulative": 519.8,
+     "cumulativeRank": 37
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Andrews",
+   "team": "Andrews",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.3,
+     "cumulative": 49.3,
+     "cumulativeRank": 28
+    },
+    {
+     "round": 2,
+     "bsc": 54.0,
+     "cumulative": 103.3,
+     "cumulativeRank": 34
+    },
+    {
+     "round": 3,
+     "bsc": 58.7,
+     "cumulative": 162.0,
+     "cumulativeRank": 35
+    },
+    {
+     "round": 4,
+     "bsc": 69.0,
+     "cumulative": 231.0,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 5,
+     "bsc": 55.5,
+     "cumulative": 286.5,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 6,
+     "bsc": 69.3,
+     "cumulative": 355.8,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 7,
+     "bsc": 77.4,
+     "cumulative": 433.2,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 8,
+     "bsc": 82.1,
+     "cumulative": 515.3,
+     "cumulativeRank": 38
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Erie",
+   "team": "Erie",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 52.7,
+     "cumulative": 52.7,
+     "cumulativeRank": 15
+    },
+    {
+     "round": 2,
+     "bsc": 47.7,
+     "cumulative": 100.4,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 3,
+     "bsc": 46.7,
+     "cumulative": 147.1,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 4,
+     "bsc": 44.7,
+     "cumulative": 191.8,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 5,
+     "bsc": 59.4,
+     "cumulative": 251.2,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 6,
+     "bsc": 74.5,
+     "cumulative": 325.7,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 7,
+     "bsc": 91.0,
+     "cumulative": 416.7,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 8,
+     "bsc": 95.9,
+     "cumulative": 512.6,
+     "cumulativeRank": 39
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Baldwin",
+   "team": "Baldwin",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 44.6,
+     "cumulative": 44.6,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 2,
+     "bsc": 42.5,
+     "cumulative": 87.1,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 3,
+     "bsc": 39.8,
+     "cumulative": 126.9,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 4,
+     "bsc": 54.8,
+     "cumulative": 181.7,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 5,
+     "bsc": 64.9,
+     "cumulative": 246.6,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 6,
+     "bsc": 82.3,
+     "cumulative": 328.9,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 7,
+     "bsc": 89.7,
+     "cumulative": 418.6,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 8,
+     "bsc": 88.6,
+     "cumulative": 507.2,
+     "cumulativeRank": 40
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Andrews",
+   "team": "Andrews",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.4,
+     "cumulative": 47.4,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 2,
+     "bsc": 39.9,
+     "cumulative": 87.3,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 3,
+     "bsc": 50.5,
+     "cumulative": 137.8,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 4,
+     "bsc": 50.8,
+     "cumulative": 188.6,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 5,
+     "bsc": 60.9,
+     "cumulative": 249.5,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 6,
+     "bsc": 74.5,
+     "cumulative": 324.0,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 7,
+     "bsc": 89.6,
+     "cumulative": 413.6,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 8,
+     "bsc": 92.5,
+     "cumulative": 506.1,
+     "cumulativeRank": 41
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Ferris",
+   "team": "Ferris",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 55.5,
+     "cumulative": 55.5,
+     "cumulativeRank": 6
+    },
+    {
+     "round": 2,
+     "bsc": 51.6,
+     "cumulative": 107.1,
+     "cumulativeRank": 25
+    },
+    {
+     "round": 3,
+     "bsc": 53.6,
+     "cumulative": 160.7,
+     "cumulativeRank": 37
+    },
+    {
+     "round": 4,
+     "bsc": 54.9,
+     "cumulative": 215.6,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 5,
+     "bsc": 60.8,
+     "cumulative": 276.4,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 6,
+     "bsc": 59.8,
+     "cumulative": 336.2,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 7,
+     "bsc": 75.9,
+     "cumulative": 412.1,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 8,
+     "bsc": 79.8,
+     "cumulative": 491.9,
+     "cumulativeRank": 42
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Ferris",
+   "team": "Ferris",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 43.8,
+     "cumulative": 43.8,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 2,
+     "bsc": 49.8,
+     "cumulative": 93.6,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 3,
+     "bsc": 68.3,
+     "cumulative": 161.9,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 4,
+     "bsc": 58.6,
+     "cumulative": 220.5,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 5,
+     "bsc": 53.5,
+     "cumulative": 274.0,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 6,
+     "bsc": 63.6,
+     "cumulative": 337.6,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 7,
+     "bsc": 70.8,
+     "cumulative": 408.4,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 8,
+     "bsc": 77.8,
+     "cumulative": 486.2,
+     "cumulativeRank": 43
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Baldwin",
+   "team": "Baldwin",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 41.1,
+     "cumulative": 41.1,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 2,
+     "bsc": 38.7,
+     "cumulative": 79.8,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 3,
+     "bsc": 54.7,
+     "cumulative": 134.5,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 4,
+     "bsc": 60.3,
+     "cumulative": 194.8,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 5,
+     "bsc": 58.1,
+     "cumulative": 252.9,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 6,
+     "bsc": 69.0,
+     "cumulative": 321.9,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 7,
+     "bsc": 77.6,
+     "cumulative": 399.5,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 8,
+     "bsc": 75.7,
+     "cumulative": 475.2,
+     "cumulativeRank": 44
+    }
+   ]
+  },
+  {
+   "id": "CP136219_2__Baldwin",
+   "team": "Baldwin",
+   "section": 1,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 42.1,
+     "cumulative": 42.1,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 2,
+     "bsc": 48.8,
+     "cumulative": 90.9,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 3,
+     "bsc": 57.4,
+     "cumulative": 148.3,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 4,
+     "bsc": 58.6,
+     "cumulative": 206.9,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 5,
+     "bsc": 56.9,
+     "cumulative": 263.8,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 6,
+     "bsc": 60.8,
+     "cumulative": 324.6,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 7,
+     "bsc": 69.9,
+     "cumulative": 394.5,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 8,
+     "bsc": 76.1,
+     "cumulative": 470.6,
+     "cumulativeRank": 45
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Digby",
+   "team": "Digby",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.9,
+     "cumulative": 49.9,
+     "cumulativeRank": 24
+    },
+    {
+     "round": 2,
+     "bsc": 46.9,
+     "cumulative": 96.8,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 3,
+     "bsc": 44.5,
+     "cumulative": 141.3,
+     "cumulativeRank": 45
+    },
+    {
+     "round": 4,
+     "bsc": 47.5,
+     "cumulative": 188.8,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 5,
+     "bsc": 54.0,
+     "cumulative": 242.8,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 6,
+     "bsc": 59.0,
+     "cumulative": 301.8,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 7,
+     "bsc": 78.1,
+     "cumulative": 379.9,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 8,
+     "bsc": 81.8,
+     "cumulative": 461.7,
+     "cumulativeRank": 46
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Ferris",
+   "team": "Ferris",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.1,
+     "cumulative": 47.1,
+     "cumulativeRank": 41
+    },
+    {
+     "round": 2,
+     "bsc": 42.8,
+     "cumulative": 89.9,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 3,
+     "bsc": 36.3,
+     "cumulative": 126.2,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 4,
+     "bsc": 50.0,
+     "cumulative": 176.2,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 5,
+     "bsc": 66.2,
+     "cumulative": 242.4,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 6,
+     "bsc": 72.8,
+     "cumulative": 315.2,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 7,
+     "bsc": 71.6,
+     "cumulative": 386.8,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 8,
+     "bsc": 74.7,
+     "cumulative": 461.5,
+     "cumulativeRank": 47
+    }
+   ]
+  },
+  {
+   "id": "CP136219_1__Andrews",
+   "team": "Andrews",
+   "section": 1,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 46.5,
+     "cumulative": 46.5,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 2,
+     "bsc": 46.0,
+     "cumulative": 92.5,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 3,
+     "bsc": 40.0,
+     "cumulative": 132.5,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 4,
+     "bsc": 51.8,
+     "cumulative": 184.3,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 5,
+     "bsc": 66.1,
+     "cumulative": 250.4,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 6,
+     "bsc": 60.5,
+     "cumulative": 310.9,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 7,
+     "bsc": 61.9,
+     "cumulative": 372.8,
+     "cumulativeRank": 48
+    },
+    {
+     "round": 8,
+     "bsc": 66.7,
+     "cumulative": 439.5,
+     "cumulativeRank": 48
+    }
+   ]
+  },
+  {
+   "id": "CP136220_1__Andrews",
+   "team": "Andrews",
+   "section": 2,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 35.6,
+     "cumulative": 35.6,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 2,
+     "bsc": 35.2,
+     "cumulative": 70.8,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 3,
+     "bsc": 22.6,
+     "cumulative": 93.4,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 4,
+     "bsc": 39.7,
+     "cumulative": 133.1,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 5,
+     "bsc": 63.1,
+     "cumulative": 196.2,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 6,
+     "bsc": 73.9,
+     "cumulative": 270.1,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 7,
+     "bsc": 79.7,
+     "cumulative": 349.8,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 8,
+     "bsc": 76.6,
+     "cumulative": 426.4,
+     "cumulativeRank": 49
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Baldwin",
+   "team": "Baldwin",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 41.1,
+     "cumulative": 41.1,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 2,
+     "bsc": 38.0,
+     "cumulative": 79.1,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 3,
+     "bsc": 52.5,
+     "cumulative": 131.6,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 4,
+     "bsc": 48.1,
+     "cumulative": 179.7,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 5,
+     "bsc": 56.0,
+     "cumulative": 235.7,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 6,
+     "bsc": 52.1,
+     "cumulative": 287.8,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 7,
+     "bsc": 70.4,
+     "cumulative": 358.2,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 8,
+     "bsc": 64.9,
+     "cumulative": 423.1,
+     "cumulativeRank": 50
+    }
+   ]
+  },
+  {
+   "id": "CP136222_1__Digby",
+   "team": "Digby",
+   "section": 4,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 48.4,
+     "cumulative": 48.4,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 2,
+     "bsc": 49.9,
+     "cumulative": 98.3,
+     "cumulativeRank": 38
+    },
+    {
+     "round": 3,
+     "bsc": 35.2,
+     "cumulative": 133.5,
+     "cumulativeRank": 50
+    },
+    {
+     "round": 4,
+     "bsc": 37.9,
+     "cumulative": 171.4,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 5,
+     "bsc": 36.4,
+     "cumulative": 207.8,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 6,
+     "bsc": 51.7,
+     "cumulative": 259.5,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 7,
+     "bsc": 66.6,
+     "cumulative": 326.1,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 8,
+     "bsc": 77.7,
+     "cumulative": 403.8,
+     "cumulativeRank": 51
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Garrett",
+   "team": "Garrett",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 42.4,
+     "cumulative": 42.4,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 2,
+     "bsc": 47.9,
+     "cumulative": 90.3,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 3,
+     "bsc": 51.0,
+     "cumulative": 141.3,
+     "cumulativeRank": 44
+    },
+    {
+     "round": 4,
+     "bsc": 54.1,
+     "cumulative": 195.4,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 5,
+     "bsc": 50.2,
+     "cumulative": 245.6,
+     "cumulativeRank": 47
+    },
+    {
+     "round": 6,
+     "bsc": 44.5,
+     "cumulative": 290.1,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 7,
+     "bsc": 46.6,
+     "cumulative": 336.7,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 8,
+     "bsc": 59.0,
+     "cumulative": 395.7,
+     "cumulativeRank": 52
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Baldwin",
+   "team": "Baldwin",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 49.5,
+     "cumulative": 49.5,
+     "cumulativeRank": 27
+    },
+    {
+     "round": 2,
+     "bsc": 54.8,
+     "cumulative": 104.3,
+     "cumulativeRank": 32
+    },
+    {
+     "round": 3,
+     "bsc": 47.8,
+     "cumulative": 152.1,
+     "cumulativeRank": 40
+    },
+    {
+     "round": 4,
+     "bsc": 43.3,
+     "cumulative": 195.4,
+     "cumulativeRank": 43
+    },
+    {
+     "round": 5,
+     "bsc": 39.5,
+     "cumulative": 234.9,
+     "cumulativeRank": 51
+    },
+    {
+     "round": 6,
+     "bsc": 35.2,
+     "cumulative": 270.1,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 7,
+     "bsc": 55.0,
+     "cumulative": 325.1,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 8,
+     "bsc": 49.9,
+     "cumulative": 375.0,
+     "cumulativeRank": 53
+    }
+   ]
+  },
+  {
+   "id": "CP136221_2__Erie",
+   "team": "Erie",
+   "section": 3,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 47.2,
+     "cumulative": 47.2,
+     "cumulativeRank": 39
+    },
+    {
+     "round": 2,
+     "bsc": 53.7,
+     "cumulative": 100.9,
+     "cumulativeRank": 36
+    },
+    {
+     "round": 3,
+     "bsc": 33.0,
+     "cumulative": 133.9,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 4,
+     "bsc": 40.8,
+     "cumulative": 174.7,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 5,
+     "bsc": 33.5,
+     "cumulative": 208.2,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 6,
+     "bsc": 59.9,
+     "cumulative": 268.1,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 7,
+     "bsc": 49.1,
+     "cumulative": 317.2,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 8,
+     "bsc": 46.0,
+     "cumulative": 363.2,
+     "cumulativeRank": 54
+    }
+   ]
+  },
+  {
+   "id": "CP136222_2__Erie",
+   "team": "Erie",
+   "section": 4,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 36.5,
+     "cumulative": 36.5,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 2,
+     "bsc": 34.6,
+     "cumulative": 71.1,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 3,
+     "bsc": 34.9,
+     "cumulative": 106.0,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 4,
+     "bsc": 51.3,
+     "cumulative": 157.3,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 5,
+     "bsc": 55.5,
+     "cumulative": 212.8,
+     "cumulativeRank": 53
+    },
+    {
+     "round": 6,
+     "bsc": 49.0,
+     "cumulative": 261.8,
+     "cumulativeRank": 54
+    },
+    {
+     "round": 7,
+     "bsc": 48.6,
+     "cumulative": 310.4,
+     "cumulativeRank": 55
+    },
+    {
+     "round": 8,
+     "bsc": 34.5,
+     "cumulative": 344.9,
+     "cumulativeRank": 55
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Chester",
+   "team": "Chester",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 55.3,
+     "cumulative": 55.3,
+     "cumulativeRank": 7
+    },
+    {
+     "round": 2,
+     "bsc": 41.2,
+     "cumulative": 96.5,
+     "cumulativeRank": 42
+    },
+    {
+     "round": 3,
+     "bsc": 42.0,
+     "cumulative": 138.5,
+     "cumulativeRank": 46
+    },
+    {
+     "round": 4,
+     "bsc": 43.6,
+     "cumulative": 182.1,
+     "cumulativeRank": 49
+    },
+    {
+     "round": 5,
+     "bsc": 45.4,
+     "cumulative": 227.5,
+     "cumulativeRank": 52
+    },
+    {
+     "round": 6,
+     "bsc": 26.7,
+     "cumulative": 254.2,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 7,
+     "bsc": 30.6,
+     "cumulative": 284.8,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 8,
+     "bsc": 43.1,
+     "cumulative": 327.9,
+     "cumulativeRank": 56
+    }
+   ]
+  },
+  {
+   "id": "CP136220_2__Garrett",
+   "team": "Garrett",
+   "section": 2,
+   "industry": 2,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 36.4,
+     "cumulative": 36.4,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 2,
+     "bsc": 34.1,
+     "cumulative": 70.5,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 3,
+     "bsc": 25.0,
+     "cumulative": 95.5,
+     "cumulativeRank": 56
+    },
+    {
+     "round": 4,
+     "bsc": 32.7,
+     "cumulative": 128.2,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 5,
+     "bsc": 18.2,
+     "cumulative": 146.4,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 6,
+     "bsc": 32.2,
+     "cumulative": 178.6,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 7,
+     "bsc": 46.2,
+     "cumulative": 224.8,
+     "cumulativeRank": 57
+    },
+    {
+     "round": 8,
+     "bsc": 57.2,
+     "cumulative": 282.0,
+     "cumulativeRank": 57
+    }
+   ]
+  },
+  {
+   "id": "CP136221_1__Digby",
+   "team": "Digby",
+   "section": 3,
+   "industry": 1,
+   "rounds": [
+    {
+     "round": 1,
+     "bsc": 28.8,
+     "cumulative": 28.8,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 2,
+     "bsc": 18.1,
+     "cumulative": 46.9,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 3,
+     "bsc": 23.5,
+     "cumulative": 70.4,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 4,
+     "bsc": 18.1,
+     "cumulative": 88.5,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 5,
+     "bsc": 19.9,
+     "cumulative": 108.4,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 6,
+     "bsc": 27.0,
+     "cumulative": 135.4,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 7,
+     "bsc": 30.3,
+     "cumulative": 165.7,
+     "cumulativeRank": 58
+    },
+    {
+     "round": 8,
+     "bsc": 37.5,
+     "cumulative": 203.2,
+     "cumulativeRank": 58
+    }
+   ]
+  }
+ ],
+ "finance": {
+  "loansByRound": [
+   20,
+   13,
+   14,
+   11,
+   14,
+   6,
+   6,
+   4
+  ],
+  "zeroLoan": {
+   "n": 17,
+   "avgRank": 13.7
+  },
+  "anyLoan": {
+   "n": 41,
+   "avgRank": 36.0
+  },
+  "teams": {
+   "CP136219_1__Andrews": {
+    "p": [
+     1281,
+     -1306,
+     -5768,
+     -5713,
+     3428,
+     -496,
+     -743,
+     5625
+    ],
+    "l": [
+     0,
+     0,
+     18800,
+     15189,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Baldwin": {
+    "p": [
+     -1898,
+     303,
+     -2269,
+     1476,
+     -5387,
+     -7448,
+     -402,
+     8093
+    ],
+    "l": [
+     8048,
+     0,
+     0,
+     0,
+     12008,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Chester": {
+    "p": [
+     -7211,
+     -8841,
+     4935,
+     9391,
+     29051,
+     42637,
+     48398,
+     67822
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Digby": {
+    "p": [
+     -1090,
+     4868,
+     8116,
+     14121,
+     25766,
+     52761,
+     72753,
+     93385
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Erie": {
+    "p": [
+     3533,
+     253,
+     1085,
+     11570,
+     5619,
+     12877,
+     28049,
+     54626
+    ],
+    "l": [
+     3515,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Ferris": {
+    "p": [
+     559,
+     -1600,
+     -7963,
+     -5911,
+     -96,
+     -829,
+     3696,
+     10405
+    ],
+    "l": [
+     0,
+     0,
+     10398,
+     3806,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Garrett": {
+    "p": [
+     5516,
+     -299,
+     3466,
+     -1739,
+     17824,
+     24075,
+     50927,
+     68716
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_1__Harper": {
+    "p": [
+     1286,
+     -425,
+     5850,
+     5144,
+     7718,
+     21610,
+     33458,
+     36756
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     1629,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_2__Andrews": {
+    "p": [
+     -831,
+     -11316,
+     -444,
+     2404,
+     -3361,
+     6437,
+     2721,
+     15715
+    ],
+    "l": [
+     0,
+     8506,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_2__Baldwin": {
+    "p": [
+     1381,
+     399,
+     -3005,
+     -3436,
+     -3871,
+     -9463,
+     4840,
+     -10711
+    ],
+    "l": [
+     0,
+     0,
+     2916,
+     0,
+     8912,
+     30911,
+     0,
+     8728
+    ]
+   },
+   "CP136221_2__Chester": {
+    "p": [
+     -5876,
+     1074,
+     28957,
+     50016,
+     61028,
+     92963,
+     100678,
+     124001
+    ],
+    "l": [
+     4508,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_2__Digby": {
+    "p": [
+     -2048,
+     -5187,
+     -11301,
+     -4338,
+     -5568,
+     -1644,
+     14313,
+     28408
+    ],
+    "l": [
+     0,
+     0,
+     18731,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_2__Erie": {
+    "p": [
+     -588,
+     -3378,
+     -18656,
+     -2784,
+     -2362,
+     8080,
+     -10789,
+     5423
+    ],
+    "l": [
+     0,
+     9715,
+     26214,
+     809,
+     2548,
+     0,
+     22876,
+     0
+    ]
+   },
+   "CP136221_2__Ferris": {
+    "p": [
+     -657,
+     -3092,
+     12543,
+     16233,
+     43884,
+     49544,
+     81316,
+     104450
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_2__Garrett": {
+    "p": [
+     1039,
+     -614,
+     864,
+     -2085,
+     2205,
+     2502,
+     12065,
+     24600
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_2__Andrews": {
+    "p": [
+     -500,
+     -1464,
+     -547,
+     6875,
+     8935,
+     15754,
+     27551,
+     36693
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     8802,
+     0
+    ]
+   },
+   "CP136219_2__Baldwin": {
+    "p": [
+     574,
+     -1438,
+     -4531,
+     -982,
+     -2210,
+     1768,
+     6881,
+     12346
+    ],
+    "l": [
+     10868,
+     0,
+     5322,
+     0,
+     0,
+     0,
+     3596,
+     0
+    ]
+   },
+   "CP136219_2__Chester": {
+    "p": [
+     3843,
+     -5136,
+     8336,
+     12306,
+     12662,
+     18398,
+     17403,
+     25789
+    ],
+    "l": [
+     0,
+     13388,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_2__Digby": {
+    "p": [
+     3356,
+     5350,
+     10104,
+     10631,
+     23158,
+     36674,
+     38163,
+     54141
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_2__Erie": {
+    "p": [
+     1214,
+     3509,
+     -3863,
+     3464,
+     5524,
+     10810,
+     24323,
+     28677
+    ],
+    "l": [
+     9227,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136219_2__Ferris": {
+    "p": [
+     -2420,
+     -16,
+     8561,
+     803,
+     103,
+     2704,
+     8476,
+     22200
+    ],
+    "l": [
+     1364,
+     0,
+     0,
+     0,
+     0,
+     0,
+     771,
+     0
+    ]
+   },
+   "CP136219_2__Garrett": {
+    "p": [
+     1227,
+     2684,
+     5215,
+     7733,
+     5711,
+     18710,
+     42098,
+     58602
+    ],
+    "l": [
+     5024,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Andrews": {
+    "p": [
+     -1970,
+     -2486,
+     12883,
+     28466,
+     51302,
+     68562,
+     80421,
+     90996
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Baldwin": {
+    "p": [
+     -2303,
+     -3441,
+     -16523,
+     -4120,
+     2809,
+     10780,
+     29589,
+     42038
+    ],
+    "l": [
+     5749,
+     8986,
+     12130,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Chester": {
+    "p": [
+     694,
+     -1509,
+     -499,
+     8911,
+     17212,
+     24500,
+     38696,
+     49009
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Digby": {
+    "p": [
+     -6968,
+     1977,
+     -457,
+     11829,
+     9408,
+     11292,
+     30629,
+     34866
+    ],
+    "l": [
+     18367,
+     0,
+     13555,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Erie": {
+    "p": [
+     2911,
+     -3946,
+     -1636,
+     -9559,
+     -597,
+     6203,
+     20251,
+     41531
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     958,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Ferris": {
+    "p": [
+     5200,
+     -388,
+     3872,
+     10540,
+     16901,
+     20416,
+     38365,
+     46628
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_2__Garrett": {
+    "p": [
+     -7737,
+     -17019,
+     -12977,
+     -6222,
+     -15583,
+     -1371,
+     -16994,
+     -6897
+    ],
+    "l": [
+     21908,
+     19842,
+     34321,
+     8299,
+     43199,
+     3698,
+     2188,
+     6815
+    ]
+   },
+   "CP136222_1__Andrews": {
+    "p": [
+     567,
+     -8760,
+     -7029,
+     -377,
+     15710,
+     27543,
+     40879,
+     61187
+    ],
+    "l": [
+     0,
+     14066,
+     0,
+     2733,
+     7098,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_1__Baldwin": {
+    "p": [
+     -5002,
+     -4672,
+     -3552,
+     -2271,
+     3523,
+     4956,
+     13534,
+     -9346
+    ],
+    "l": [
+     16789,
+     0,
+     0,
+     12738,
+     12660,
+     0,
+     0,
+     1245
+    ]
+   },
+   "CP136222_1__Chester": {
+    "p": [
+     -2265,
+     -950,
+     15893,
+     19699,
+     43915,
+     54728,
+     65694,
+     81197
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_1__Digby": {
+    "p": [
+     686,
+     -6222,
+     -9485,
+     -7025,
+     -1982,
+     1337,
+     5017,
+     18655
+    ],
+    "l": [
+     6046,
+     0,
+     14209,
+     0,
+     1629,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_1__Erie": {
+    "p": [
+     1627,
+     2700,
+     3450,
+     10525,
+     20104,
+     32110,
+     51134,
+     79931
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_1__Ferris": {
+    "p": [
+     2175,
+     -3104,
+     4929,
+     7515,
+     8775,
+     11931,
+     13767,
+     8908
+    ],
+    "l": [
+     1335,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_1__Garrett": {
+    "p": [
+     -175,
+     -1079,
+     5404,
+     -5380,
+     944,
+     6414,
+     14875,
+     23696
+    ],
+    "l": [
+     3458,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_1__Harper": {
+    "p": [
+     -2687,
+     1521,
+     -1633,
+     5983,
+     3436,
+     13263,
+     16647,
+     28656
+    ],
+    "l": [
+     2627,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_1__Andrews": {
+    "p": [
+     -589,
+     -364,
+     3315,
+     5593,
+     17331,
+     8258,
+     16205,
+     41133
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     76,
+     0,
+     0
+    ]
+   },
+   "CP136221_1__Baldwin": {
+    "p": [
+     760,
+     -5317,
+     16918,
+     40013,
+     53334,
+     60429,
+     63739,
+     54954
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_1__Chester": {
+    "p": [
+     3792,
+     -7248,
+     -7298,
+     -5065,
+     -3611,
+     -9318,
+     -6870,
+     -16118
+    ],
+    "l": [
+     0,
+     23686,
+     0,
+     0,
+     2446,
+     11196,
+     4668,
+     0
+    ]
+   },
+   "CP136221_1__Digby": {
+    "p": [
+     -11968,
+     -19229,
+     -7334,
+     -13238,
+     -1982,
+     -11288,
+     -694,
+     -23657
+    ],
+    "l": [
+     32238,
+     0,
+     0,
+     16775,
+     0,
+     7004,
+     0,
+     33036
+    ]
+   },
+   "CP136221_1__Erie": {
+    "p": [
+     -1811,
+     -4329,
+     2869,
+     6234,
+     18740,
+     33532,
+     52387,
+     48567
+    ],
+    "l": [
+     0,
+     7308,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_1__Ferris": {
+    "p": [
+     1106,
+     -1421,
+     -4707,
+     6206,
+     13604,
+     35703,
+     43860,
+     53634
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136221_1__Garrett": {
+    "p": [
+     1321,
+     2344,
+     4385,
+     -2110,
+     -3495,
+     -4659,
+     1687,
+     -1268
+    ],
+    "l": [
+     0,
+     7265,
+     0,
+     0,
+     6445,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Andrews": {
+    "p": [
+     -3503,
+     -747,
+     -2239,
+     -8492,
+     116,
+     9673,
+     17573,
+     35539
+    ],
+    "l": [
+     4708,
+     667,
+     0,
+     0,
+     11495,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Baldwin": {
+    "p": [
+     1264,
+     -574,
+     5824,
+     668,
+     10225,
+     19380,
+     32852,
+     46956
+    ],
+    "l": [
+     0,
+     0,
+     440,
+     23977,
+     2356,
+     2157,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Chester": {
+    "p": [
+     1101,
+     1365,
+     -1274,
+     5741,
+     8961,
+     18629,
+     23943,
+     36765
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Digby": {
+    "p": [
+     108,
+     3127,
+     6783,
+     9074,
+     5326,
+     13478,
+     34289,
+     48197
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Erie": {
+    "p": [
+     -8677,
+     -8579,
+     -4918,
+     2549,
+     -1546,
+     2970,
+     2076,
+     976
+    ],
+    "l": [
+     15855,
+     14651,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Ferris": {
+    "p": [
+     2555,
+     -4133,
+     -4476,
+     -3291,
+     -6229,
+     -4921,
+     5182,
+     16974
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     2088,
+     16508,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136222_2__Garrett": {
+    "p": [
+     48,
+     -1353,
+     -1221,
+     2983,
+     5367,
+     8114,
+     6343,
+     29820
+    ],
+    "l": [
+     3993,
+     2288,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Andrews": {
+    "p": [
+     -6994,
+     -4513,
+     -13488,
+     -1496,
+     2660,
+     4320,
+     9870,
+     15596
+    ],
+    "l": [
+     18336,
+     0,
+     8105,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Baldwin": {
+    "p": [
+     -3212,
+     -2347,
+     4520,
+     14573,
+     18436,
+     24998,
+     35723,
+     56912
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Chester": {
+    "p": [
+     471,
+     116,
+     2114,
+     9755,
+     15580,
+     22167,
+     32374,
+     31334
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Digby": {
+    "p": [
+     -809,
+     -7052,
+     2624,
+     5432,
+     15222,
+     26239,
+     42882,
+     55650
+    ],
+    "l": [
+     0,
+     0,
+     1005,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Erie": {
+    "p": [
+     -1690,
+     -2339,
+     -1280,
+     5745,
+     3997,
+     5258,
+     10649,
+     8209
+    ],
+    "l": [
+     0,
+     0,
+     5115,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Ferris": {
+    "p": [
+     2978,
+     116,
+     5849,
+     4820,
+     10645,
+     23386,
+     39813,
+     42000
+    ],
+    "l": [
+     0,
+     1558,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "CP136220_1__Garrett": {
+    "p": [
+     -3122,
+     -10070,
+     12293,
+     9043,
+     19721,
+     42620,
+     54220,
+     88366
+    ],
+    "l": [
+     0,
+     0,
+     0,
+     5168,
+     8060,
+     0,
+     0,
+     0
+    ]
+   }
+  }
+ }
+}
