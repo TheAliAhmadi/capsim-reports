@@ -1690,6 +1690,64 @@
   @media (max-width: 380px) {
     #adj-lb .fl-champs, #adj-lb .fl-tough { grid-template-columns: 1fr; }
   }
+
+    /* ---- Certificate portal ---- */
+    .cert-panel {
+      margin-top: 1.15rem;
+      background: linear-gradient(135deg, #0a1f3d 0%, #14325f 62%, #1c4578 100%);
+      color: #fff;
+      border: 1px solid rgba(212, 168, 75, 0.75);
+      position: relative;
+      overflow: hidden;
+    }
+    .cert-panel::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(240, 212, 138, 0.28);
+      border-radius: calc(var(--radius) - 6px);
+      pointer-events: none;
+    }
+    .cert-row { display: flex; gap: 1.1rem; align-items: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .cert-seal {
+      flex: none; width: 3.1rem; height: 3.1rem; border-radius: 50%;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 35% 30%, #fbe9b7, #d4a84b 55%, #9c7425 100%);
+      box-shadow: 0 0 0 3px rgba(240, 212, 138, 0.35), inset 0 -3px 6px rgba(0,0,0,0.18);
+      color: var(--navy); font: 700 1.35rem/1 Georgia, "Times New Roman", serif;
+    }
+    .cert-copy { flex: 1 1 18rem; min-width: 0; }
+    .cert-kicker { margin: 0 0 0.2rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: #f0d48a; font-weight: 800; }
+    .cert-panel h2 { margin: 0 0 0.25rem; font: 700 clamp(1.2rem, 2.2vw, 1.45rem)/1.2 Georgia, "Times New Roman", serif; color: #fff; }
+    .cert-panel p { margin: 0; color: rgba(255,255,255,0.86); line-height: 1.5; font-size: 0.95rem; }
+    .cert-form { display: flex; gap: 0.5rem; flex: 1 1 20rem; max-width: 26rem; flex-wrap: wrap; }
+    .cert-form input {
+      flex: 1 1 11rem; min-width: 0; padding: 0.7rem 0.85rem; border-radius: 12px;
+      border: 1px solid rgba(240, 212, 138, 0.6); background: rgba(255,255,255,0.97);
+      color: var(--navy); font-size: 1rem; letter-spacing: 0.04em;
+    }
+    .cert-form input:focus { outline: 3px solid rgba(240, 212, 138, 0.55); outline-offset: 1px; }
+    .cert-btn {
+      padding: 0.7rem 1.1rem; border-radius: 12px; border: 1px solid #d4a84b; cursor: pointer;
+      background: linear-gradient(180deg, #f0d48a, #d4a84b); color: var(--navy); font-weight: 800; font-size: 0.95rem;
+    }
+    .cert-btn:hover { filter: brightness(1.05); }
+    .cert-btn:disabled { opacity: 0.6; cursor: progress; }
+    .cert-btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.55); font-weight: 700; }
+    .cert-btn.ghost:hover { background: rgba(255,255,255,0.1); }
+    .cert-msg { flex-basis: 100%; min-height: 1.2em; margin: 0; font-size: 0.9rem; color: #f7edd4; }
+    .cert-msg.bad { color: #ffd5cc; }
+    .cert-result { position: relative; z-index: 1; margin-top: 1rem; }
+    .cert-result[hidden] { display: none; }
+    .cert-result-head { display: flex; gap: 0.75rem; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .cert-result-head strong { font: 700 1.1rem/1.3 Georgia, "Times New Roman", serif; color: #f0d48a; }
+    .cert-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .cert-frame {
+      width: 100%; aspect-ratio: 11 / 8.5; border: 0; border-radius: 10px; display: block;
+      background: #f7f3ea; box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+    }
+    .cert-note { margin-top: 0.6rem !important; font-size: 0.85rem !important; color: rgba(255,255,255,0.72) !important; }
+    @media (max-width: 680px) { .cert-form { max-width: none; } .cert-frame { aspect-ratio: 8.5 / 8; } }
   </style>
 </head>
 <body>
@@ -1725,6 +1783,35 @@
       <button type="button" class="tab" id="tab-leaderboard" aria-current="page">Leaderboard</button>
       <button type="button" class="tab" id="tab-adjusted">Adjusted Leaderboard</button>
     </nav>
+
+    <section class="panel cert-panel" id="certificate" aria-labelledby="cert-title">
+      <div class="cert-row">
+        <div class="cert-seal" aria-hidden="true">★</div>
+        <div class="cert-copy">
+          <p class="cert-kicker">You earned it</p>
+          <h2 id="cert-title">Get your Capsim certificate</h2>
+          <p>Enter your Queen’s student number to open your personal certificate. Only your own certificate unlocks.</p>
+        </div>
+        <form class="cert-form" id="cert-form" autocomplete="off" novalidate>
+          <label class="sr-only" for="cert-id">Student number</label>
+          <input id="cert-id" type="password" inputmode="numeric" placeholder="Student number" autocomplete="off" spellcheck="false" />
+          <button class="cert-btn" id="cert-unlock" type="submit">Unlock</button>
+          <p class="cert-msg" id="cert-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="cert-result" id="cert-result" hidden>
+        <div class="cert-result-head">
+          <strong id="cert-name">Your certificate</strong>
+          <div class="cert-actions">
+            <button class="cert-btn" id="cert-download" type="button">Download PDF</button>
+            <button class="cert-btn ghost" id="cert-open" type="button">Open in new tab</button>
+            <button class="cert-btn ghost" id="cert-lock" type="button">Lock</button>
+          </div>
+        </div>
+        <iframe class="cert-frame" id="cert-frame" title="Your Capsim certificate"></iframe>
+        <p class="cert-note">Congratulations! Your certificate is print-ready and can be added to LinkedIn under Licenses &amp; certifications.</p>
+      </div>
+    </section>
 
     <div id="view-main">
     <p class="panel" id="loading">Loading the leaderboard…</p>
@@ -5432,6 +5519,86 @@ function initAdjustedLeaderboard(root, data, opts) {
         const fail = document.getElementById("adj-error");
         if (fail) fail.hidden = false;
       });
+  </script>
+
+  <script>
+  (() => {
+    const form = document.getElementById("cert-form");
+    const input = document.getElementById("cert-id");
+    const btn = document.getElementById("cert-unlock");
+    const msg = document.getElementById("cert-msg");
+    const result = document.getElementById("cert-result");
+    const frame = document.getElementById("cert-frame");
+    const nameEl = document.getElementById("cert-name");
+    let cfg = null, cfgPromise = null, blobUrl = null, fileName = "Capsim-Certificate.pdf";
+    const enc = new TextEncoder();
+    const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+    const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    const cat = (a, b) => { const o = new Uint8Array(a.length + b.length); o.set(a); o.set(b, a.length); return o; };
+    function loadCfg() {
+      if (!cfgPromise) cfgPromise = fetch("cert-unlock.json", { cache: "no-cache" })
+        .then((r) => { if (!r.ok) throw new Error("cfg " + r.status); return r.json(); })
+        .then((d) => (cfg = d))
+        .catch((e) => { cfgPromise = null; throw e; });
+      return cfgPromise;
+    }
+    function say(text, bad) { msg.textContent = text; msg.className = "cert-msg" + (bad ? " bad" : ""); }
+    async function unlock(e) {
+      if (e) e.preventDefault();
+      const id = input.value.replace(/\s+/g, "");
+      if (!id) { say("Enter your student number to unlock your certificate.", true); return; }
+      if (!window.crypto || !crypto.subtle) { say("This browser can’t unlock certificates. Try a current version of Chrome, Safari, Edge or Firefox.", true); return; }
+      btn.disabled = true; say("Unlocking your certificate…");
+      try {
+        await loadCfg();
+        const base = await crypto.subtle.importKey("raw", enc.encode(id), "PBKDF2", false, ["deriveBits"]);
+        const master = new Uint8Array(await crypto.subtle.deriveBits(
+          { name: "PBKDF2", hash: cfg.kdf.hash, salt: b64(cfg.kdf.salt), iterations: cfg.kdf.iterations }, base, 256));
+        const fid = hex(await crypto.subtle.digest("SHA-256", cat(enc.encode(cfg.fileInfo), master))).slice(0, 32);
+        if (!cfg.files.includes(fid)) {
+          say("We couldn’t find a certificate for that student number. Check the digits and try again.", true);
+          return;
+        }
+        const r = await fetch(cfg.dir + fid + ".bin", { cache: "no-cache" });
+        if (!r.ok) throw new Error("blob " + r.status);
+        const blob = new Uint8Array(await r.arrayBuffer());
+        const keyBytes = await crypto.subtle.digest("SHA-256", cat(enc.encode(cfg.keyInfo), master));
+        const key = await crypto.subtle.importKey("raw", keyBytes, "AES-GCM", false, ["decrypt"]);
+        const plain = new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: blob.slice(0, 12) }, key, blob.slice(12)));
+        if (new TextDecoder().decode(plain.slice(0, 8)) !== "CAPCERT1") throw new Error("format");
+        const n = new DataView(plain.buffer).getUint32(8);
+        const meta = JSON.parse(new TextDecoder().decode(plain.slice(12, 12 + n)));
+        const pdf = new Blob([plain.slice(12 + n)], { type: "application/pdf" });
+        if (blobUrl) URL.revokeObjectURL(blobUrl);
+        blobUrl = URL.createObjectURL(pdf);
+        fileName = meta.filename || fileName;
+        nameEl.textContent = "Congratulations, " + meta.name + "!";
+        frame.src = blobUrl + "#view=FitH&toolbar=0";
+        result.hidden = false;
+        input.value = "";
+        say("Unlocked. This certificate is yours alone.");
+      } catch (err) {
+        console.error(err);
+        say("Something went wrong while unlocking. Refresh the page and try again.", true);
+      } finally { btn.disabled = false; }
+    }
+    function download() {
+      if (!blobUrl) return;
+      const a = document.createElement("a");
+      a.href = blobUrl; a.download = fileName;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+    function lock() {
+      result.hidden = true; frame.removeAttribute("src");
+      if (blobUrl) { URL.revokeObjectURL(blobUrl); blobUrl = null; }
+      say(""); input.focus();
+    }
+    form.addEventListener("submit", unlock);
+    document.getElementById("cert-download").addEventListener("click", download);
+    document.getElementById("cert-open").addEventListener("click", () => { if (blobUrl) window.open(blobUrl, "_blank", "noopener"); });
+    document.getElementById("cert-lock").addEventListener("click", lock);
+    input.addEventListener("focus", () => { loadCfg().catch(() => {}); }, { once: true });
+  })();
   </script>
 </body>
 </html>
