@@ -10,7 +10,7 @@
  "fileInfo": "capsim-cert-file:",
  "keyInfo": "capsim-cert-key:",
  "dir": "certificates/",
- "count": 336,
+ "count": 337,
  "files": [
   "0185eabfa94ce67d959956afed556e01",
   "021f83fe2d43daf67fa3ec07bf079cb2",
@@ -258,6 +258,7 @@
   "b09035b9b752e0ddd095f5523b429ce4",
   "b24e933856c7dd2c9e138b35457c4fa4",
   "b3df3bb3d9a48a6d52be7e006b28cb18",
+  "b3f1aa3f1042690f13c72e6de5f854c6",
   "b415f106c30341a2613d07e812991afe",
   "b6d00f2eedfa96298c4fc6e6f6db799f",
   "b70244948d22bbab174f870bf6c79df0",
